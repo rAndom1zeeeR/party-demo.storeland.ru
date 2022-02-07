@@ -1,0 +1,35 @@
+{% IF promotion_campaign_empty %}
+<div class="message attention">Акций в нашем магазине пока не проводилось</div>
+{% ELSE %}
+<!-- Список акций -->
+<div class="products__container">
+	<div class="row">
+	  <div class="products__grid promotion__grid">
+	  {% FOR promotion_campaign %}
+	  <div class="promotion__item product__item {% IFNOT promotion_campaign.IS_WORK %}promotion__empty{% ENDIF %}" data-id="{promotion_campaign.ID}">
+			<div class="product__form-{promotion_campaign.ID}">
+				<div class="promotion__percentage">
+					<span>- {promotion_campaign.PERCENTAGE}%</span>
+				</div>
+				<a class="promotion__name" href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}">
+					<span>{promotion_campaign.NAME}</span>
+				</a>
+				<div class="promotion__date">
+					{% IF promotion_campaign.IS_WORK %}
+					<span>Действует</span>
+					<span>с {promotion_campaign.BEGINNING_TIME | date('d.m.Y')}</span>
+					<span>по {promotion_campaign.EXPIRED_TIME | date('d.m.Y')}</span>
+					{% ELSE %}
+					<span>Акция закончилась</span>
+					{% ENDIF %}
+				</div>
+				<a class="promotion__more" href="{promotion_campaign.URL | url_amp}" title="{promotion_campaign.NAME}">
+					<span>Подробнее</span>
+				</a>
+			</div>
+	  </div>
+	  {% ENDFOR promotion_campaign %}
+	  </div>
+	</div>
+</div>
+{% ENDIF %}

@@ -1,0 +1,99 @@
+{% IF FORM_NOTICE_IS_GOOD %}
+<div class="noty__body 1-{GOODS_MOD_ID} 2-{GOODS_ID} 3-{GOODS_FROM}">
+	{% FOR cart_items %}
+		{% IF cart_items.GOODS_MOD_ID = FORM_GOODS_MOD_ID %}
+			<div class="noty__addto flex" data-id="{cart_items.GOODS_ID}">
+				<div class="noty__content">
+					<a class="noty__title flex" href="{CART_URL}">
+						<i class="icon-cart"></i><span>Добавлено в корзину</span>
+					</a>
+					<a class="noty__message" href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}">{cart_items.GOODS_NAME}</a>
+					<div class="noty__price price__now {CURRENCY_CHAR_CODE}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</div>
+				</div>
+				<div class="noty__image flex-center">
+					<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_MEDIUM}{% ENDIF %}" />
+				</div>
+			</div>
+		{% ELSEIF cart_items.GOODS_ID = FORM_GOODS_ID %}		
+			<div class="noty__addto">
+				<a class="noty__title flex-center" href="{CART_URL}"><span>Добавлено в корзину</span></a>
+				<div class="noty__message"><span>{FORM_NOTICE | nl2br}</span></div>
+			</div>
+		{% ENDIF %}
+	{% ENDFOR %}
+</div>
+{% ELSE %}
+<div class="noty__body 2">
+	<div class="noty__addto">
+		<a class="noty__title flex-center" href="{CART_URL}"><span>Не удалось</span></a>
+		<div class="noty__message"><span>Товар не был добавлен в корзину в связи с отсутствием</span></div>
+	</div>
+</div>
+{% ENDIF %}
+
+<!-- Блок для обновления данных корзины. Не виден пользователю -->
+<div style="display:none;" id="newCartWord">
+	товар{CART_COUNT_TOTAL | gen_word_end("","а","ов")}
+</div>
+<div style="display:none;" id="newCartSum">
+	{CART_SUM_NOW | money_format}
+</div>
+<div style="display:none;" id="newCartCount">
+  {CART_COUNT_TOTAL}
+</div>
+<div style="display:none;" id="newCartData">
+	{% IFNOT cart_items_empty %}
+	<div class="addto__items">
+		{% FOR cart_items %}
+		<div class="addto__item flex" data-id="{cart_items.GOODS_ID}">
+			<a class="addto__image flex-center" href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}">
+				<img class="goods-image-icon" src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" />
+			</a>
+			<div class="addto__content flex-stretch">
+				<div class="addto__info">
+					<!-- Название -->
+					<a class="addto__name" href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}">
+						<span>{cart_items.GOODS_NAME}</span>
+					</a>
+					{% IFNOT cart_items.distinctive_properties_empty %}
+					<div class="addto__mod">({% FOR distinctive_properties %}{cart_items.distinctive_properties.NAME}: {cart_items.distinctive_properties.VALUE}{% IFNOT cart_items.distinctive_properties.last %}, {% ENDIF %}{% ENDFOR %})</div>
+					{% ENDIF %}
+					<!-- Цена -->
+					<div class="addto__price {CURRENCY_CHAR_CODE}">
+						<span class="addto__qty">{cart_items.ORDER_LINE_QUANTITY}</span>
+						<span class="addto__separator">x</span>
+						<span class="price__now" data-price="{cart_items.GOODS_MOD_PRICE_NOW}">{cart_items.GOODS_MOD_PRICE_NOW | money_format}</span>
+					</div>
+				</div>
+				<div class="addto__actions flex">
+					<!-- Удаление -->
+					<a class="addto__remove remove flex-center" href="{cart_items.ORDER_LINE_DELETE_URL}" data-qty="{cart_items.ORDER_LINE_QUANTITY}" title="Удалить позицию" data-id="{cart_items.GOODS_ID}" onclick="removeFromCart($(this))">
+						<i class="icon-close"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		{% ENDFOR %}
+	</div>
+	<div class="addto__total {CURRENCY_CHAR_CODE}">
+		<span class="addto__label">Итого:</span>
+		<span class="price__now cartSumNow">{CART_SUM_NOW | money_format}</span>
+	</div>
+	{% ENDIF %}
+	<div class="addto__empty">В корзине пока ничего нет</div>
+	<div class="addto__buttons flex justify-between">
+		<a class="button5 removeAll" href="{CART_TRUNCATE_URL}" onclick="removeFromCartAll($(this))" title="Очистить корзину">
+			<span>Очистить</span>
+		</a>
+		<a href="{CART_URL}" class="button-primary" title="Перейти в Корзину"><span>В корзину</span></a>
+	</div>
+</div>
+
+<!-- Обновление данных корзины -->
+<script>
+$('.cart__word').html($('#newCartWord').html());
+$('.cartSumNow').html($('#newCartSum').html());
+$('.cart__count').html($('#newCartCount').html());
+$('.cart__count').attr('data-count', $('#newCartCount').html());
+$('.addto__cart').html($('#newCartData').html());
+</script>
