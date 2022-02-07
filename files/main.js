@@ -3419,8 +3419,6 @@ $(document).ready(function(){
   toTop();
 	viewed();
 	footerLinksMore();
-	// mobileMenu();
-	sideNav();
   // Ленивая загрузка
   $(function(){
     var observer = lozad(); // lazy loads elements with default selector as '.lozad'
@@ -3483,66 +3481,3 @@ $(document).ready(function(){
 
 
 });
-
-// Функции клонирования текста в бегущей строке
-function clonePromoText() {
-	$('.promo__line').each(function(){
-		var t = $(this);
-		var text = t.find('.promo__text');
-		var count = parseInt(Math.ceil(t.width() / (text.width() + 64)));
-		// Дублируем текст на всю строку
-		for (var i = 0; i < count; i++) {
-			text.clone().appendTo(t);
-		}
-	});
-
-	$('.promo__line').marquee({
-			duration: 25000,
-			gap: 200,
-			//time in milliseconds before the marquee will start animating
-			delayBeforeStart: 0,
-			duplicated: true
-	});
-}
-
-// Функции боковой навигации
-function sideNav(){
-	$('.sidenav__item[data-open]').on('click', function(event){
-		// if(getClientWidth() < 768){
-		// 	return (true)
-		// }
-		event.preventDefault();
-		$('div, a, form').removeClass('opened');
-		var value = $(this).data('open');
-		console.log('$(this)', $(this))
-		if ($(this).hasClass('opened')){
-			$(this).removeClass('opened');
-			$(this).parent().removeClass('opened');
-			$('.sidenav').removeClass('opened');
-			$('#overlay').removeClass('opened');
-			$('.sidenav__content[data-content="'+ value +'"]').removeClass('opened');
-			console.log('removeClass opened')
-		}else{
-			$(this).addClass('opened');
-			$(this).parent().addClass('opened');
-			$('.sidenav').addClass('opened');
-			$('#overlay').addClass('opened');
-			$('.sidenav__content[data-content="'+ value +'"]').addClass('opened');
-			console.log('addClass opened')
-		}
-		return false;
-	});
-
-	// Открытие Меню и Каталога в сайдбаре
-	$('.addto__menu-nav a').on('click', function(event){
-		event.preventDefault();
-		var id = $(this).data('id')
-		console.log('id', id)
-		$('.addto__menu-nav a').removeClass('active');
-		$('.addto__menu-item[data-id]').removeClass('active');
-		$(this).addClass('active');
-		$('.addto__menu-item[data-id="'+ id +'"]').addClass('active');
-		id == 'catalog' ? $('.addto__menu-contacts').hide() : $('.addto__menu-contacts').show()
-	});
-
-}
