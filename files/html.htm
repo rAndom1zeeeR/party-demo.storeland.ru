@@ -490,9 +490,11 @@
 							{ANTISPAM_CODE}		
 							<div class="form__fields">
 								<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="off" required />
+								<i class="icon-user"></i>
 							</div>		
 							<div class="form__fields">
 								<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
+								<i class="icon-phone"></i>
 							</div>		
 							<div class="form__buttons">
 								<button type="submit" title="Заказать звонок" class="form__button button">Заказать звонок</button>
@@ -619,7 +621,7 @@
 					</div>
 					{% ENDIF %}
 				</div>
-				
+
 				<!-- Подвал. Меню -->
 				<div class="footer__menu">
 					<ul class="mainnav__list unstyled flex" itemscope itemtype="https://schema.org/SiteNavigationElement">

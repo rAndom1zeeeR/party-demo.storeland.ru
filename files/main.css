@@ -583,6 +583,7 @@ h6 {font-size: 0.875rem;}
 /*** Шапка ***/
 /**************************************/
 .header__block {margin-right: 10px;padding: 12px 14px;background-color: #ffffff;box-shadow: 0px 4px 10px 0px #AE8FED4D;border-radius: 0 0 30px 30px;position: relative;}
+.header__block.has-items:after {content: '';width: 8px;height: 8px;background-color: #9579D1;border-radius: 100%;position: absolute;bottom: -4px;left: calc(50% - 4px);}
 .header__block:last-child {margin-right: 0;}
 .header__block.logo {background-color: transparent;box-shadow: none;flex-grow: 1;text-align: center;padding: 0;}
 .header__block.phone {padding: 12px 20px;}
@@ -600,7 +601,7 @@ h6 {font-size: 0.875rem;}
 /**************************************/
 /*** Меню ***/
 /**************************************/
-#menu {margin-top: 30px;}
+#menu {margin-top: 1.5rem;}
 .menu__inner {position: relative;}
 
 /** Меню. Каталог **/
@@ -717,10 +718,13 @@ h6 {font-size: 0.875rem;}
 .callback__item:last-child {justify-content: flex-start;}
 .callback__item:last-child .callback__content {border-top: 0;border-bottom: 20px solid rgba(237, 184, 225, 0.4);padding: 1.25rem 1.25rem 2rem 1.25rem;border-radius: 1.5rem 1.5rem 0 0;}
 .callback__item:last-child .callback__icon {bottom: auto;top: 5.5rem}
-.callback__item-callback {padding: 1.25rem;height: 470px;}
-.callback__item-callback .form__button {width: 100%;}
 .callback__title.title {font-size: 2.5rem;font-weight: bold;}
 .callback__subtitle.subtitle {font-size: 1rem;margin-top: 1rem;}
+.callback__item-callback {padding: 1.25rem;height: 470px;}
+.callback__item-callback .form__button {width: 100%;}
+.callback__item-callback .form__fields input {padding-left: 54px;}
+.callback__item-callback .form__fields i {width: 36px;height: 36px;line-height: 36px;font-size: 18px;color: #ffffff;background-color: #E3DDEE;border-radius: 100%;display: inline-block;text-align: center;position: absolute;top: 7px;left: 7px;}
+.callback__item-callback .form__fields input:focus + i {background-color: #FFA5D8;}
 
 
 /**************************************/
