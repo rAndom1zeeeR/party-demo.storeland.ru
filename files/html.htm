@@ -24,8 +24,8 @@
 	<!-- Подключаемые шрифты -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,400;1,700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="/design/icomoon.css?design=THEMENAME" />
 	<!-- Основные Стили магазина для всех страниц -->
 	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}min.css?design=THEMENAME" />
@@ -77,6 +77,267 @@
 
 		<!-- Фон -->
 		<div id="overlay"></div>
+
+		<!-- Шапка -->
+		<header id="header">
+			<div class="container">
+				<div class="header__inner flex-start">
+
+					<!-- Телефон 1 -->
+					{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
+					<div class="header__block phone flex-center">
+						<div class="header__block-icon"><i class="icon-phone"></i></div>
+						<div class="header__block-content">
+							<a class="header__block-link"
+								href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}"
+								title="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
+								<span>{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}</span>
+							</a>
+						</div>
+					</div>
+					{% ENDIF %}
+
+					<!-- Личный кабинет -->
+					<div class="header__block user">
+						<a class="header__block-icon" href="{USER_LOGIN_URL}" title="Личный кабинет">
+							<i class="icon-user"></i>
+						</a>
+					</div>
+
+					<!-- Логотип -->
+					<div class="header__block logo" itemscope itemtype="http://schema.org/Organization">
+						<a href="{INDEX_PAGE_URL}" title="{SETTINGS_STORE_NAME}" itemprop="url">
+							<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="logo">
+							<meta itemprop="name" content="{SETTINGS_STORE_NAME}">
+							<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+								<meta itemprop="addressLocality" content="{SETTINGS_STORE_REGION}" />
+							</span>
+						</a>
+					</div>
+
+					<!-- Сравнение -->
+					<div class="header__block compare {% IF COMPARE_GOODS_COUNT > 0 %}has-items{% ENDIF %}">
+						<a class="header__block-icon" href="{COMPARE_URL}" title="Сравнение">
+							<span class="count-compare" data-count="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</span>
+							<i class="icon-compare"></i>
+						</a>
+					</div>
+
+					<!-- Избранное -->
+					<div class="header__block favorites {% IF FAVORITES_GOODS_COUNT > 0 %}has-items{% ENDIF %}">
+						<a class="header__block-icon" href="{FAVORITES_URL}" title="Избранное">
+							<span class="count-favorites" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
+							<i class="icon-favorites"></i>
+						</a>
+					</div>
+
+					<!-- Корзина -->
+					<div class="header__block cart {% IF CART_COUNT_TOTAL > 0 %}has-items{% ENDIF %}">
+						<a class="header__block-icon" href="{CART_URL}" title="Корзина">
+							<div class="header__block-count">
+								<span class="count-cart" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+							</div>
+							<i class="icon-cart"></i>
+						</a>
+					</div>
+
+				</div>
+			</div>
+		</header>
+
+		<!-- Меню -->
+		<div id="menu">
+			<div class="container">
+				<div class="menu__inner flex">
+					<!-- Меню. Каталог -->
+					<div class="catalog">
+						<a class="catalog__icon flex-center" href="{CATALOG_URL}" title="Перейти в каталог">
+							<i class="icon-catalog"></i>
+						</a>
+					</div>
+
+					<!-- Меню. Верхнее -->
+					<div class="menu">
+						<nav class="mainnav" itemscope itemtype="https://schema.org/SiteNavigationElement">
+							<ul class="mainnav__list unstyled flex">
+								{% FOR menu %}
+									{% FOR header %}
+										{% FOR links %}
+										<li {% IF menu.header.links.SELECTED %}class="active"{% ENDIF %}>
+											<a class="mainnav__list-link {% IF menu.header.links.SELECTED %}active{%ENDIF%} {% IF menu.header.links.NAME = Каталог %}mainnav__catalog{%ENDIF%}" href="{menu.header.links.URL}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url">
+												<span itemprop="name">{menu.header.links.NAME}</span>
+											</a>
+										</li>
+										{% ENDFOR %}
+									{% ENDFOR %}
+								{% ENDFOR %}
+							</ul>
+							<!-- Меню. Еще -->
+							<ul class="overflowMenu unstyled dropdown__content"></ul>
+						</nav>
+					</div>
+
+					<!-- Поиск -->
+					<div class="search" itemscope itemtype="https://schema.org/WebSite">
+						<link itemprop="url" href="{INDEX_PAGE_URL}" />
+						
+						<!-- Форма поиска -->
+						<form class="search__form" action="{QUICK_SEARCH_URL}" method="get" title="Поиск по магазину" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
+							<meta itemprop="target" content="{SEARCH_URL}?q={{EMPTY}q}" />
+							<input type="hidden" name="goods_search_field_id" value="0" />
+							<input type="text" name="q" value="{FORM_SEARCH_Q}" class="search__input" placeholder="Поиск..." autocomplete="off" itemprop="query-input" />
+							<!-- Найти -->
+							<button type="submit" class="search__submit" title="Искать">
+								<i class="icon-search"></i>
+							</button>
+							<!-- Кружок обновления -->
+							<div class="lds-ring">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<!-- Закрыть -->
+							<a class="search__reset" href="javascript:;">
+								<i class="icon-close"></i>
+							</a>
+						</form><!-- //END Форма поиска -->
+						
+						<!-- Результаты поиска -->
+						<div id="search__result" style="display: none;">
+							<div class="row">
+								<div class="result__inner flex-start">
+									<div class="result__goods"></div>
+									<div class="result__category"></div>
+									<div class="result__showAll">
+										<span class="button">все результаты</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- //END Поиск -->
+
+				</div>
+			</div>
+		</div>
+
+		{% IF index_page %}
+		<!-- Слайдшоу -->
+		<div id="slideshow">
+			<div class="container">
+				<div class="slideshow__inner">
+					<!-- Слайды -->
+					<div class="slider owl-carousel">
+						<!-- Слайд 1 -->
+						<div class="slider__item">
+							<div class="slider__content">
+								<h3><a href="{CATALOG_URL}" class="slider__title">Для любимых женщин</a></h3>
+								<div class="slider__subtitle">Подарки для женской половины семьи!</div>
+								<div class="slider__buttons">
+									<a class="slider__button button" href="{CATALOG_URL}" title="Смотреть каталог">
+										<span>В каталог</span>
+									</a>								
+								</div>
+							</div>
+							<div class="slider__image">
+								<img src="{ASSETS_IMAGES_PATH}slide_1.jpg?design=THEMENAME" />
+							</div>
+						</div>
+						<!-- Слайд 2 -->
+						<div class="slider__item">
+							<div class="slider__content">
+								<h3><a href="{CATALOG_URL}" class="slider__title">Подарки для женщин</a></h3>
+								<div class="slider__subtitle">Только лучшие подарки по выгодным ценам!</div>
+								<div class="slider__buttons">
+									<a class="slider__button button" href="{CATALOG_URL}" title="Смотреть каталог">
+										<span>В каталог</span>
+									</a>								
+								</div>
+							</div>
+							<div class="slider__image">
+								<img src="{ASSETS_IMAGES_PATH}slide_2.jpg?design=THEMENAME" />
+							</div>
+						</div>
+						<!-- Слайд 3 -->
+						<div class="slider__item">
+							<div class="slider__content">
+								<h3><a href="{CATALOG_URL}" class="slider__title">Домашним феям</a></h3>
+								<div class="slider__subtitle">Милая и неповторимая посуда</div>
+								<div class="slider__buttons">
+									<a class="slider__button button" href="{CATALOG_URL}" title="Смотреть каталог">
+										<span>В каталог</span>
+									</a>								
+								</div>
+							</div>
+							<div class="slider__image">
+								<img src="{ASSETS_IMAGES_PATH}slide_3.jpg?design=THEMENAME" />
+							</div>
+						</div>
+						<!-- Слайд 4 -->
+						<div class="slider__item">
+							<div class="slider__content">
+								<h3><a href="{CATALOG_URL}" class="slider__title">Для маленьких принцесс</a></h3>
+								<div class="slider__subtitle">Подберем подарок даже самой капризной даме</div>
+								<div class="slider__buttons">
+									<a class="slider__button button" href="{CATALOG_URL}" title="Смотреть каталог">
+										<span>В каталог</span>
+									</a>								
+								</div>
+							</div>
+							<div class="slider__image">
+								<img src="{ASSETS_IMAGES_PATH}slide_4.jpg?design=THEMENAME" />
+							</div>
+						</div>
+						<!-- Слайд 5 -->
+						<div class="slider__item">
+							<div class="slider__content">
+								<h3><a href="{CATALOG_URL}" class="slider__title">Романтичные подарки</a></h3>
+								<div class="slider__subtitle">Для нежных натур по специальным ценам</div>
+								<div class="slider__buttons">
+									<a class="slider__button button" href="{CATALOG_URL}" title="Смотреть каталог">
+										<span>В каталог</span>
+									</a>								
+								</div>
+							</div>
+							<div class="slider__image">
+								<img src="{ASSETS_IMAGES_PATH}slide_5.jpg?design=THEMENAME" />
+							</div>
+						</div>
+
+					</div>
+					<!-- Промо -->
+					<div class="slider__promo flex">
+						<div class="slider__promo-item">
+							<div class="slider__promo-icon">
+								<i class="icon-Delivery"></i>
+							</div>
+							<div class="slider__promo-content">
+								<span>Быстрая доставка по всей России</span>
+							</div>
+						</div>
+						<div class="slider__promo-item">
+							<div class="slider__promo-icon">
+								<i class="icon-Quality"></i>
+							</div>
+							<div class="slider__promo-content">
+								<span>Товары выского качества</span>
+							</div>
+						</div>
+						<div class="slider__promo-item">
+							<div class="slider__promo-icon">
+								<i class="icon-Gift"></i>
+							</div>
+							<div class="slider__promo-content">
+								<span>Регулярные скидки и подарки</span>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		{% ENDIF %}
 
 	
 		<noindex>
@@ -246,9 +507,10 @@
 	<script type="text/javascript">	
 	// Загрузка основных функций шаблона для главной страницы
 	$(document).ready(function(){
+		slideShow();
+
 		//counterDate();
 		// newsCarousel();
-		// slideShow();
 		// pdtSale();
 		// pdtBest();
 		// pdtNew();
