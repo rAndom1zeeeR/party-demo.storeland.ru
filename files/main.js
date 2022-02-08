@@ -1005,6 +1005,38 @@ function slideShow() {
 	});
 }
 
+// Слайдер для главной страницы
+function promoSlider() {
+	// Слайдер на главной
+	var owlS = $('#promo .owl-carousel');
+	owlS.owlCarousel({
+		items: 1,
+		loop: true,
+		rewind: true,
+		lazyLoad: true,
+		nav: false,
+		navText: [ , ],
+		navContainer: '',
+		dots: true,
+		dotsContainer: '',
+		dotsData: false,
+		dotsSpeed: 400,
+		dotsEach: true,
+		smartSpeed: 500,
+		URLhashListener: true,
+		autoplay: false,
+    autoplayTimeout: '3000',
+		autoplayHoverPause: true,
+		autoHeight: true,
+		autoHeightClass: 'owl-height',
+		mouseDrag: true,
+		touchDrag: true,
+		pullDrag: true,
+		animateOut: 'fadeOut',
+    animateIn: 'fadeIn'
+	});
+}
+
 // Новости
 function newsCarousel() {
 	var id = $('#news');
@@ -3423,14 +3455,5 @@ function addActive(obj){obj.hasClass('active') ? obj.removeClass('active') : obj
 
 
 $(document).ready(function(){
-
-
-	// console.log('t', t)
-	// console.log('text', text)
-	// console.log('tWidth', thisWidth)
-	// console.log('textWidth', textWidth)
-	// console.log('count', count)
-	// console.log(content)
-
 
 });

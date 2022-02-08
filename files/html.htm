@@ -224,7 +224,7 @@
 
 		{% IF index_page %}
 		<!-- Слайдшоу -->
-		<div id="slideshow">
+		<section id="slideshow">
 			<div class="container">
 				<div class="slideshow__inner">
 					<!-- Слайды -->
@@ -336,9 +336,403 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 		{% ENDIF %}
 
+		<!-- Обратный отсчет до 8 марта -->
+		<section id="countdown">
+			<div class="container">
+				<div class="countdown__inner flex lozad" data-background-image="{ASSETS_IMAGES_PATH}ban_1.jpg?design=THEMENAME">
+					<div class="countdown__content">
+						<h3 class="countdown__title">До 8 марта осталось</h3>
+						<div class="countdown__subtitle">Спешите подготовить подарки!</div>
+					</div>
+					<div class="countdown__counter">
+						<!-- Обертка обратного отсчета -->
+						<div class="tick"
+							data-did-init="handleTickInit">
+							<div data-repeat="true"
+									data-layout="horizontal center fit"
+									data-transform="preset(d, h, m, s) -> delay">
+									<div class="tick-group">
+											<div data-key="value"
+													data-repeat="true"
+													data-transform="pad(00) -> split -> delay">
+													<span data-view="flip"></span>
+											</div>
+											<span data-key="label"
+														data-view="text"
+														class="tick-label"></span>
+									</div>
+							</div>
+						</div>
+						<!-- Скрипты запуска обратного отсчета -->
+						<script type="text/javascript">
+							function handleTickInit(tick) {
+								Tick.count.down('2022-03-08').onupdate = function(value) {
+									tick.value = value;
+								};
+								localizationTickRus();
+							}
+							function localizationTickRus(){
+								// this snippet sets the locale to Dutch
+								var localization = {
+										YEAR_PLURAL: 'Года',
+										YEAR_SINGULAR: 'Год',
+										MONTH_PLURAL: 'Месяца',
+										MONTH_SINGULAR: 'Месяц',
+										WEEK_PLURAL: 'Недели',
+										WEEK_SINGULAR: 'Неделя',
+										DAY_PLURAL: 'Дней',
+										DAY_SINGULAR: 'День',
+										HOUR_PLURAL: 'Часов',
+										HOUR_SINGULAR: 'Час',
+										MINUTE_PLURAL: 'Минут',
+										MINUTE_SINGULAR: 'Минута',
+										SECOND_PLURAL: 'Секунд',
+										SECOND_SINGULAR: 'Секунда',
+										MILLISECOND_PLURAL: 'Милисекунд',
+										MILLISECOND_SINGULAR: 'Миллисекунда'
+								};
+
+								// loop over localization object and call setConstant method
+								for (var key in localization) {
+										if (!localization.hasOwnProperty(key)){continue;}
+										Tick.options.setConstant(key, localization[key]);
+								}
+							}
+						</script>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Промо слайдер -->
+		<section id="promo">
+			<div class="container">
+				<div class="promo__items owl-carousel">
+					<!-- Промо 1 -->
+					<div class="promo__item flex lozad" data-background-image="{ASSETS_IMAGES_PATH}ban_2.jpg?design=THEMENAME">
+						<div class="promo__icon flex-center">
+							<div>от</div>
+							<div class="promo__price price__now"><span class="num">200</span></div>
+						</div>
+						<div class="promo__content">
+							<h3 class="promo__title">Купи 2 подарка по цене 3-х!</h3>
+							<div class="promo__subtitle">Ещё больше подарков для прекрасных женщин!</div>
+						</div>
+					</div>
+					<!-- Промо 2 -->
+					<div class="promo__item flex lozad" data-background-image="{ASSETS_IMAGES_PATH}ban_3.jpg?design=THEMENAME">
+						<div class="promo__icon flex-center">
+							<div class="promo__price price__now">new</div>
+						</div>
+						<div class="promo__content">
+							<h3 class="promo__title">Любительницам сладкого</h3>
+							<div class="promo__subtitle">Новинки вкуснейших конфеток!</div>
+						</div>
+					</div>
+					<!-- Промо 3 -->
+					<div class="promo__item flex lozad" data-background-image="{ASSETS_IMAGES_PATH}ban_4.jpg?design=THEMENAME">
+						<div class="promo__icon flex-center">
+							<div>от</div>
+							<div class="promo__price price__now"><span class="num">100</span></div>
+						</div>
+						<div class="promo__content">
+							<h3 class="promo__title">Милые знаки внимания</h3>
+							<div class="promo__subtitle">Только проверенные товары по низким ценам</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Основное описание -->
+		<section id="body">
+			<div class="container">
+				<div class="body__inner">
+					<div class="block__title">
+						<h2 class="title"><span>{PAGE_TITLE}</span></h2>
+					</div>
+					<div class="body">{BODY}</div>
+					<div class="flower-small lozad" data-background-image="{ASSETS_IMAGES_PATH}title.png?design=THEMENAME"></div>
+					<div class="flower-big lozad" data-background-image="{ASSETS_IMAGES_PATH}flowers.png?design=THEMENAME"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Заказать звонок -->
+		<section id="callback">
+			<div class="container">
+				<div class="callback__inner">
+					<!-- Баннер 1 -->
+					<div class="callback__item flex lozad" data-background-image="{ASSETS_IMAGES_PATH}ban_5.jpg?design=THEMENAME">
+						<div class="callback__icon flex-center">
+							<div>от</div>
+							<div class="callback__price price__now"><span class="num">150</span></div>
+						</div>
+						<div class="callback__content lozad" data-background-image="{ASSETS_IMAGES_PATH}callback.png?design=THEMENAME">
+							<h3 class="callback__title">Самые вкусные сладости</h3>
+							<div class="callback__subtitle">новые поступления</div>
+						</div>
+					</div>
+					<!-- Заказать звонок -->
+					<div class="callback__item callback__item-callback">
+						<div class="block__title">
+							<div class="pretitle lozad" data-background-image="{ASSETS_IMAGES_PATH}title.png?design=THEMENAME"></div>
+							<h2 class="title callback__title"><span>Заказать звонок</span></h2>
+							<div class="subtitle callback__subtitle">Оставьте свой номер телефона и мы поможем</div>
+						</div>
+						<form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
+							<input type="hidden" name="hash" value="{HASH}" />
+							<input class="callbackredirect" type="hidden" name="return_to" value="{CALLBACK_URL}" />
+							<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
+							{ANTISPAM_CODE}		
+							<div class="form__fields">
+								<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="off" required />
+							</div>		
+							<div class="form__fields">
+								<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
+							</div>		
+							<div class="form__buttons">
+								<button type="submit" title="Заказать звонок" class="form__button button">Заказать звонок</button>
+							</div>		
+							<div class="form__pp">
+								<span>Нажимая на кнопку &laquo;Заказать звонок&raquo;, Вы соглашаетесь с</span>
+								<a data-fancybox data-src="#fancybox__pp" href="javascript:;">правилами обработки данных</a>
+							</div>
+						</form>
+					</div>
+					<!-- Баннер 3 -->
+					<div class="callback__item flex lozad" data-background-image="{ASSETS_IMAGES_PATH}ban_6.jpg?design=THEMENAME">
+						<div class="callback__icon flex-center">
+							<div class="callback__price price__now">- 20%</div>
+						</div>
+						<div class="callback__content lozad" data-background-image="{ASSETS_IMAGES_PATH}callback.png?design=THEMENAME">
+							<h3 class="callback__title">Мыло ручной работы</h3>
+							<div class="callback__subtitle">Ароматный и красивый подарок</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Инстаграм -->
+		<section id="instagram">
+			<div class="container">
+				<div class="instagram__inner">
+					<div class="instagram__items">
+						<a class="instagram__item" href="#">
+							<img src="{ASSETS_IMAGES_PATH}inst_1.jpg?design=THEMENAME" />
+						</a>
+						<a class="instagram__item" href="#">
+							<img src="{ASSETS_IMAGES_PATH}inst_2.jpg?design=THEMENAME" />
+						</a>
+						<a class="instagram__item" href="#">
+							<img src="{ASSETS_IMAGES_PATH}inst_3.jpg?design=THEMENAME" />
+						</a>
+						<a class="instagram__item" href="#">
+							<img src="{ASSETS_IMAGES_PATH}inst_4.jpg?design=THEMENAME" />
+						</a>
+					</div>
+					<a class="instagram__links flex" href="#">
+						<div class="instagram__links-label">
+							<img src="{ASSETS_IMAGES_PATH}insta.png?design=THEMENAME" />
+						</div>
+						<div class="instagram__links-logo">
+							<img src="{ASSETS_IMAGES_PATH}insta2.png?design=THEMENAME" />
+						</div>
+						<div class="instagram__links-text">
+							<span>@gift_store21</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Подвал -->
+		<footer id="footer">
+			<div class="container">
+				<!-- Подвал. Контакты -->
+				<div class="footer__contacts flex" itemscope itemtype="https://schema.org/Organization">
+					{% IF SETTINGS_STORE_REGION %}
+					<a class="contacts__block region flex-center" href="https://yandex.ru/maps/?text={SETTINGS_STORE_REGION}&z=17" target="_blank" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+						<div class="contacts__block-icon">
+							<i class="icon-location"></i>
+						</div>
+						<div class="contacts__block-content">
+							<span itemprop="addressLocality">{SETTINGS_STORE_REGION}</span>
+						</div>
+					</a>
+					{% ENDIF %}
+					
+					{% IF SETTINGS_STORE_EMAIL_MAIN %}
+					<a class="contacts__block email flex-center" href="mailto:{SETTINGS_STORE_EMAIL_MAIN}" title="{SETTINGS_STORE_EMAIL_MAIN}">
+						<div class="contacts__block-icon">
+							<i class="icon-mail"></i>
+						</div>
+						<div class="contacts__block-content">
+							<span itemprop="email">{SETTINGS_STORE_EMAIL_MAIN}</span>
+						</div>
+					</a>
+					{% ENDIF %}
+
+					{% IF SETTINGS_STORE_WORK_TIME %}
+					<a class="contacts__block worktime flex-center" href="{FEEDBACK_URL}" title="Режим работы">
+						<div class="contacts__block-icon">
+							<i class="icon-clock"></i>
+						</div>
+						<div class="contacts__block-content">
+							<span>{SETTINGS_STORE_WORK_TIME}</span>
+						</div>
+					</a>
+					{% ENDIF %}
+
+					{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
+					<div class="contacts__block phone flex-center" href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}" title="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
+						<div class="contacts__block-icon">
+							<i class="icon-phone"></i>
+						</div>
+						<div class="contacts__block-content">
+							<!-- Телефон 1 -->
+							{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
+							<a class="contacts__block-phone" href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}" title="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
+								<span itemprop="telephone">{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}</span>
+							</a>
+							{% ENDIF SETTINGS_STORE_PHONE_NUMBER1 %}
+							<!-- Телефон 1 -->
+							{% IF SETTINGS_STORE_PHONE_NUMBER2 %}
+							<a class="contacts__block-phone" href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE2}({SETTINGS_STORE_PHONE_CITY_CODE2}){SETTINGS_STORE_PHONE_NUMBER2}" title="{SETTINGS_STORE_PHONE_COUNTRY_CODE2}({SETTINGS_STORE_PHONE_CITY_CODE2}){SETTINGS_STORE_PHONE_NUMBER2}">
+								<span itemprop="telephone">{SETTINGS_STORE_PHONE_COUNTRY_CODE2}({SETTINGS_STORE_PHONE_CITY_CODE2}){SETTINGS_STORE_PHONE_NUMBER2}</span>
+							</a>
+							{% ENDIF SETTINGS_STORE_PHONE_NUMBER2 %}
+							<!-- Телефон 1 -->
+							{% IF SETTINGS_STORE_PHONE_NUMBER3 %}
+							<a class="contacts__block-phone" href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE3}({SETTINGS_STORE_PHONE_CITY_CODE3}){SETTINGS_STORE_PHONE_NUMBER3}" title="{SETTINGS_STORE_PHONE_COUNTRY_CODE3}({SETTINGS_STORE_PHONE_CITY_CODE3}){SETTINGS_STORE_PHONE_NUMBER3}">
+								<span itemprop="telephone">{SETTINGS_STORE_PHONE_COUNTRY_CODE3}({SETTINGS_STORE_PHONE_CITY_CODE3}){SETTINGS_STORE_PHONE_NUMBER3}</span>
+							</a>
+							{% ENDIF SETTINGS_STORE_PHONE_NUMBER3 %}
+							<a class="contacts__block-click" href="javascript:;" data-fancybox data-src="#fancybox__callback">
+								<span>Заказать звонок</span>
+							</a>
+						</div>
+					</div>
+					{% ENDIF %}
+				</div>
+				
+				<!-- Подвал. Меню -->
+				<div class="footer__menu">
+					<ul class="mainnav__list unstyled flex" itemscope itemtype="https://schema.org/SiteNavigationElement">
+						{% FOR menu %}
+							{% FOR footer %}
+								{% FOR links %}
+								<li {% IF menu.footer.links.SELECTED %}class="active"{% ENDIF %}>
+									<a class="mainnav__list-link {% IF menu.footer.links.SELECTED %}active{%ENDIF%}" href="{menu.footer.links.URL}" title="{% IF menu.footer.links.TITLE %}{menu.footer.links.TITLE}{% ELSE%}{menu.footer.links.NAME}{% ENDIF %}" itemprop="url">
+										<span itemprop="name">{menu.footer.links.NAME}</span>
+									</a>
+								</li>
+								{% ENDFOR %}
+							{% ENDFOR %}
+						{% ENDFOR %}
+					</ul>
+					<!-- Меню. Еще -->
+					<ul class="overflowMenu unstyled dropdown__content"></ul>
+				</div>
+
+				<!-- Подвал. Нижняя часть -->
+				<div class="footer__bottom flex">
+					<!-- Подвал. Соц Сети -->
+					<div class="footer__icons social flex">
+						<a class="facebook" href="https://www.facebook.com/" title="FaceBook.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.997 3.985h2.191V.169C17.81.117 16.51 0 14.996 0c-3.159 0-5.323 1.987-5.323 5.639V9H6.187v4.266h3.486V24h4.274V13.267h3.345l.531-4.266h-3.877V6.062c.001-1.233.333-2.077 2.051-2.077z"/></svg>
+							<span>facebook</span>
+						</a>
+						<a class="twitter" href="https://twitter.com/" title="Twitter.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.534 7.113A9.822 9.822 0 0 0 24 4.559v-.001c-.893.391-1.843.651-2.835.777a4.894 4.894 0 0 0 2.165-2.719 9.845 9.845 0 0 1-3.12 1.191 4.919 4.919 0 0 0-8.511 3.364c0 .39.033.765.114 1.122-4.09-.2-7.71-2.16-10.142-5.147a4.962 4.962 0 0 0-.674 2.487c0 1.704.877 3.214 2.186 4.089A4.863 4.863 0 0 1 .96 9.116v.054a4.943 4.943 0 0 0 3.942 4.835c-.401.11-.837.162-1.29.162-.315 0-.633-.018-.931-.084.637 1.948 2.447 3.381 4.597 3.428a9.89 9.89 0 0 1-6.101 2.098c-.403 0-.79-.018-1.177-.067a13.856 13.856 0 0 0 7.548 2.208c8.683 0 14.342-7.244 13.986-14.637z"/></svg>
+							<span>twitter</span>
+						</a>
+						<a class="tiktok" href="https://tiktok.com/" title="tiktok.com" target="_blank">
+							<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M480.32 128.39c-29.22 0-56.18-9.68-77.83-26.01-24.83-18.72-42.67-46.18-48.97-77.83A129.78 129.78 0 0 1 351.04.39h-83.47v228.08l-.1 124.93c0 33.4-21.75 61.72-51.9 71.68a75.905 75.905 0 0 1-28.04 3.72c-12.56-.69-24.33-4.48-34.56-10.6-21.77-13.02-36.53-36.64-36.93-63.66-.63-42.23 33.51-76.66 75.71-76.66 8.33 0 16.33 1.36 23.82 3.83v-84.75c-7.9-1.17-15.94-1.78-24.07-1.78-46.19 0-89.39 19.2-120.27 53.79-23.34 26.14-37.34 59.49-39.5 94.46-2.83 45.94 13.98 89.61 46.58 121.83 4.79 4.73 9.82 9.12 15.08 13.17 27.95 21.51 62.12 33.17 98.11 33.17 8.13 0 16.17-.6 24.07-1.77 33.62-4.98 64.64-20.37 89.12-44.57 30.08-29.73 46.7-69.2 46.88-111.21l-.43-186.56a210.864 210.864 0 0 0 46.88 27.34c26.19 11.05 53.96 16.65 82.54 16.64v-83.1c.02.02-.22.02-.24.02z"/></svg>
+							<span>tiktok</span>
+						</a>
+						<a class="whatsapp" href="https://whatsapp.com/" title="Whatsapp.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.507 14.307-.009.075c-2.199-1.096-2.429-1.242-2.713-.816-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.293-.506.32-.578.878-1.634.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.576-.05-.997-.042-1.368.344-1.614 1.774-1.207 3.604.174 5.55 2.714 3.552 4.16 4.206 6.804 5.114.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345z"/><path d="M20.52 3.449C12.831-3.984.106 1.407.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c7.905 4.27 17.661-1.4 17.665-10.449 0-3.176-1.24-6.165-3.495-8.411zm1.482 8.417c-.006 7.633-8.385 12.4-15.012 8.504l-.36-.214-3.75.975 1.005-3.645-.239-.375c-4.124-6.565.614-15.145 8.426-15.145a9.865 9.865 0 0 1 7.021 2.91 9.788 9.788 0 0 1 2.909 6.99z"/></svg>
+							<span>whatsapp</span>
+						</a>
+						<a class="viber" href="https://viber.com/" title="Viber.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.155 13.893c.716-6.027-.344-9.832-2.256-11.553l.001-.001C17.814-.6 7.392-1.035 3.7 2.471 2.042 4.186 1.458 6.703 1.394 9.819c-.064 3.117-.14 8.956 5.301 10.54H6.7l-.005 2.419s-.037.98.589 1.177c.716.232 1.04-.223 3.267-2.883 3.724.323 6.584-.417 6.909-.525.752-.252 5.007-.815 5.695-6.654zM10.918 19.37s-2.357 2.939-3.09 3.702c-.24.248-.503.225-.499-.267 0-.323.018-4.016.018-4.016-4.613-1.322-4.341-6.294-4.291-8.895.05-2.602.526-4.733 1.93-6.168C8.225.689 17.362 1.368 19.69 3.556c2.846 2.523 1.833 9.651 1.839 9.894-.585 4.874-4.033 5.183-4.667 5.394-.271.09-2.786.737-5.944.526z"/><path d="M12.222 4.297c-.385 0-.385.6 0 .605 2.987.023 5.447 2.105 5.474 5.924 0 .403.59.398.585-.005h-.001c-.032-4.115-2.718-6.501-6.058-6.524z"/><path d="M16.151 10.193c-.009.398.58.417.585.014.049-2.269-1.35-4.138-3.979-4.335-.385-.028-.425.577-.041.605 2.28.173 3.481 1.729 3.435 3.716zM15.521 12.774c-.494-.286-.997-.108-1.205.173l-.435.563c-.221.286-.634.248-.634.248-3.014-.797-3.82-3.951-3.82-3.951s-.037-.427.239-.656l.544-.45c.272-.216.444-.736.167-1.247-.74-1.337-1.237-1.798-1.49-2.152-.266-.333-.666-.408-1.082-.183h-.009c-.865.506-1.812 1.453-1.509 2.428.517 1.028 1.467 4.305 4.495 6.781 1.423 1.171 3.675 2.371 4.631 2.648l.009.014c.942.314 1.858-.67 2.347-1.561v-.007c.217-.431.145-.839-.172-1.106-.562-.548-1.41-1.153-2.076-1.542z"/><path d="M13.169 8.104c.961.056 1.427.558 1.477 1.589.018.403.603.375.585-.028-.064-1.346-.766-2.096-2.03-2.166-.385-.023-.421.582-.032.605z"/></svg>
+							<span>viber</span>
+						</a>
+						<a class="odnoklassniki" href="https://ok.ru/" title="Odnoklassniki" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.721 12.881c-.613 1.205.083 1.781 1.671 2.765 1.35.834 3.215 1.139 4.413 1.261l-4.721 4.541c-1.374 1.317.838 3.43 2.211 2.141l3.717-3.585c1.423 1.369 2.787 2.681 3.717 3.59 1.374 1.294 3.585-.801 2.226-2.141-.102-.097-5.037-4.831-4.736-4.541 1.213-.122 3.05-.445 4.384-1.261l-.001-.001c1.588-.989 2.284-1.564 1.68-2.769-.365-.684-1.349-1.256-2.659-.267 0 0-1.769 1.355-4.622 1.355-2.854 0-4.622-1.355-4.622-1.355-1.309-.994-2.297-.417-2.658.267z"/><path d="M11.999 12.142c3.478 0 6.318-2.718 6.318-6.064 0-3.36-2.84-6.078-6.318-6.078C8.52 0 5.68 2.718 5.68 6.078c0 3.346 2.84 6.064 6.319 6.064zm0-9.063c1.709 0 3.103 1.341 3.103 2.999 0 1.644-1.394 2.985-3.103 2.985S8.896 7.722 8.896 6.078c-.001-1.659 1.393-2.999 3.103-2.999z"/></svg>
+							<span>odnoklassniki</span>
+						</a>
+						<a class="vk" href="https://vk.com/nutscity" title="VK.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.915 13.028c-.388-.49-.277-.708 0-1.146.005-.005 3.208-4.431 3.538-5.932l.002-.001c.164-.547 0-.949-.793-.949h-2.624c-.668 0-.976.345-1.141.731 0 0-1.336 3.198-3.226 5.271-.61.599-.892.791-1.225.791-.164 0-.419-.192-.419-.739V5.949c0-.656-.187-.949-.74-.949H9.161c-.419 0-.668.306-.668.591 0 .622.945.765 1.043 2.515v3.797c0 .832-.151.985-.486.985-.892 0-3.057-3.211-4.34-6.886-.259-.713-.512-1.001-1.185-1.001H.9c-.749 0-.9.345-.9.731 0 .682.892 4.073 4.148 8.553C6.318 17.343 9.374 19 12.154 19c1.671 0 1.875-.368 1.875-1.001 0-2.922-.151-3.198.686-3.198.388 0 1.056.192 2.616 1.667C19.114 18.217 19.407 19 20.405 19h2.624c.748 0 1.127-.368.909-1.094-.499-1.527-3.871-4.668-4.023-4.878z"/></svg>
+							<span>vk</span>
+						</a>
+						<a class="instagram" href="https://www.instagram.com/nutscity_ru/" title="Instagram.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.004 5.838a6.157 6.157 0 0 0-6.158 6.158 6.157 6.157 0 0 0 6.158 6.158 6.157 6.157 0 0 0 6.158-6.158 6.157 6.157 0 0 0-6.158-6.158zm0 10.155a3.996 3.996 0 1 1 3.997-3.997 3.995 3.995 0 0 1-3.997 3.997z"/><path d="M16.948.076c-2.208-.103-7.677-.098-9.887 0-1.942.091-3.655.56-5.036 1.941C-.283 4.325.012 7.435.012 11.996c0 4.668-.26 7.706 2.013 9.979 2.317 2.316 5.472 2.013 9.979 2.013 4.624 0 6.22.003 7.855-.63 2.223-.863 3.901-2.85 4.065-6.419.104-2.209.098-7.677 0-9.887-.198-4.213-2.459-6.768-6.976-6.976zm3.495 20.372c-1.513 1.513-3.612 1.378-8.468 1.378-5 0-7.005.074-8.468-1.393-1.685-1.677-1.38-4.37-1.38-8.453 0-5.525-.567-9.504 4.978-9.788 1.274-.045 1.649-.06 4.856-.06l.045.03c5.329 0 9.51-.558 9.761 4.986.057 1.265.07 1.645.07 4.847-.001 4.942.093 6.959-1.394 8.453z"/><circle cx="18.406" cy="5.595" r="1.439"/></svg>
+							<span>instagram</span>
+						</a>
+						<a class="youtube" href="https://youtube.com/" title="YouTube.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m23.469 5.929.03.196a3.043 3.043 0 0 0-2.068-2.112l-.021-.005c-1.871-.508-9.4-.508-9.4-.508s-7.51-.01-9.4.508A3.044 3.044 0 0 0 .527 6.104l-.005.021c-.699 3.651-.704 8.038.031 11.947l-.031-.198a3.043 3.043 0 0 0 2.068 2.112l.021.005c1.869.509 9.4.509 9.4.509s7.509 0 9.4-.509a3.043 3.043 0 0 0 2.084-2.096l.005-.021c.318-1.698.5-3.652.5-5.648l-.001-.221.001-.23c0-1.997-.182-3.951-.531-5.846zM9.608 15.651V8.358l6.266 3.652z"/></svg>
+							<span>YouTube</span>
+						</a>
+					</div>
+
+					<!-- Подвал. Логотип -->
+					<div class="footer__logo logo" itemscope itemtype="http://schema.org/Organization">
+						<a href="{INDEX_PAGE_URL}" title="{SETTINGS_STORE_NAME}" itemprop="url">
+							<img src="{ASSETS_IMAGES_PATH}logo.png?design=THEMENAME" alt="{SETTINGS_STORE_NAME}" itemprop="logo">
+							<meta itemprop="name" content="{SETTINGS_STORE_NAME}">
+							<span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+								<meta itemprop="addressLocality" content="{SETTINGS_STORE_REGION}" />
+							</span>
+						</a>
+					</div>
+
+					<!-- Подвал. Оплата -->
+					<div class="footer__icons payments flex">
+						<a href="#" class="iomoney" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 301 63" style="enable-background:new 0 0 301 63" xml:space="preserve"><path d="m291.7 17.3-7 17.1c-.2.2-.2.6-.2.8l-.2.4-.2-.4c0-.2-.2-.6-.2-.8l-7-17.1h-9l11.8 29.3-5 11.2h9l16.5-40.5h-8.5zM225.5 18.9c-1.6-1.2-3.6-2-6-2.2-4-.4-7.8 1-10.4 3.6v-3.2H201v29.3h8.2V31.1c0-3.4.6-4.4 1.2-5.2 1-1.6 2.8-2.4 5-2.4s4.2 1 5.2 2.6c.6 1.2.8 2.8.8 3.6v16.7h8.2V28.7c-.1-4.6-1.3-7.8-4.1-9.8zM185.6 17.5c-4-1.4-8.4-1.2-12.4.6-2.6 1.2-5 3.2-6.4 5.8-1.4 2.2-2 5-2 8s.6 5.8 2 8 3.2 4.2 5.6 5.4c2.4 1.2 5.2 2 7.8 2 1.4 0 2.8-.2 4.2-.6 1.2-.4 2.4-.8 3.6-1.4 2.4-1.4 4.4-3.2 5.6-5.4 1.4-2.2 2-5 2-8 0-6.6-3.8-12.2-10-14.4zm2.2 14.8c-.2 2.6-1 4.8-2.6 6.2-1.2 1-3 1.6-5.2 1.8-2.2 0-3.8-.6-5.2-1.8-1.6-1.4-2.4-3.6-2.6-6.2-.2-3 1-5.4 3.2-7 1.2-.8 2.8-1.4 4.4-1.4 1.8 0 3.2.6 4.6 1.4 2.4 1.4 3.6 4 3.4 7zM155.3 18.9c-1.6-1.2-3.6-2-6-2.2h-1.4c-3.2 0-6 1.4-8.4 4.2l-.4.6h-.8c-.6-1-1.4-1.8-2.2-2.4-1.6-1.2-3.6-2-6-2.2-3.8-.4-6.8.8-9.4 3.6v-3h-8.2v29.3h8.2V31.1c0-3.2.4-4 1-5 1-1.6 2.8-2.6 4.8-2.4 2 0 3.8 1 4.8 2.6.8 1.2.8 2.6.8 4v16.3h8.2V30.9c0-3 .4-4 1-5 1-1.6 2.8-2.4 4.8-2.4s3.6 1 4.6 2.6c.6 1 .8 2.2.8 3v17.3h8.2V28.5c0-1.6-.2-3.2-.6-4.6-.8-2-2-3.8-3.8-5zM260.2 37.7c-1.2 1.2-4 3.4-7.8 3.6-3.2.2-5.6-.8-7.4-2.6-.8-.8-1.4-2-1.8-3.2h22.5v-.2c.2-1.2.4-2.2.4-3.4 0-1-.2-2.4-.6-4.2-1-3.4-3-6-5.6-8-3-2.2-5.8-2.8-6.6-2.8-5.8-1-12.4 1.6-15.8 7-2.4 3.8-2.2 7.6-2.2 8.8 0 1.4.2 5.8 3.8 9.8 4.2 4.6 10 4.8 11.8 5 8 .2 13.4-4.8 14.6-5.8l-5.3-4zm-14-12.4c1.2-.8 2.6-1.4 4.4-1.4 1.8 0 3.2.6 4.6 1.4 1.2 1 2.2 2.2 2.8 3.6h-14.4c.4-1.4 1.2-2.8 2.6-3.6zM57.2 0C39.7 0 25.7 14.2 25.7 31.5 25.7 49 39.9 63 57.2 63s31.5-14.2 31.5-31.5S74.6 0 57.2 0zm0 43.1c-6.4 0-11.8-5.4-11.8-11.8s5.4-11.8 11.8-11.8S69 24.9 69 31.3c-.2 6.6-5.4 11.8-11.8 11.8zM25.5 9v45.9H14.4L0 9h25.5z"/></svg>
+						</a>
+						<a href="#" class="iokassa" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 266 63" style="enable-background:new 0 0 266 63" xml:space="preserve"><path d="M138.8 17.3h-8.6L124.1 28H121l-.1-23.1h-8.1v41.8h8.1l.1-11.5h3.1l8.1 11.5h9l-10.5-15.2 8.1-14.2zM200.3 31.1c-1.7-1.1-3.4-1.9-5.3-2.5l-1.8-.7-.5-.2c-1.1-.4-2.3-.9-2.3-2 0-.3.1-.7.2-1 .2-.3.4-.6.7-.7.6-.4 1.3-.6 2-.7 1.6-.1 3.1.4 4.3 1.3l.2.1 4.3-5-.2-.2c-.5-.5-1.1-.9-1.8-1.3-1.1-.6-2.3-1.1-3.6-1.3-1.8-.4-3.7-.4-5.5 0-1.8.2-3.4.9-4.9 2-.9.7-1.7 1.6-2.2 2.6-.6 1-.9 2.1-1.1 3.3-.2 2.1.3 4.2 1.5 5.9 1.6 1.8 3.7 3 6 3.6l.4.1.8.3c3 1 3.8 1.4 4.3 2 .2.3.3.7.4 1 0 1.4-1.7 2-2.9 2.4-.8.2-1.7.1-2.5 0-.8-.2-1.6-.5-2.3-1-1.1-.7-2-1.7-2.8-2.8-.5.5-5 4.9-4.9 5l.1.2c2.2 2.7 5.2 4.6 8.6 5.3.8.2 1.6.3 2.4.3h.8c2.7.1 5.3-.8 7.5-2.3 1.5-1 2.6-2.5 3.2-4.2.4-1.1.5-2.3.4-3.5-.1-1.2-.5-2.3-1.1-3.4-.6-1.1-1.4-1.9-2.4-2.6zM226.6 31.1c-1.6-1.1-3.4-1.9-5.3-2.5l-1.8-.7-.5-.2c-1.1-.4-2.3-.9-2.4-2 0-.3.1-.7.2-1 .2-.3.4-.6.7-.8.6-.4 1.3-.6 2-.7 1.6-.1 3.1.4 4.3 1.3l.2.1 4.3-5-.2-.2c-.5-.5-1.1-.9-1.8-1.3-1.1-.6-2.3-1.1-3.6-1.3-1.8-.4-3.7-.4-5.6 0-1.8.2-3.4.9-4.9 2-.9.7-1.7 1.6-2.3 2.6-.6 1-.9 2.1-1.1 3.3-.3 2.1.3 4.2 1.5 5.9 1.6 1.8 3.7 3 6 3.6l.3.1.8.3c3 1 3.8 1.4 4.3 2 .2.3.3.7.3 1 0 1.4-1.7 2-2.9 2.4-.8.2-1.7.1-2.5 0-.8-.2-1.6-.5-2.3-1-1.1-.7-2-1.7-2.8-2.8-.4.5-4.9 4.9-4.9 5l.2.2c2.2 2.7 5.2 4.6 8.6 5.3.8.2 1.6.3 2.4.3h.8c2.7.1 5.3-.8 7.5-2.3 1.5-1 2.6-2.5 3.2-4.2.4-1.1.5-2.3.4-3.5-.1-1.2-.5-2.3-1.1-3.4-.2-1-1-1.8-2-2.5zM165.5 17.3v2.9h-.4c-2.2-2.2-5.2-3.5-8.4-3.5-1.9 0-3.8.3-5.6 1.1-1.8.8-3.4 1.9-4.7 3.3-2.7 3-4.1 6.9-4 10.8-.1 4.1 1.3 8 4 11.1 1.3 1.4 2.9 2.5 4.6 3.3 1.8.7 3.7 1.1 5.6 1.1 3.2-.1 6.2-1.2 8.6-3.3h.3v2.6h8.5V17.3h-8.5zm.4 14.8c.1 2.4-.7 4.7-2.2 6.5-.7.8-1.6 1.5-2.6 1.9-1 .4-2.1.6-3.2.6s-2.1-.2-3.1-.6c-1-.4-1.8-1.1-2.5-1.9-1.5-1.9-2.3-4.2-2.2-6.6-.1-2.3.7-4.6 2.2-6.3.7-.8 1.5-1.4 2.5-1.9 1-.4 2-.7 3.1-.6 1.1 0 2.2.2 3.1.6 1 .4 1.9 1.1 2.6 1.9 1.6 1.7 2.4 4 2.3 6.4zM257.4 17.3v2.9h-.4c-2.2-2.2-5.2-3.5-8.4-3.5-1.9 0-3.9.3-5.6 1.1-1.8.8-3.4 1.9-4.7 3.3-2.7 3-4.1 6.9-4 10.8-.1 4.1 1.3 8 4 11.1 1.3 1.4 2.9 2.5 4.6 3.3 1.8.7 3.7 1.1 5.6 1.1 3.2-.1 6.2-1.2 8.6-3.3h.3v2.6h8.5V17.3h-8.5zm.4 14.8c.1 2.4-.7 4.7-2.2 6.5-.7.8-1.6 1.5-2.6 1.9-1 .4-2.1.6-3.2.6s-2.1-.2-3.1-.6c-1-.4-1.8-1.1-2.5-1.9-1.5-1.9-2.3-4.2-2.2-6.6-.1-2.3.7-4.6 2.2-6.3.7-.8 1.5-1.4 2.5-1.9 1-.4 2-.7 3.1-.6 1.1 0 2.2.2 3.1.6s1.9 1.1 2.6 1.9c1.6 1.7 2.4 4 2.3 6.4zM57.2 0C39.7 0 25.7 14.2 25.7 31.5 25.7 49 39.9 63 57.2 63s31.5-14.2 31.5-31.5S74.6 0 57.2 0zm0 43.1c-6.4 0-11.8-5.4-11.8-11.8s5.4-11.8 11.8-11.8S69 24.9 69 31.3c-.2 6.6-5.4 11.8-11.8 11.8zM25.5 9v45.9H14.4L0 9h25.5z"/></svg>
+						</a>
+						<a href="#" class="mastercard" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M16 9C7.178 9 0 16.178 0 25s7.178 16 16 16c3.335 0 6.434-1.028 9-2.781A15.91 15.91 0 0 0 34 41c8.825 0 16-7.175 16-16S42.825 9 34 9a15.91 15.91 0 0 0-9 2.781A15.905 15.905 0 0 0 16 9zm18 2c7.744 0 14 6.256 14 14s-6.256 14-14 14c-2.7 0-5.211-.774-7.348-2.094C29.926 33.974 32 29.73 32 25s-2.074-8.974-5.348-11.906A13.93 13.93 0 0 1 34 11z"/></svg>
+						</a>
+						<a href="#" class="mir" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 57 16"><path d="M15.4 0s-2.2 0-2.8 2.1C12 4 10.5 9.4 10.4 9.5H10S8.4 4.1 7.9 2.1C7.3 0 5.1 0 5.1 0H0v16h5.1V6.5h.4l3 9.5H12l3-9.5h.4V16h5.1V0h-5.1zm18.5 0s-1.5.1-2.2 1.7l-3.6 7.8h-.4V0h-5.1v16h4.8s1.6-.1 2.3-1.7l3.5-7.8h.4V16h5.1V0h-4.8zm7 7.3V16H46v-5.1h5.5c2.4 0 4.4-1.5 5.2-3.6H40.9zM51.5 0H40.2c.6 3 2.9 5.5 5.8 6.3.7.2 1.4.3 2.1.3h8.7c.2-.4.2-.8.2-1.2 0-3-2.5-5.4-5.5-5.4z"/></svg>
+						</a>
+						<a href="#" class="qiwi" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M23.5 0C11.093 0 1 10.093 1 22.5S11.093 45 23.5 45c2.595 0 4.436-.296 6.059-.557C30.977 44.215 32.315 44 34 44c8.165 0 13.199 5.603 13.248 5.66a1.002 1.002 0 0 0 1.291.18 1 1 0 0 0 .373-1.248c-.11-.248-2.827-6.108-13.719-8.63l-.297-.081c-2.692-.666-4.866-1.75-6.459-3.225-2.058-1.902-2.45-3.822-2.453-3.834a1.01 1.01 0 0 0-1.074-.818A1 1 0 0 0 24 33c0 .102.007 2.09.354 3.969-.298.02-.581.031-.854.031C15.505 37 9 30.495 9 22.5S15.505 8 23.5 8 38 14.505 38 22.5c0 .596-.037 1.199-.113 1.799A27.622 27.622 0 0 0 34 24c-.582 0-1 .5-1 1.02.012.543.455.979.998.98.02 0 2.1.02 3.963 1.217 3.087 1.984 3.826 4.98 3.832 5.006.093.412.435.72.855.77.417.042.826-.17 1.014-.55A22.244 22.244 0 0 0 46 22.5C46 10.093 35.907 0 23.5 0zm15.135 32.002a.555.555 0 0 0-.541.275c-.212.371-.054 1.106.373 1.746.433.648.8.977 1.092.977.268 0 .536-.335.41-1.146-.075-.484-.358-1.536-1.073-1.795a.937.937 0 0 0-.261-.057zM35.367 35c-.449 0-.823.117-1.053.342-.59.578-.324 1.593.579 2.22.395.274.962.438 1.52.438.566 0 1.04-.17 1.333-.477.525-.56.224-1.352-.77-2.02A2.927 2.927 0 0 0 35.368 35z"/></svg>
+						</a>
+						<a href="#" class="sber" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M33.54 2.65 16 12.68 8.26 8.25c-.48.49-.92 1.01-1.33 1.54l9.07 5.2L35.76 3.68c-.72-.39-1.46-.73-2.22-1.03zm5.29 2.97L16 18.68 5.12 12.45c-.34.57-.65 1.16-.93 1.76L16 20.99l24.47-14c-.52-.48-1.07-.93-1.64-1.37zm3.92 3.76L16 24.68 3.02 17.24c-.21.65-.38 1.32-.52 2L16 26.99l27.96-16c-.38-.55-.78-1.09-1.21-1.61zM45.717 14 16 31 2.047 23c-.016.333-.047.663-.047 1 0 12.703 10.297 23 23 23s23-10.297 23-23c0-3.584-.82-6.976-2.283-10z"/></svg>
+						</a>
+						<a href="#" class="visa" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 4v16h20V4H2zm12.389 5c.62 0 1.343.31 1.343.31l-.31 1.24s-.517-.413-1.033-.413c-.723 0-.93.31-.93.62 0 .724 2.066.825 2.066 2.272 0 1.238-1.447 2.065-2.377 1.961-1.033 0-1.548-.308-1.548-.308l.207-1.24s.619.31 1.445.31c.826 0 .93-.312.93-.518 0-.93-2.067-.62-2.067-2.478 0-.93.724-1.756 2.274-1.756zm-6.508.104h1.445l-2.17 5.785H5.607L4.471 10.24s1.24.723 1.963 2.479c0 .207.103.517.103.517l1.344-4.132zm10.02 0h1.548l1.137 5.785h-1.24l-.207-.826h-1.86l-.308.826h-1.448L17.9 9.104zm-7.956.101h1.55l-.93 5.785H9.118l.826-5.785zm-7.23.002h2.273c.62 0 .826.516.826.516l.516 2.582c-.62-2.17-3.615-3.098-3.615-3.098zm15.701 1.652-.826 2.17h1.238l-.412-2.17z"/></svg>
+						</a>
+						<a href="#" class="walletone" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M492.2 158.1v196.8c-4.3 10.1-9.1 19.9-14.6 29.4-5.9 4.4-13.3 7-21.3 7-19.8 0-35.9-16.1-35.9-35.9V243.8L281.2 381c-6.8 6.8-15.9 10.3-25.2 10.3-4.7 0-9.4-.9-13.8-2.8-13.3-5.6-22-18.6-22-33.1V243.8L80.9 381C70.6 391.1 63 396.3 45 395c-2.7-1.1-14.7-1.3-20.7-10.7-5.9-9.2-4-16.7-4.5-29.4V156.6c0-11.9 5.8-22.4 14.6-28.9 5.9-4.4 13.3-7 21.2-7 19.8 0 35.9 16.1 35.9 35.9v113.1s137.7-137.1 138.6-138c6.5-6.8 15.7-11 25.8-11 19.8 0 35.9 16.1 35.9 35.9v113.1l139.3-137.2c10.3-10.1 25.7-13.1 39-7.5 3.3 1.4 6.3 3.2 8.9 5.4 7.9 6.5 12.8 16.1 13.1 26.7.1.3.1.6.1 1z"/><path d="M492.2 158.1v196.8c.1 14.1-1.8 21.4-12.5 30.7-5.9 4.4-15.4 5.6-23.3 5.6-19.8 0-35.9-16.1-35.9-35.9V243.8l-9 8.9c-14.1 13.9-36.8 13.7-50.7-.4-13.9-14.1-13.7-36.8.4-50.7l70-69c10.3-10.1 25.7-13.1 39-7.5 3.3 1.4 6.3 3.2 8.9 5.4 7.9 6.5 12.8 16.1 13.1 26.7v.9z" fill="#fff" stroke="#000" stroke-miterlimit="10"/></svg>
+						</a>
+						<a href="#" class="webmoney" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M24.389 2.033c-6.452.142-13.18 2.976-17.854 9.256C-1.03 21.461.965 35.528 11.08 43.311a22.576 22.576 0 0 0 13.856 4.722c5.103 0 9.91-1.712 13.36-4.492l.048.055 1.502-1.32-5.09-5.796-2.121 1.944a162.644 162.644 0 0 0-3.254 3.021c-1.702-1.943-3.428-3.867-5.152-5.79-.831-.928-1.662-1.856-2.49-2.786a3.64 3.64 0 0 1-.14-.164l2.43-2.271-6.256-7.065 2.45-2.295-6.358-7.078 8.655-7.818 3.195 3.457 5.295-4.701.133.043 3.029 3.318 2.832-2.592s-.75-.695-1.488-1.101a.625.625 0 0 0-.319-.079c-3.167-1.69-6.938-2.575-10.808-2.49zm14.279 5.215-2.53 2.314 2.282 2.532 2.539-2.283-2.291-2.563zm-7.697.684-3.912 3.554 3.52 3.91 3.905-3.527-3.513-3.937zm-8.7 1.44-5.275 4.778 4.76 5.295 5.287-4.773-4.772-5.3zm19.885 6.064-2.521 2.296 2.299 2.543 2.54-2.304-2.318-2.535zm-7.402.802-3.906 3.541 3.517 3.926 3.916-3.54-3.527-3.927zm-8.557 2.524-5.277 4.79 4.77 5.296 5.261-4.785-4.754-5.301zm19.475 4.855-2.535 2.281 2.3 2.543 2.542-2.287-2.307-2.537zm-7.402 1.35-3.907 3.531 3.522 3.932 3.91-3.55-3.525-3.913zm-8.174 3.312-5.276 4.772 4.748 5.308 5.295-4.779-4.767-5.3zm11.773 5.026-3.89 3.547 3.525 3.902 3.918-3.531-3.553-3.918z"/></svg>
+						</a>
+					</div>
+				</div>
+
+				<!-- Подвал. Копирайт -->
+				<div class="footer__copyright flex-center">
+					<div>&copy;{DATE_YEAR} {SETTINGS_STORE_NAME}. Все права защищены.</div>
+					<div>{SETTINGS_STORE_ORG_NAME}.</div>
+					<div>{COPYRIGHT_FOR_DESIGN_nails}</div>
+					<div style="display: none;">{SETTINGS_STORE_HTML_CODE}</div>
+				</div>
+			</div>
+		</footer>
 	
 		<noindex>
 			<!-- Скрытое обновление корзины -->
@@ -508,6 +902,7 @@
 	// Загрузка основных функций шаблона для главной страницы
 	$(document).ready(function(){
 		slideShow();
+		promoSlider();
 
 		//counterDate();
 		// newsCarousel();
@@ -519,6 +914,8 @@
 		// offer();
 	});
 	</script>
+	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}flip.min.css?design=THEMENAME">
+	<script defer type="text/javascript" src="{ASSETS_JS_PATH}flip.min.js?design=THEMENAME"></script>
 	{% ENDIF %}
 
 	{% IF MOD_LNAME = catalog %}
