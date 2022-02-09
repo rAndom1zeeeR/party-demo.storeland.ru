@@ -717,18 +717,17 @@ function counterDate() {
 
 // Функция показать все для "Товары на главной"
 function pdtSale() {
-	var btn = $('#pdt__sale').find('.showAll');
+	var id = $('#pdt__sale');
+	var btn = id.find('.showAll');
 	btn.on('click', function (event){
 		event.preventDefault();
 		var t = $(this);
-		var parents = t.parents().find('#pdt__sale')
+		var parents = t.parents().find(id)
 		var btnText = t.find('span')
-		console.log('t', t)
-		console.log('parents', parents)
 		if(t.hasClass('active')){
 			t.removeClass('active')
 			parents.removeClass('active')
-			btnText.text('Показать все')
+			btnText.text('Показать еще')
 			parents.find('.product__item').removeClass('show')
 			parents.css({height: ''})
 		}else{
@@ -739,200 +738,132 @@ function pdtSale() {
 			parents.css({height: '100%'})
 		}
 	});
+	// Функция отображения кнопки Показать все, если много товаров
+	function visibility() {
+		var items = id.find('.product__item').length;
+		var visible = id.find('.product__item:visible').length;
+		var buttons = id.find('.products__buttons');
+		items > visible ? buttons.show() : buttons.hide()
+	}
+	// Запуск функции
+	visibility();
+	// Запуск функции при изменении экрана
+	$(window).resize(function(){
+		visibility();
+	});
 }
 
 // Функция слайдера для "Хиты продаж" на главной странице
-function pdtBest(){
+function pdtBest() {
 	var id = $('#pdt__best');
-	var carousel = id.find('.owl-carousel');
-	var buttons = id.find('.products__buttons');
-	var dots = id.find('.owl-dots');
-	carousel.owlCarousel({
-		items: 4,
-		margin: 32,
-		loop: false,
-		rewind: true,
-		lazyLoad: true,
-		nav: false,
-		navContainer: '',
-		navText: [ , ],
-		dots: true,
-		dotsContainer: dots,
-		autoHeight: true,
-		autoHeightClass: 'owl-height',
-		autoplay: false,
-		autoplayHoverPause: true,
-		smartSpeed: 500,
-		mouseDrag: true,
-		touchDrag: true,
-		pullDrag: true,
-		responsiveClass: true,
-		responsiveRefreshRate: 100,
-		responsive: {
-			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
-			480:{items:2},
-			640:{items:2},
-			768:{items:3},
-			992:{items:3},
-			1200:{items:4}
-		},
-		onInitialized: number,
-		onChanged: number,
-		onResize: number,
-		onResized: number
+	var btn = id.find('.showAll');
+	btn.on('click', function (event){
+		event.preventDefault();
+		var t = $(this);
+		var parents = t.parents().find(id)
+		var btnText = t.find('span')
+		if(t.hasClass('active')){
+			t.removeClass('active')
+			parents.removeClass('active')
+			btnText.text('Показать еще')
+			parents.find('.product__item').removeClass('show')
+			parents.css({height: ''})
+		}else{
+			t.addClass('active')
+			parents.addClass('active')
+			btnText.text('Скрыть')
+			parents.find('.product__item').addClass('show')
+			parents.css({height: '100%'})
+		}
 	});
-
-	// Нумерация страниц
-	function number() {
-		dots.find('.owl-dot').each(function(i){
-			$(this).find('span').text(i+1)
-		});
-		// Скрываем кнопки навигации
-		dots.hasClass('disabled') ? buttons.hide() : buttons.show();
-		// Скрываем не активные элементы навигации
-		var dotActiveIndex = dots.find('.owl-dot.active').index();
-		var dotVisibleStep = 2;
-		var dotPrevActiveIndex = dotActiveIndex - dotVisibleStep;
-		var dotNextActiveIndex = dotActiveIndex + dotVisibleStep;
-
-		dots.find('.owl-dot')
-			.hide()
-			.filter(function(index, item){
-				if(index >= dotPrevActiveIndex &&  index <= dotNextActiveIndex){
-					return true;
-				}
-				return false;
-			})
-			.show()
-			.addClass('show')
+	// Функция отображения кнопки Показать все, если много товаров
+	function visibility() {
+		var items = id.find('.product__item').length;
+		var visible = id.find('.product__item:visible').length;
+		var buttons = id.find('.products__buttons');
+		items > visible ? buttons.show() : buttons.hide()
 	}
-
-	// Навигация при клике НАЗАД
-	buttons.find('.prev').on('click', function () {
-		carousel.trigger('prev.owl.carousel');
-	});
-
-	// Навигация при клике ВПЕРЕД
-	buttons.find('.next').on('click', function () {
-		carousel.trigger('next.owl.carousel');
+	// Запуск функции
+	visibility();
+	// Запуск функции при изменении экрана
+	$(window).resize(function(){
+		visibility();
 	});
 }
 
 // Функция слайдера для "Новинки" на главной странице
 function pdtNew(){
 	var id = $('#pdt__new');
-	var carousel = id.find('.owl-carousel');
-	var buttons = id.find('.products__buttons');
-	var dots = id.find('.owl-dots');
-	carousel.owlCarousel({
-		items: 5,
-		margin: 32,
-		loop: false,
-		rewind: true,
-		lazyLoad: true,
-		nav: false,
-		navContainer: '',
-		navText: [ , ],
-		dots: true,
-		dotsContainer: dots,
-		autoHeight: true,
-		autoHeightClass: 'owl-height',
-		autoplay: false,
-		autoplayHoverPause: true,
-		smartSpeed: 500,
-		mouseDrag: true,
-		touchDrag: true,
-		pullDrag: true,
-		responsiveClass: true,
-		responsiveRefreshRate: 100,
-		responsive: {
-			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
-			480:{items:2},
-			640:{items:3},
-			768:{items:4},
-			992:{items:4},
-			1200:{items:5}
+	var btn = id.find('.showAll');
+	btn.on('click', function (event){
+		event.preventDefault();
+		var t = $(this);
+		var parents = t.parents().find(id)
+		var btnText = t.find('span')
+		if(t.hasClass('active')){
+			t.removeClass('active')
+			parents.removeClass('active')
+			btnText.text('Показать еще')
+			parents.find('.product__item').removeClass('show')
+			parents.css({height: ''})
+		}else{
+			t.addClass('active')
+			parents.addClass('active')
+			btnText.text('Скрыть')
+			parents.find('.product__item').addClass('show')
+			parents.css({height: '100%'})
 		}
+	});
+	// Функция отображения кнопки Показать все, если много товаров
+	function visibility() {
+		var items = id.find('.product__item').length;
+		var visible = id.find('.product__item:visible').length;
+		var buttons = id.find('.products__buttons');
+		items > visible ? buttons.show() : buttons.hide()
+	}
+	// Запуск функции
+	visibility();
+	// Запуск функции при изменении экрана
+	$(window).resize(function(){
+		visibility();
 	});
 }
 
 // Функция слайдера для "Акции" на главной странице
 function pdtSales(){
 	var id = $('#pdt__sales');
-	var carousel = id.find('.owl-carousel');
-	var buttons = id.find('.products__buttons');
-	var dots = id.find('.owl-dots');
-	carousel.owlCarousel({
-		items: 2,
-		margin: 32,
-		loop: false,
-		rewind: true,
-		lazyLoad: true,
-		nav: false,
-		navContainer: '',
-		navText: [ , ],
-		dots: true,
-		dotsContainer: dots,
-		autoHeight: false,
-		autoHeightClass: 'owl-height',
-		autoplay: false,
-		autoplayHoverPause: true,
-		smartSpeed: 500,
-		mouseDrag: true,
-		touchDrag: true,
-		pullDrag: true,
-		responsiveClass: true,
-		responsiveRefreshRate: 100,
-		responsive: {
-			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
-			480:{items:1},
-			640:{items:1},
-			768:{items:1},
-			992:{items:2},
-			1200:{items:2}
-		},
-		onInitialized: number,
-		onChanged: number,
-		onResize: number,
-		onResized: number
+	var btn = id.find('.showAll');
+	btn.on('click', function (event){
+		event.preventDefault();
+		var t = $(this);
+		var parents = t.parents().find(id)
+		var btnText = t.find('span')
+		if(t.hasClass('active')){
+			t.removeClass('active')
+			parents.removeClass('active')
+			btnText.text('Показать еще')
+			parents.find('.product__item').removeClass('show')
+			parents.css({height: ''})
+		}else{
+			t.addClass('active')
+			parents.addClass('active')
+			btnText.text('Скрыть')
+			parents.find('.product__item').addClass('show')
+			parents.css({height: '100%'})
+		}
 	});
-
-	// Нумерация страниц
-	function number() {
-		dots.find('.owl-dot').each(function(i){
-			$(this).find('span').text(i+1)
-		});
-		// Скрываем кнопки навигации
-		dots.hasClass('disabled') ? buttons.hide() : buttons.show();
-		// Скрываем не активные элементы навигации
-		var dotActiveIndex = dots.find('.owl-dot.active').index();
-		var dotVisibleStep = 2;
-		var dotPrevActiveIndex = dotActiveIndex - dotVisibleStep;
-		var dotNextActiveIndex = dotActiveIndex + dotVisibleStep;
-
-		dots.find('.owl-dot')
-			.hide()
-			.filter(function(index, item){
-				if(index >= dotPrevActiveIndex &&  index <= dotNextActiveIndex){
-					return true;
-				}
-				return false;
-			})
-			.show()
-			.addClass('show')
+	// Функция отображения кнопки Показать все, если много товаров
+	function visibility() {
+		var items = id.find('.product__item').length;
+		var visible = id.find('.product__item:visible').length;
+		var buttons = id.find('.products__buttons');
+		items > visible ? buttons.show() : buttons.hide()
 	}
-
-	// Навигация при клике НАЗАД
-	buttons.find('.prev').on('click', function () {
-		carousel.trigger('prev.owl.carousel');
-	});
-
-	// Навигация при клике ВПЕРЕД
-	buttons.find('.next').on('click', function () {
-		carousel.trigger('next.owl.carousel');
+	// Запуск функции
+	visibility();
+	// Запуск функции при изменении экрана
+	$(window).resize(function(){
+		visibility();
 	});
 }
 
@@ -1444,13 +1375,18 @@ function priceDiff() {
 function goodsModRest() {
 	$('.goodsModRestValue').each(function(){
 		var value = $(this).data('value');
-		if (value > 10) {
-			$(this).html('В наличии много');
-			$(this).css('opacity', '1');
-		}else{
-			$(this).html('В наличии мало');
+		if (value > 0) {
+			$(this).text('В наличии мало');
 			$(this).css('opacity', '1');
 			$(this).parent().addClass('few');
+		}else if (value > 10) {
+			$(this).text('В наличии много');
+			$(this).css('opacity', '1');
+			$(this).parent().addClass('alot');
+		}else{
+			$(this).text('нет в наличии');
+			$(this).css('opacity', '1');
+			$(this).parent().addClass('empty');
 		}
 	});
 }
