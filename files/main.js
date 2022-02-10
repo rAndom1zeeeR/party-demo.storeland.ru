@@ -712,7 +712,36 @@ function counterDate() {
 			clearInterval(x);
 			$('.counter').hide();
 		}
+		// Запуск Функции анимации
+		counterAnimate('.product__counter > div')
 	}, 1000);
+
+	// Добавляем контент анимации
+	function counterAnimate(obj){
+		$(obj).each(function(){
+			var end = $('.counter').attr('end');
+			var countDownDate = new Date(end).getTime();
+			var now = new Date().getTime();
+			var distance = countDownDate - now;
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var current = parseFloat(days/30 * 100)
+			var cur = parseInt(100 - current);
+			$('.counter__animate-line-progress').css({width: cur + '%'})
+		})
+	}
+	
+	// Функция анимации счетчика
+	function counterAnimate22(obj){		
+		$(obj).each(function(){
+			var end = $('.counter').attr('end');
+			var endTime = new Date(end).getTime();//150
+			var nowTime = new Date().getTime();//40
+			var distance = (endTime - nowTime);//150-40=110  110/150*100
+			console.log('nowTime', nowTime)
+			console.log('countDownDate', endTime)
+			console.log('distance ms', distance)
+		})
+	}
 }
 
 // Функция показать все для "Товары на главной"
@@ -831,59 +860,21 @@ function pdtNew(){
 
 // Функция слайдера для "Акции" на главной странице
 function pdtSales(){
-	var id = $('#pdt__sales');
-	var btn = id.find('.showAll');
-	btn.on('click', function (event){
-		event.preventDefault();
-		var t = $(this);
-		var parents = t.parents().find(id)
-		var btnText = t.find('span')
-		if(t.hasClass('active')){
-			t.removeClass('active')
-			parents.removeClass('active')
-			btnText.text('Показать еще')
-			parents.find('.product__item').removeClass('show')
-			parents.css({height: ''})
-		}else{
-			t.addClass('active')
-			parents.addClass('active')
-			btnText.text('Скрыть')
-			parents.find('.product__item').addClass('show')
-			parents.css({height: '100%'})
-		}
-	});
-	// Функция отображения кнопки Показать все, если много товаров
-	function visibility() {
-		var items = id.find('.product__item').length;
-		var visible = id.find('.product__item:visible').length;
-		var buttons = id.find('.products__buttons');
-		items > visible ? buttons.show() : buttons.hide()
-	}
-	// Запуск функции
-	visibility();
-	// Запуск функции при изменении экрана
-	$(window).resize(function(){
-		visibility();
-	});
-}
-
-// Функция Слайдер категорий Каталога на всех страницах.
-function pdtCatalog() {
-	var owlC = $('#catalog .owl-carousel');
-  owlC.owlCarousel({
-    items: 6,
-    margin: 60,
-    loop: true,
+	var owlS = $('#pdt__sales .owl-carousel');
+  owlS.owlCarousel({
+    items: 1,
+    margin: 0,
+    loop: false,
     rewind: false,
     lazyLoad: true,
-    nav: false,
+    nav: true,
     navContainer: '',
     navText: [ , ],
     dots: false,
-		autoWidth:true,
+		autoWidth: false,
     autoHeight: false,
     autoHeightClass: 'owl-height',
-    autoplay: true,
+    autoplay: false,
     autoplayHoverPause: true,
     smartSpeed: 500,
     mouseDrag: true,
@@ -892,16 +883,42 @@ function pdtCatalog() {
     responsiveClass: true,
     responsiveRefreshRate: 100
   });
+}
 
-	// Навигация при клике НАЗАД
-	$('.catalog__nav-prev').on('click', function () {
-		owlC.trigger('prev.owl.carousel');
-	});
-
-	// Навигация при клике ВПЕРЕД
-	$('.catalog__nav-next').on('click', function () {
-		owlC.trigger('next.owl.carousel');
-	});
+// Функция Слайдер категорий Каталога на всех страницах.
+function pdtCatalog() {
+	var owlC = $('#pdt__catalog .owl-carousel');
+  owlC.owlCarousel({
+    items: 6,
+    margin: 20,
+    loop: false,
+    rewind: false,
+    lazyLoad: true,
+    nav: true,
+    navContainer: '',
+    navText: [ , ],
+    dots: false,
+		autoWidth: false,
+    autoHeight: false,
+    autoHeightClass: 'owl-height',
+    autoplay: false,
+    autoplayHoverPause: true,
+    smartSpeed: 500,
+    mouseDrag: true,
+    touchDrag: true,
+    pullDrag: true,
+    responsiveClass: true,
+    responsiveRefreshRate: 100,
+		responsive: {
+			0:{items:1, autoHeight: true},
+			320:{items:2, autoHeight: true},
+			480:{items:2},
+			640:{items:3},
+			768:{items:4},
+			992:{items:5},
+			1200:{items:6}
+		}
+  });
 }
 
 // Слайдер для главной страницы
@@ -976,94 +993,16 @@ function newsCarousel() {
 	var dots = id.find('.owl-dots');
 	// Функция слайдера для Новостей
 	carousel.owlCarousel({
-		items: 2,
-		margin: 32,
-		slideBy: 2,
-		loop: false,
-		rewind: true,
-		lazyLoad: true,
-		nav: false,
-		navContainer: '',
-		navText: [ , ],
-		dots: true,
-		dotsContainer: dots,
-		autoHeight: false,
-		autoHeightClass: 'owl-height',
-		autoplay: false,
-		autoplayHoverPause: true,
-		smartSpeed: 500,
-		mouseDrag: true,
-		touchDrag: true,
-		pullDrag: true,
-		responsiveClass: true,
-		responsiveRefreshRate: 100,
-		responsive: {
-			0:{items:1, autoHeight: true},
-			320:{items:1, autoHeight: true},
-			480:{items:2},
-			640:{items:2},
-			768:{items:2},
-			992:{items:2},
-			1200:{items:2}
-		},
-		onInitialized: number,
-		onChanged: number,
-		onResize: number,
-		onResized: number
-	});
-
-	// Нумерация страниц
-	function number() {
-		dots.find('.owl-dot').each(function(i){
-			$(this).find('span').text(i+1)
-		});
-		// Скрываем кнопки навигации
-		dots.hasClass('disabled') ? buttons.hide() : buttons.show();
-		// Скрываем не активные элементы навигации
-		var dotActiveIndex = dots.find('.owl-dot.active').index();
-		var dotVisibleStep = 2;
-		var dotPrevActiveIndex = dotActiveIndex - dotVisibleStep;
-		var dotNextActiveIndex = dotActiveIndex + dotVisibleStep;
-
-		dots.find('.owl-dot')
-			.hide()
-			.filter(function(index, item){
-				if(index >= dotPrevActiveIndex &&  index <= dotNextActiveIndex){
-					return true;
-				}
-				return false;
-			})
-			.show()
-			.addClass('show')
-	}
-
-	// Навигация при клике НАЗАД
-	buttons.find('.prev').on('click', function () {
-		carousel.trigger('prev.owl.carousel');
-	});
-
-	// Навигация при клике ВПЕРЕД
-	buttons.find('.next').on('click', function () {
-		carousel.trigger('next.owl.carousel');
-	});
-}
-
-// Функция слайдера для "Акции" на главной странице
-function offer(){
-	var id = $('#offer');
-	var carousel = id.find('.owl-carousel');
-	var buttons = id.find('.products__buttons');
-	var dots = id.find('.owl-dots');
-	carousel.owlCarousel({
 		items: 3,
-		margin: 32,
+		margin: 20,
+		slideBy: 1,
 		loop: false,
 		rewind: true,
 		lazyLoad: true,
-		nav: false,
+		nav: true,
 		navContainer: '',
 		navText: [ , ],
-		dots: true,
+		dots: false,
 		dotsContainer: dots,
 		autoHeight: false,
 		autoHeightClass: 'owl-height',
@@ -1080,49 +1019,10 @@ function offer(){
 			320:{items:1, autoHeight: true},
 			480:{items:2},
 			640:{items:2},
-			768:{items:2},
+			768:{items:3},
 			992:{items:3},
 			1200:{items:3}
-		},
-		onInitialized: number,
-		onChanged: number,
-		onResize: number,
-		onResized: number
-	});
-
-	// Нумерация страниц
-	function number() {
-		dots.find('.owl-dot').each(function(i){
-			$(this).find('span').text(i+1)
-		});
-		// Скрываем кнопки навигации
-		dots.hasClass('disabled') ? buttons.hide() : buttons.show();
-		// Скрываем не активные элементы навигации
-		var dotActiveIndex = dots.find('.owl-dot.active').index();
-		var dotVisibleStep = 2;
-		var dotPrevActiveIndex = dotActiveIndex - dotVisibleStep;
-		var dotNextActiveIndex = dotActiveIndex + dotVisibleStep;
-
-		dots.find('.owl-dot')
-			.hide()
-			.filter(function(index, item){
-				if(index >= dotPrevActiveIndex &&  index <= dotNextActiveIndex){
-					return true;
-				}
-				return false;
-			})
-			.show()
-			.addClass('show')
-	}
-
-	// Навигация при клике НАЗАД
-	buttons.find('.prev').on('click', function () {
-		carousel.trigger('prev.owl.carousel');
-	});
-
-	// Навигация при клике ВПЕРЕД
-	buttons.find('.next').on('click', function () {
-		carousel.trigger('next.owl.carousel');
+		}
 	});
 }
 
@@ -2845,6 +2745,35 @@ function monthNames() {
 	if ($('.month').length){
 		$('.month').each(function (){
 			if ($(this).text() === 'Jan') {
+				$(this).text('Янв')
+			}else if ($(this).text() === 'Feb') {
+				$(this).text('Фев')
+			}else if ($(this).text() === 'Mar') {
+				$(this).text('Мар')
+			}else if ($(this).text() === 'Apr') {
+				$(this).text('Апр')
+			}else if ($(this).text() === 'May') {
+				$(this).text('Мая')
+			}else if ($(this).text() === 'Jun') {
+				$(this).text('Июн')
+			}else if ($(this).text() === 'Jul') {
+				$(this).text('Июл')
+			}else if ($(this).text() === 'Aug') {
+				$(this).text('Авг')
+			}else if ($(this).text() === 'Sep') {
+				$(this).text('Сен')
+			}else if ($(this).text() === 'Oct') {
+				$(this).text('Окт')
+			}else if ($(this).text() === 'Nov') {
+				$(this).text('Ноя')
+			}else if ($(this).text() === 'Dec') {
+				$(this).text('Дек')
+			}
+		});
+	}
+	if ($('.month.full').length){
+		$('.month.full').each(function (){
+			if ($(this).text() === 'Jan') {
 				$(this).text('Января')
 			}else if ($(this).text() === 'Feb') {
 				$(this).text('Февраля')
@@ -3359,6 +3288,9 @@ $(document).ready(function(){
 
   // Возврашаем пользователя на страницу с которой был сделан обратный звонок
   $('.callbackredirect').val(document.location.href);
+
+	$('.loading').addClass('loaded');
+	$('section, div').removeClass('loading');
 });
 
 // Запуск основных функций для разных разрешений экрана
