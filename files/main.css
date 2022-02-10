@@ -643,6 +643,8 @@ h6 {font-size: 0.875rem;}
 /*** Слайдшоу ***/
 /**************************************/
 #slideshow.loading {height: 580px;}
+#slideshow .owl-dots {position: absolute;top: 6rem;left: 0;display: flex;flex-direction: column;}
+#slideshow .owl-nav {position: absolute;bottom: 10px;right: 225px;width: 130px;}
 .slideshow__inner {position: relative;}
 .slider__image {margin: 1.5rem;position: absolute;right: 0;top: 0;}
 .slider__image img {outline: 1.5rem solid rgba(126, 184, 218, 0.1);border: 1rem solid rgba(126, 184, 218, 0.2);border-radius: 100%;}
@@ -652,8 +654,6 @@ h6 {font-size: 0.875rem;}
 .slider__button {padding: 0 4rem;line-height: 60px;}
 .slider__content {padding: 2.5rem 3.5rem;}
 .slider__item {height: 580px;}
-#slideshow .owl-dots {position: absolute;top: 6rem;left: 0;display: flex;flex-direction: column;}
-#slideshow .owl-nav {position: absolute;bottom: 10px;right: 225px;width: 130px;}
 
 /*** Промо в слайдере ***/
 .slider__promo {position: absolute;bottom: 50px;left: 0;align-items: flex-end;z-index: 2;}
@@ -686,14 +686,14 @@ h6 {font-size: 0.875rem;}
 /*** Промо слайдер ***/
 /**************************************/
 #promo.loading {height: 156px;}
+#promo .owl-dots {position: absolute;bottom: 0;width: 100%;text-align: center;}
+#promo .owl-dot {display: inline-block;}
 .promo__item {padding: 1.5rem 2.5rem 2rem 2.5rem;background-color: #ffffff;border-radius: 1.5rem;background-repeat: no-repeat;background-size: cover;}
 .promo__icon {font-size: 1rem;color: #ffffff;background: linear-gradient(180deg, #DECFFF 0%, #9579D1 100%);width: 100px;height: 100px;border-radius: 100%;text-align: center;flex-direction: column;}
 .promo__price {font-size: 2rem;font-family: 'Cormorant Infant', serif;}
 .promo__title {font-size: 2.5rem;font-weight: bold;}
 .promo__subtitle {font-size: 1rem;margin-top: .5rem;}
 .promo__content {padding: 0 1.25rem;}
-#promo .owl-dots {position: absolute;bottom: 0;width: 100%;text-align: center;}
-#promo .owl-dot {display: inline-block;}
 
 
 /**************************************/
@@ -765,8 +765,6 @@ h6 {font-size: 0.875rem;}
 .footer__icons a span {display: none;}
 
 
-
-
 /**************************************/
 /*** Товары таблицей ***/
 /**************************************/
@@ -814,7 +812,6 @@ h6 {font-size: 0.875rem;}
 .product__addCart a:hover:before {background: linear-gradient(180deg, #DECFFF 0%, #9579D1 100%);}
 
 
-
 /**************************************/
 /*** Товары на главной ***/
 /**************************************/
@@ -823,7 +820,6 @@ h6 {font-size: 0.875rem;}
 [id^="pdt__"] .product__item.show {display: block !important;}
 #pdt__sale .product__item {display: block;}
 #pdt__sale .product__item:nth-child(n+13) {display: none;}
-
 
 
 /**************************************/
@@ -858,9 +854,9 @@ h6 {font-size: 0.875rem;}
 .pdt__sales-promo-title {font-size: 2.5rem;font-weight: bold;}
 .pdt__sales-promo-subtitle {font-size: 1rem;}
 #pdt__sales .pdt__sales-grid {width: calc(100% - 380px);padding-left: 10px;}
-#pdt__sales .owl-prev, #pdt__sales .owl-next {position: absolute;top: calc(50% - 30px);}
-#pdt__sales .owl-prev {left: -20px;} 
-#pdt__sales .owl-next {right: -30px;}
+#pdt__sales .owl-prev, #pdt__sales .owl-next {position: absolute;top: calc(50% - 20px);width: 40px;height: 40px;font-size: 1rem;}
+#pdt__sales .owl-prev {left: -10px;} 
+#pdt__sales .owl-next {right: -25px;}
 /* Распродажа. Товар */
 #pdt__sales .product__item {border-radius: 0 20px 20px 0;}
 #pdt__sales .product__image {width: 260px;}
