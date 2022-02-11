@@ -78,6 +78,11 @@
 		<!-- Фон -->
 		<div id="overlay"></div>
 
+		<!-- Фон шапки -->
+		<div class="overlay-preheader">
+			<div class="overlay-header"></div>
+		</div>
+
 		<!-- Шапка -->
 		<header id="header">
 			<div class="container">
@@ -92,6 +97,9 @@
 								href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}"
 								title="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
 								<span>{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}</span>
+							</a>
+							<a class="header__block-fancy" data-fancybox data-src="#fancybox__contacts" href="javascript:;">
+								<i class="icon-arrow_down"></i>
 							</a>
 						</div>
 					</div>
@@ -658,6 +666,7 @@
 					{% ENDFOR catalog_full %}
 				</div>
 			</div>
+			<div class="overlay-center"></div>
 		</section>
 		{% ENDIF catalog_empty %}
 
@@ -1181,13 +1190,13 @@
 							<div>от</div>
 							<div class="callback__price price__now"><span class="num">150</span></div>
 						</div>
-						<div class="callback__content lozad" data-background-image="{ASSETS_IMAGES_PATH}callback.png?design=THEMENAME">
+						<div class="callback__content lozad" data-background-image="{ASSETS_IMAGES_PATH}callback_bg.png?design=THEMENAME">
 							<h3 class="callback__title">Самые вкусные сладости</h3>
 							<div class="callback__subtitle">новые поступления</div>
 						</div>
 					</div>
 					<!-- Заказать звонок -->
-					<div class="callback__item callback__item-callback">
+					<div class="callback__item callback__item-callback lozad" data-background-image="{ASSETS_IMAGES_PATH}bg.jpg?design=THEMENAME">
 						<div class="block__title">
 							<div class="pretitle lozad" data-background-image="{ASSETS_IMAGES_PATH}title.png?design=THEMENAME"></div>
 							<h2 class="title callback__title"><span>Заказать звонок</span></h2>
@@ -1220,7 +1229,7 @@
 						<div class="callback__icon flex-center">
 							<div class="callback__price price__now">- 20%</div>
 						</div>
-						<div class="callback__content lozad" data-background-image="{ASSETS_IMAGES_PATH}callback.png?design=THEMENAME">
+						<div class="callback__content">
 							<h3 class="callback__title">Мыло ручной работы</h3>
 							<div class="callback__subtitle">Ароматный и красивый подарок</div>
 						</div>
@@ -1757,13 +1766,113 @@
 				</div>
 			</div>
 		</footer>
+
+		<!-- Фон шапки -->
+		<div class="overlay-prefooter">
+			<div class="overlay-footer"></div>
+		</div>
 	
 		<noindex>
 			<!-- Скрытое обновление корзины -->
 			<div class="hiddenUpdate" style="display: none;"></div>
 
 			<!-- Обратный звонок в модальном окне -->
-			<div id="fancybox__callback" class="modal modal-bg" style="display:none">
+			<div id="fancybox__contacts" class="modal" style="display:none">
+				<div class="modal__icon flex-center">
+					<i class="icon-phone"></i>
+				</div>
+				<div class="modal__title block__title">
+					<h2 class="title">Контакты</h2>
+				</div>
+				<div class="modal__content">
+					<!-- Телефон 1 -->
+					{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
+					<a class="modal__link phone"
+						href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}{SETTINGS_STORE_PHONE_CITY_CODE1}{SETTINGS_STORE_PHONE_NUMBER1}"
+						title="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}{SETTINGS_STORE_PHONE_CITY_CODE1}{SETTINGS_STORE_PHONE_NUMBER1}">
+						<span>{SETTINGS_STORE_PHONE_COUNTRY_CODE1} {SETTINGS_STORE_PHONE_CITY_CODE1} {SETTINGS_STORE_PHONE_NUMBER1}</span>
+					</a>
+					{% ENDIF SETTINGS_STORE_PHONE_NUMBER1 %}
+					<!-- Телефон 2 -->
+					{% IF SETTINGS_STORE_PHONE_NUMBER2 %}
+					<a class="modal__link phone"
+						href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE2}{SETTINGS_STORE_PHONE_CITY_CODE2}{SETTINGS_STORE_PHONE_NUMBER2}"
+						title="{SETTINGS_STORE_PHONE_COUNTRY_CODE2}{SETTINGS_STORE_PHONE_CITY_CODE2}{SETTINGS_STORE_PHONE_NUMBER2}">
+						<span>{SETTINGS_STORE_PHONE_COUNTRY_CODE2} {SETTINGS_STORE_PHONE_CITY_CODE2} {SETTINGS_STORE_PHONE_NUMBER2}</span>
+					</a>
+					{% ENDIF SETTINGS_STORE_PHONE_NUMBER2 %}
+					<!-- Телефон 3 -->
+					{% IF SETTINGS_STORE_PHONE_NUMBER3 %}
+					<a class="modal__link phone"
+						href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE3}{SETTINGS_STORE_PHONE_CITY_CODE3}{SETTINGS_STORE_PHONE_NUMBER3}"
+						title="{SETTINGS_STORE_PHONE_COUNTRY_CODE3}{SETTINGS_STORE_PHONE_CITY_CODE3}{SETTINGS_STORE_PHONE_NUMBER3}">
+						<span>{SETTINGS_STORE_PHONE_COUNTRY_CODE3} {SETTINGS_STORE_PHONE_CITY_CODE3} {SETTINGS_STORE_PHONE_NUMBER3}</span>
+					</a>
+					{% ENDIF SETTINGS_STORE_PHONE_NUMBER3 %}
+					<!-- Почта -->
+					{% IF SETTINGS_STORE_EMAIL_MAIN %}
+					<a class="modal__link mail" href="mailto:{SETTINGS_STORE_EMAIL_MAIN}" title="{SETTINGS_STORE_EMAIL_MAIN}">
+						<span>{SETTINGS_STORE_EMAIL_MAIN}</span>
+					</a>
+					{% ENDIF %}
+					<!-- Режим работы -->
+					{% IF SETTINGS_STORE_WORK_TIME %}
+					<a class="modal__link work" href="{FEEDBACK_URL}" title="Режим работы">
+						<span>{SETTINGS_STORE_WORK_TIME}</span>
+					</a>
+					{% ENDIF SETTINGS_STORE_WORK_TIME %}
+					
+					<!-- Заказать звонок -->
+					<div class="modal__buttons">
+						<a class="button" href="javascript:;" data-fancybox data-src="#fancybox__callback">
+							<span>Заказать звонок</span>
+						</a>
+					</div>
+
+					<!-- Подвал. Соц Сети -->
+					<div class="modal__icons footer__icons social flex">
+						<a style="display: none;" class="facebook" href="https://www.facebook.com/" title="FaceBook.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M15.997 3.985h2.191V.169C17.81.117 16.51 0 14.996 0c-3.159 0-5.323 1.987-5.323 5.639V9H6.187v4.266h3.486V24h4.274V13.267h3.345l.531-4.266h-3.877V6.062c.001-1.233.333-2.077 2.051-2.077z"/></svg>
+							<span>facebook</span>
+						</a>
+						<a style="display: none;" class="twitter" href="https://twitter.com/" title="Twitter.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21.534 7.113A9.822 9.822 0 0 0 24 4.559v-.001c-.893.391-1.843.651-2.835.777a4.894 4.894 0 0 0 2.165-2.719 9.845 9.845 0 0 1-3.12 1.191 4.919 4.919 0 0 0-8.511 3.364c0 .39.033.765.114 1.122-4.09-.2-7.71-2.16-10.142-5.147a4.962 4.962 0 0 0-.674 2.487c0 1.704.877 3.214 2.186 4.089A4.863 4.863 0 0 1 .96 9.116v.054a4.943 4.943 0 0 0 3.942 4.835c-.401.11-.837.162-1.29.162-.315 0-.633-.018-.931-.084.637 1.948 2.447 3.381 4.597 3.428a9.89 9.89 0 0 1-6.101 2.098c-.403 0-.79-.018-1.177-.067a13.856 13.856 0 0 0 7.548 2.208c8.683 0 14.342-7.244 13.986-14.637z"/></svg>
+							<span>twitter</span>
+						</a>
+						<a style="display: none;" class="tiktok" href="https://tiktok.com/" title="tiktok.com" target="_blank">
+							<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M480.32 128.39c-29.22 0-56.18-9.68-77.83-26.01-24.83-18.72-42.67-46.18-48.97-77.83A129.78 129.78 0 0 1 351.04.39h-83.47v228.08l-.1 124.93c0 33.4-21.75 61.72-51.9 71.68a75.905 75.905 0 0 1-28.04 3.72c-12.56-.69-24.33-4.48-34.56-10.6-21.77-13.02-36.53-36.64-36.93-63.66-.63-42.23 33.51-76.66 75.71-76.66 8.33 0 16.33 1.36 23.82 3.83v-84.75c-7.9-1.17-15.94-1.78-24.07-1.78-46.19 0-89.39 19.2-120.27 53.79-23.34 26.14-37.34 59.49-39.5 94.46-2.83 45.94 13.98 89.61 46.58 121.83 4.79 4.73 9.82 9.12 15.08 13.17 27.95 21.51 62.12 33.17 98.11 33.17 8.13 0 16.17-.6 24.07-1.77 33.62-4.98 64.64-20.37 89.12-44.57 30.08-29.73 46.7-69.2 46.88-111.21l-.43-186.56a210.864 210.864 0 0 0 46.88 27.34c26.19 11.05 53.96 16.65 82.54 16.64v-83.1c.02.02-.22.02-.24.02z"/></svg>
+							<span>tiktok</span>
+						</a>
+						<a class="whatsapp" href="https://whatsapp.com/" title="Whatsapp.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m17.507 14.307-.009.075c-2.199-1.096-2.429-1.242-2.713-.816-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.293-.506.32-.578.878-1.634.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.576-.05-.997-.042-1.368.344-1.614 1.774-1.207 3.604.174 5.55 2.714 3.552 4.16 4.206 6.804 5.114.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345z"/><path d="M20.52 3.449C12.831-3.984.106 1.407.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c7.905 4.27 17.661-1.4 17.665-10.449 0-3.176-1.24-6.165-3.495-8.411zm1.482 8.417c-.006 7.633-8.385 12.4-15.012 8.504l-.36-.214-3.75.975 1.005-3.645-.239-.375c-4.124-6.565.614-15.145 8.426-15.145a9.865 9.865 0 0 1 7.021 2.91 9.788 9.788 0 0 1 2.909 6.99z"/></svg>
+							<span>whatsapp</span>
+						</a>
+						<a style="display: none;" class="viber" href="https://viber.com/" title="Viber.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.155 13.893c.716-6.027-.344-9.832-2.256-11.553l.001-.001C17.814-.6 7.392-1.035 3.7 2.471 2.042 4.186 1.458 6.703 1.394 9.819c-.064 3.117-.14 8.956 5.301 10.54H6.7l-.005 2.419s-.037.98.589 1.177c.716.232 1.04-.223 3.267-2.883 3.724.323 6.584-.417 6.909-.525.752-.252 5.007-.815 5.695-6.654zM10.918 19.37s-2.357 2.939-3.09 3.702c-.24.248-.503.225-.499-.267 0-.323.018-4.016.018-4.016-4.613-1.322-4.341-6.294-4.291-8.895.05-2.602.526-4.733 1.93-6.168C8.225.689 17.362 1.368 19.69 3.556c2.846 2.523 1.833 9.651 1.839 9.894-.585 4.874-4.033 5.183-4.667 5.394-.271.09-2.786.737-5.944.526z"/><path d="M12.222 4.297c-.385 0-.385.6 0 .605 2.987.023 5.447 2.105 5.474 5.924 0 .403.59.398.585-.005h-.001c-.032-4.115-2.718-6.501-6.058-6.524z"/><path d="M16.151 10.193c-.009.398.58.417.585.014.049-2.269-1.35-4.138-3.979-4.335-.385-.028-.425.577-.041.605 2.28.173 3.481 1.729 3.435 3.716zM15.521 12.774c-.494-.286-.997-.108-1.205.173l-.435.563c-.221.286-.634.248-.634.248-3.014-.797-3.82-3.951-3.82-3.951s-.037-.427.239-.656l.544-.45c.272-.216.444-.736.167-1.247-.74-1.337-1.237-1.798-1.49-2.152-.266-.333-.666-.408-1.082-.183h-.009c-.865.506-1.812 1.453-1.509 2.428.517 1.028 1.467 4.305 4.495 6.781 1.423 1.171 3.675 2.371 4.631 2.648l.009.014c.942.314 1.858-.67 2.347-1.561v-.007c.217-.431.145-.839-.172-1.106-.562-.548-1.41-1.153-2.076-1.542z"/><path d="M13.169 8.104c.961.056 1.427.558 1.477 1.589.018.403.603.375.585-.028-.064-1.346-.766-2.096-2.03-2.166-.385-.023-.421.582-.032.605z"/></svg>
+							<span>viber</span>
+						</a>
+						<a style="display: none;" class="odnoklassniki" href="https://ok.ru/" title="Odnoklassniki" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.721 12.881c-.613 1.205.083 1.781 1.671 2.765 1.35.834 3.215 1.139 4.413 1.261l-4.721 4.541c-1.374 1.317.838 3.43 2.211 2.141l3.717-3.585c1.423 1.369 2.787 2.681 3.717 3.59 1.374 1.294 3.585-.801 2.226-2.141-.102-.097-5.037-4.831-4.736-4.541 1.213-.122 3.05-.445 4.384-1.261l-.001-.001c1.588-.989 2.284-1.564 1.68-2.769-.365-.684-1.349-1.256-2.659-.267 0 0-1.769 1.355-4.622 1.355-2.854 0-4.622-1.355-4.622-1.355-1.309-.994-2.297-.417-2.658.267z"/><path d="M11.999 12.142c3.478 0 6.318-2.718 6.318-6.064 0-3.36-2.84-6.078-6.318-6.078C8.52 0 5.68 2.718 5.68 6.078c0 3.346 2.84 6.064 6.319 6.064zm0-9.063c1.709 0 3.103 1.341 3.103 2.999 0 1.644-1.394 2.985-3.103 2.985S8.896 7.722 8.896 6.078c-.001-1.659 1.393-2.999 3.103-2.999z"/></svg>
+							<span>odnoklassniki</span>
+						</a>
+						<a class="vk" href="https://vk.com/nutscity" title="VK.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.915 13.028c-.388-.49-.277-.708 0-1.146.005-.005 3.208-4.431 3.538-5.932l.002-.001c.164-.547 0-.949-.793-.949h-2.624c-.668 0-.976.345-1.141.731 0 0-1.336 3.198-3.226 5.271-.61.599-.892.791-1.225.791-.164 0-.419-.192-.419-.739V5.949c0-.656-.187-.949-.74-.949H9.161c-.419 0-.668.306-.668.591 0 .622.945.765 1.043 2.515v3.797c0 .832-.151.985-.486.985-.892 0-3.057-3.211-4.34-6.886-.259-.713-.512-1.001-1.185-1.001H.9c-.749 0-.9.345-.9.731 0 .682.892 4.073 4.148 8.553C6.318 17.343 9.374 19 12.154 19c1.671 0 1.875-.368 1.875-1.001 0-2.922-.151-3.198.686-3.198.388 0 1.056.192 2.616 1.667C19.114 18.217 19.407 19 20.405 19h2.624c.748 0 1.127-.368.909-1.094-.499-1.527-3.871-4.668-4.023-4.878z"/></svg>
+							<span>vk</span>
+						</a>
+						<a class="instagram" href="https://www.instagram.com/nutscity_ru/" title="Instagram.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12.004 5.838a6.157 6.157 0 0 0-6.158 6.158 6.157 6.157 0 0 0 6.158 6.158 6.157 6.157 0 0 0 6.158-6.158 6.157 6.157 0 0 0-6.158-6.158zm0 10.155a3.996 3.996 0 1 1 3.997-3.997 3.995 3.995 0 0 1-3.997 3.997z"/><path d="M16.948.076c-2.208-.103-7.677-.098-9.887 0-1.942.091-3.655.56-5.036 1.941C-.283 4.325.012 7.435.012 11.996c0 4.668-.26 7.706 2.013 9.979 2.317 2.316 5.472 2.013 9.979 2.013 4.624 0 6.22.003 7.855-.63 2.223-.863 3.901-2.85 4.065-6.419.104-2.209.098-7.677 0-9.887-.198-4.213-2.459-6.768-6.976-6.976zm3.495 20.372c-1.513 1.513-3.612 1.378-8.468 1.378-5 0-7.005.074-8.468-1.393-1.685-1.677-1.38-4.37-1.38-8.453 0-5.525-.567-9.504 4.978-9.788 1.274-.045 1.649-.06 4.856-.06l.045.03c5.329 0 9.51-.558 9.761 4.986.057 1.265.07 1.645.07 4.847-.001 4.942.093 6.959-1.394 8.453z"/><circle cx="18.406" cy="5.595" r="1.439"/></svg>
+							<span>instagram</span>
+						</a>
+						<a class="youtube" href="https://youtube.com/" title="YouTube.com" target="_blank">
+							<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m23.469 5.929.03.196a3.043 3.043 0 0 0-2.068-2.112l-.021-.005c-1.871-.508-9.4-.508-9.4-.508s-7.51-.01-9.4.508A3.044 3.044 0 0 0 .527 6.104l-.005.021c-.699 3.651-.704 8.038.031 11.947l-.031-.198a3.043 3.043 0 0 0 2.068 2.112l.021.005c1.869.509 9.4.509 9.4.509s7.509 0 9.4-.509a3.043 3.043 0 0 0 2.084-2.096l.005-.021c.318-1.698.5-3.652.5-5.648l-.001-.221.001-.23c0-1.997-.182-3.951-.531-5.846zM9.608 15.651V8.358l6.266 3.652z"/></svg>
+							<span>YouTube</span>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Обратный звонок в модальном окне -->
+			<div id="fancybox__callback" class="modal" style="display:none">
 				<div class="modal__title block__title">
 					<h2 class="title">Обратный звонок</h2>
 				</div>
@@ -1795,7 +1904,7 @@
 			</div>
 
 			<!-- Обратный звонок в модальном окне -->
-			<div id="fancybox__feedback" class="modal modal-bg" style="display:none">
+			<div id="fancybox__feedback" class="modal" style="display:none">
 				<div class="modal__title block__title">
 					<h2 class="title">Обратная связь</h2>
 				</div>
@@ -1831,7 +1940,7 @@
 			</div>
 
 			<!-- Уведомить о поступлении в модальном окне -->
-			<div id="fancybox__notify" class="modal modal-bg" data-id="" style="display:none">
+			<div id="fancybox__notify" class="modal" data-id="" style="display:none">
 				<div class="modal__title block__title">
 					<h2 class="title">Уведомить</h2>
 				</div>
