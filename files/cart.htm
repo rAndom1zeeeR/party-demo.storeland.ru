@@ -98,8 +98,8 @@
 			<!-- Корзина: Оформление -->
 			<div class="total__buttons flex">
 				<a href="{CART_TRUNCATE_URL}" class="cart__clear button button5" title="Очистить корзину" onclick="return confirm('Вы действительно хотите удалить все товары из корзины?')"><span>Очистить </span><span>корзину</span></a>
-				<a id="startOrder" class="button-primary button" title="Перейти к быстрому оформлению заказа"><span>Оформить </span><span>заказ</span></a>
-				<a id="closeOrder" class="button-secondary" title="Отменить заказ"><span>Отменить </span><span>заказ</span></a>
+				<a id="startOrder" class="button" title="Перейти к быстрому оформлению заказа"><span>Оформить </span><span>заказ</span></a>
+				<a id="closeOrder" class="button button2" title="Отменить заказ"><span>Отменить </span><span>заказ</span></a>
 				<div class="total__pp">
 					<span>Нажимая на кнопку &laquo;Оформить заказ&raquo;, Вы соглашаетесь</span>
 					<a data-fancybox data-src="#fancybox__pp" href="javascript:;">с правилами обработки данных</a>
@@ -306,11 +306,6 @@
 			</form>
 		</div>
 		{% ENDFOR %}
-	</div>
-	<div class="products__buttons flex">
-		<a href="javascript:;" class="prev"><i class="icon-arrow_left"></i></a>
-		<div class="owl-dots flex"></div>
-		<a href="javascript:;" class="next"><i class="icon-arrow_right"></i></a>
 	</div>
 </section>
 {% ENDIF %}

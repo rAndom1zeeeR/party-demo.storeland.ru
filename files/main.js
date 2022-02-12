@@ -607,7 +607,7 @@ function mainnav(id,rows){
       mainnav.find('.mainnav__replaced').each(function(){
         mainnav.find('.overflowMenu').append($(this));
       });
-      mainnav.find('.mainnav__list').append('<li class="mainnav__item mainnav__more"><a class="mainnav__list-link"><span>Ещё</span><i class="icon-arrow_right"></i></a></li>');
+      mainnav.find('.mainnav__list').append('<li class="mainnav__item mainnav__more"><a class="mainnav__list-link"><span>Ещё</span><i class="icon-arrow_down"></i></a></li>');
       mainnav.find('.mainnav__more').on('click',function(){
         mainnav.find('.overflowMenu').hasClass('opened') ? mainnav.find('.overflowMenu').removeClass('opened') : mainnav.find('.overflowMenu').addClass('opened');
         mainnav.hasClass('opened') ? mainnav.removeClass('opened') : mainnav.addClass('opened');
@@ -3265,7 +3265,7 @@ $(document).ready(function(){
   userAgent();
   openMenu();
   showPass();
-  // mainnav('header .mainnav', '1');
+  mainnav('#menu .mainnav', '1');
   toTop();
 	viewed();
 	footerLinksMore();
@@ -3325,3 +3325,21 @@ function addActive(obj){obj.hasClass('active') ? obj.removeClass('active') : obj
 $(document).ready(function(){
 
 });
+
+function modalNameOpen(){
+	$('.form__fields-open').on('click', function(event){
+		event.preventDefault();
+    $(this).toggleClass('opened');
+		if ($(this).hasClass('opened')){
+			$('.form__fields-hidden').slideDown('slow');
+			$('.form__fields-hidden input').val('').change();
+			$(this).text('Не указывать имя');
+		}else{
+			$('.form__fields-hidden').slideUp('slow');
+			$(this).text('Указать свое имя');			
+			setTimeout(function () {
+				$('.form__fields-hidden input').val('Имя не указано').change();
+			}, 600);
+		}
+	})
+}

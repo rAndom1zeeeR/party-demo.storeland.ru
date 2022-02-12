@@ -167,7 +167,7 @@
 					<!-- Меню. Верхнее -->
 					<div class="menu">
 						<nav class="mainnav" itemscope itemtype="https://schema.org/SiteNavigationElement">
-							<ul class="mainnav__list unstyled flex">
+							<ul class="mainnav__list unstyled flex loading">
 								{% FOR menu %}
 									{% FOR header %}
 										{% FOR links %}
@@ -213,13 +213,16 @@
 						
 						<!-- Результаты поиска -->
 						<div id="search__result" style="display: none;">
-							<div class="row">
-								<div class="result__inner flex-start">
-									<div class="result__goods"></div>
-									<div class="result__category"></div>
-									<div class="result__showAll">
-										<span class="button">все результаты</span>
-									</div>
+							<div class="result__inner">
+								<div class="result__category">
+									<div class="result__label">Категории</div>
+								</div>
+								<div class="result__goods"></div>
+								<div class="result__showAll">
+									<a class="button5" href="javascript:;">
+										<i class="icon-arrow_circle"></i>
+										<span>все результаты</span>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -1207,11 +1210,11 @@
 							<input class="callbackredirect" type="hidden" name="return_to" value="{CALLBACK_URL}" />
 							<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
 							{ANTISPAM_CODE}		
-							<div class="form__fields">
+							<div class="form__fields form__fields-icons">
 								<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="off" required />
 								<i class="icon-user"></i>
 							</div>		
-							<div class="form__fields">
+							<div class="form__fields form__fields-icons">
 								<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
 								<i class="icon-phone"></i>
 							</div>		
@@ -1873,26 +1876,40 @@
 
 			<!-- Обратный звонок в модальном окне -->
 			<div id="fancybox__callback" class="modal" style="display:none">
+				<div class="modal__icon flex-center">
+					<i class="icon-phone"></i>
+				</div>
 				<div class="modal__title block__title">
-					<h2 class="title">Обратный звонок</h2>
+					<h2 class="title">Заказать звонок</h2>
 				</div>
 				<div class="modal__content">
+					{% IF SETTINGS_STORE_WORK_TIME %}
+					<div class="modal__worktime">{SETTINGS_STORE_WORK_TIME}</div>
+					{% ENDIF %}
 					<form method="post" action="{CALLBACK_URL}" class="form__callback" enctype="multipart/form-data">
 						<input type="hidden" name="hash" value="{HASH}" />
 						<input class="callbackredirect" type="hidden" name="return_to" value="{CALLBACK_URL}" />
 						<!-- Набор полей которые не видит пользователь, но видят боты. Когда они их заполняют мы точно знаем, что их прислал нам бот и мы не сохраняем подобный отзыв о товаре, а боту отправившему отзыв сообщаем, что отзыв добавлен успешно, но будет отображён здесь после прохождения модерации -->
 						{ANTISPAM_CODE}
 
-						<div class="form__fields">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="off" required />
+						<div class="form__fields form__fields-icons">
+							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
+							<i class="icon-phone"></i>
+						</div>
+
+						<div class="form__fields form__fields-icons form__fields-hidden">
+							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Имя не указано" placeholder="Ваше имя" autocomplete="off" />
+							<i class="icon-user"></i>
 						</div>
 
 						<div class="form__fields">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
+							<a class="form__fields-open" href="javascript:;">
+								<span>Указать свое имя</span>
+							</a>
 						</div>
 
 						<div class="form__buttons">
-							<button type="submit" title="Заказать звонок" class="button-primary form__button button">Заказать звонок</button>
+							<button type="submit" title="Заказать звонок" class="form__button button">Заказать звонок</button>
 						</div>
 
 						<div class="form__pp">
@@ -1901,6 +1918,11 @@
 						</div>
 					</form>
 				</div>
+				<script>
+					$(document).ready(function(){
+						modalNameOpen();
+					});
+				</script>
 			</div>
 
 			<!-- Обратный звонок в модальном окне -->
@@ -1928,7 +1950,7 @@
 						</div>
 
 						<div class="form__buttons">
-							<button type="submit" title="Отправить" class="button-primary form__button button">Отправить</button>
+							<button type="submit" title="Отправить" class="form__button button">Отправить</button>
 						</div>
 
 						<div class="form__pp">
@@ -1962,7 +1984,7 @@
 						</div>
 
 						<div class="form__buttons">
-							<button type="submit" title="Уведомить" class="button-primary form__button button">Уведомить</button>
+							<button type="submit" title="Уведомить" class="form__button button">Уведомить</button>
 						</div>
 
 						<div class="form__pp">

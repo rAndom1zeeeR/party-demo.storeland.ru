@@ -278,8 +278,8 @@ $(function() {
 						data.category[с].image_icon = data.category[с].image_icon;
 					}
 					// Отображаем результат поиска
-					if(с <= 3){
-						$("#search__result .result__category").append('<a class="result__item flex-center" href="'+ data.category[с].url +'" data-id="'+ data.category[с].goods_cat_id +'"><div class="result__image flex-center"><img src="'+ data.category[с].image_icon +'" class="goods-image-icon" /></div><div class="button-secondary flex-center result__name"><span>'+ data.category[с].goods_cat_name +'</span></div></a>');
+					if(с <= 8){
+						$("#search__result .result__category").append('<a class="result__item flex-center" href="'+ data.category[с].url +'" data-id="'+ data.category[с].goods_cat_id +'"><div class="result__image flex-center"><img src="'+ data.category[с].image_icon +'" class="goods-image-icon" /></div><div class="result__name"><span>'+ data.category[с].goods_cat_name +'</span></div></a>');
 					}
 				}
 			}else{
@@ -298,11 +298,11 @@ $(function() {
 						data.goods[i].image_icon = data.goods[i].image_icon;
 					}
 					// Отображаем результат поиска
-					if(i <= 10){
-						$("#search__result .result__goods").append('<a class="result__item flex" href="'+ data.goods[i].url +'" data-id="'+ data.goods[i].goods_id +'"><div class="result__image"><img src="'+ data.goods[i].image_icon +'" class="goods-image-icon" /></div><div class="result__name"><span>'+ data.goods[i].goods_name +'</span></div></a>');
+					if(i <= 8){
+						$("#search__result .result__goods").append('<a class="result__item flex" href="'+ data.goods[i].url +'" data-id="'+ data.goods[i].goods_id +'"><div class="result__image flex-center"><img src="'+ data.goods[i].image_icon +'" class="goods-image-icon" /></div><div class="result__name"><span>'+ data.goods[i].goods_name +'</span></div></a>');
 					}
 					// Если последняя итерация цикла вставим кнопку "показать все"
-					if(i > 10){
+					if(i > 8){
 						$('.result__showAll').show();
 					}
 				}
