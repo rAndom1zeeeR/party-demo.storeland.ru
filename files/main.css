@@ -23,8 +23,8 @@ section {margin: 2rem 0;position: relative;}
 
 /*** Скрол всего сайта ***/
 ::-webkit-scrollbar {width: 1rem;height: 0;}
-::-webkit-scrollbar-thumb {border-radius: 0;background-color: #70787D;}
-::-webkit-scrollbar-track {border-radius: 0;background-color: #A9BDCE;}
+::-webkit-scrollbar-thumb {border-radius: 5px;background-color: #FFA5D8;}
+::-webkit-scrollbar-track {border-radius: 0;background-color: #CBC3DB;}
 
 
 /**************************************/
@@ -58,7 +58,7 @@ ol.unstyled, ul.unstyled {margin: 0;padding: 0;list-style: none;}
 /*** Оверлей. Темный фон ***/
 /**************************************/
 #overlay {position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 10;opacity: 0;filter: alpha(opacity=0);visibility: hidden;background-color: transparent;-webkit-transition: opacity .25s ease,visibility 0s ease .25s;transition: opacity .25s ease,visibility 0s ease .25s;}
-#overlay.transparent {background-color: rgba(0, 0, 0, 0.5);}
+#overlay.transparent {background-color: rgba(59, 40, 101, 0.7);}
 #overlay.opened {opacity: 1;filter: alpha(opacity=100);visibility: visible;-webkit-transition: opacity .25s ease,visibility 0s ease;transition: opacity .25s ease,visibility 0s ease;cursor: pointer;}
 
 
@@ -611,9 +611,35 @@ h6 {font-size: 0.875rem;}
 .menu__inner {position: relative;}
 
 /** Меню. Каталог **/
-#menu .catalog {position: absolute;left: 0;z-index: 2;}
+#menu .catalog {position: absolute;left: 0;}
 .catalog__icon {width: 100px;height: 100px;font-size: 40px;border-radius: 100%;color: #ffffff;background: linear-gradient(180deg, #DECFFF 0%, #9579D1 100%);box-shadow: 0px 4px 10px rgba(174, 143, 237, 0.3);}
-.catalog__icon:hover {color: #ffffff;background: linear-gradient(180deg, #FFB6DF 0%, #FF72C2 100%);box-shadow: 0px 4px 10px rgba(174, 143, 237, 0.3);}
+.catalog__icon:hover, .catalog__icon.opened {color: #ffffff;background: linear-gradient(180deg, #FFB6DF 0%, #FF72C2 100%);box-shadow: 0px 4px 10px rgba(174, 143, 237, 0.3);}
+.catalog__dropdown {position: fixed;top: 0;left: 0;transform: translateX(-100%);transition: all 0.3s ease;z-index: 12;}
+.catalog__dropdown.opened {transform: translateX(0);}
+#menu .catalog__items {display: none;}
+#menu .catalog__item {display: none;border: 0;transition: all 0.5s ease;}
+#menu .catalog__item.show {display: block;}
+#menu .catalog__item[data-level="1"] {width: 50%;}
+#menu .catalog__item[data-level="2"] {display: block;}
+#menu .catalog__link {width: 100%;padding: .75rem .25rem;font-size: 1rem;line-height: 1;border-radius: 20px;}
+#menu .catalog__link[data-level="1"] {font-weight: bold;}
+#menu .catalog__link[data-level="2"] {color:#776994;}
+#menu .catalog__link[data-level="2"]:hover {color:#FFA5D8;}
+#menu .catalog__item.hovered .catalog__link {background: #FFA5D8;color: #ffffff;padding: .75rem 1.25rem;}
+#menu .catalog__sub {padding: 1rem;height: 100vh;overflow-x: auto;transform: translateX(-100%);transition: all 0.5s ease;}
+#menu .catalog__sub.show {transform: translateX(0);transition: all 0.5s ease;background-color: #ffffff;}
+#menu .catalog__sub-level-0 {width: 360px;transform: translateX(0);z-index: 4;background-color: #ffffff;}
+#menu .catalog__sub-level-1 {width: 0;transform: translateX(-100%);z-index: 3;border-left: 1px solid #CBC3DB;flex-direction: column;}
+#menu .catalog__sub-level-1.show {width: 700px;}
+#menu .catalog__sub::-webkit-scrollbar {width: .5rem;height: 0;}
+#menu .catalog__sub-label {padding: 0 .25rem .5rem .25rem;font-size: 30px;font-weight: bold;font-family: 'Cormorant Infant', serif;width: 100%;}
+#menu .catalog__sub-level-1 .catalog__sub-label {border-bottom: 1px solid #CBC3DB;margin-bottom: .5rem;}
+#menu .catalog__sub-level-0 .catalog__sub-items {width: 100%;}
+#menu .catalog__image {display: none;}
+#menu .catalog__sub-items {width: calc(100% - 160px);}
+#menu .catalog__sub-image {width: 160px;height: 160px;position: absolute;top: 3rem;right: 1rem;background-color: #ffffff;}
+#menu .catalog__sub-image img {border-radius: 1rem;}
+.catalog__subs {}
 
 /** Меню. Меню **/
 #menu .menu {width: 100%;position: relative;padding: 0 270px 0 120px;background-color: #ffffff;box-shadow: 0px 4px 10px rgba(174, 143, 237, 0.3);border-radius: 40px;}

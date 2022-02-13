@@ -157,12 +157,6 @@
 		<section id="menu">
 			<div class="container">
 				<div class="menu__inner flex">
-					<!-- Меню. Каталог -->
-					<div class="catalog">
-						<a class="catalog__icon flex-center" href="{CATALOG_URL}" title="Перейти в каталог">
-							<i class="icon-catalog"></i>
-						</a>
-					</div>
 
 					<!-- Меню. Верхнее -->
 					<div class="menu">
@@ -185,10 +179,43 @@
 						</nav>
 					</div>
 
+					<!-- Меню. Каталог -->
+					<div class="catalog">
+						<a class="catalog__icon flex-center" href="{CATALOG_URL}" title="Перейти в каталог">
+							<i class="icon-catalog"></i>
+						</a>
+						<div class="catalog__dropdown catalog__content">
+							<div class="catalog__items">
+								{% FOR catalog_full %}
+									{% IF catalog_full.HIDE %}{continue}{% ENDIF %}
+									<div data-level="{catalog_full.LEVEL}" data-id="{catalog_full.ID}" data-parent="{catalog_full.PARENT_ID}" class="catalog__item {% IF catalog_full.ISSET_VISIBLE_SUB %}parent{% ENDIF %} {% IF catalog_full.CURRENT_PARENT %}opened{% ENDIF %}">
+										<a data-level="{catalog_full.LEVEL}" data-id="{catalog_full.ID}" data-parent="{catalog_full.PARENT_ID}" class="catalog__link flex {% IF catalog_full.CURRENT %}opened{% ENDIF %}" href="{catalog_full.URL}">
+											<div class="catalog__image">
+												<img src="{catalog_full.IMAGE_MEDIUM}"/>
+											</div>
+											<span class="catalog__name">{catalog_full.NAME}</span>
+											{% IF catalog_full.ISSET_VISIBLE_SUB %}<span class="open"></span>{% ENDIF %}
+										</a>
+									</div>
+								{% ENDFOR %}
+							</div>
+							<div class="catalog__subs flex-stretch">
+								<div class="catalog__sub catalog__sub-level-0" data-level="0">
+									<div class="catalog__sub-label">Каталог</div>
+									<div class="catalog__sub-items"></div>
+								</div>
+								<div class="catalog__sub catalog__sub-level-1 flex-start" data-level="1">
+									<div class="catalog__sub-label"></div>
+									<div class="catalog__sub-items flex-start"></div>
+									<div class="catalog__sub-image"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
 					<!-- Поиск -->
 					<div class="search" itemscope itemtype="https://schema.org/WebSite">
-						<link itemprop="url" href="{INDEX_PAGE_URL}" />
-						
+						<link itemprop="url" href="{INDEX_PAGE_URL}" />						
 						<!-- Форма поиска -->
 						<form class="search__form" action="{QUICK_SEARCH_URL}" method="get" title="Поиск по магазину" itemprop="potentialAction" itemscope itemtype="https://schema.org/SearchAction">
 							<meta itemprop="target" content="{SEARCH_URL}?q={{EMPTY}q}" />

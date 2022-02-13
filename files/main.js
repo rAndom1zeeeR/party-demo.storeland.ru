@@ -492,18 +492,19 @@ function removeFromCartAll(e){
 // Закрытие, Открытие элементов
 ///////////////////////////////////////
 // Функция удаления классов всех активных элементов
+// Функция удаления классов всех активных элементов
 function closeAll() {
 	$('div, a, form, span, nav').removeClass('opened');
 	$('.overflowMenu').removeClass('active');
-	$('.search__reset').click();
+	$('#overlay').click();
 	setTimeout(function () {
 		$('#overlay').removeClass('transparent');
-		$('.search__reset').click();
+		$('#overlay').click();
 	},100)
 }
 
 // Закрытие всего при нажатии на темную часть
-$('#overlay').on('click', function(e){
+$('#overlay').on('click', function(event){
 	event.preventDefault();
 	if($(this).hasClass('opened')){
 		closeAll();
@@ -550,16 +551,11 @@ function openMenu() {
   });
 
   // Открытие Меню
-  $('.menu__icon').on('click', function (event){
+  $('.catalog__icon').on('click', function (event){
     event.preventDefault();
 		$(this).toggleClass('opened');
-		$(this).parent().toggleClass('opened');
-		$(this).parent().find('.header__block-hidden').toggleClass('opened');
-		$('#overlay').addClass('opened')
-		
-		$('.search__icon').removeClass('opened');
-		$('.search').removeClass('opened');
-		$('.search').find('.header__block-hidden').removeClass('opened');
+		$(this).next().toggleClass('opened');
+		$('#overlay').addClass('opened transparent')
   });
 
   // Открытие Поиск
@@ -3269,6 +3265,7 @@ $(document).ready(function(){
   toTop();
 	viewed();
 	footerLinksMore();
+	openCatalog();
   // Ленивая загрузка
   $(function(){
     var observer = lozad(); // lazy loads elements with default selector as '.lozad'
@@ -3342,4 +3339,78 @@ function modalNameOpen(){
 			}, 600);
 		}
 	})
+}
+
+function hoverCatalog(){
+	// Добавление класса hover для отображения подкатегорий
+  $('#menu .catalog__item[data-level="0"]').hover(function() {
+    var obj = $(this);
+    setTimeout(function() {
+      $('#menu .catalog__item[data-level="0"]').removeClass('hover');
+      obj.addClass('hover');
+      var mainCatHeight = $('#menu .catalog__items').innerHeight();
+      var subCatHeight = obj.find('.sub[data-level="1"]').innerHeight();
+      // Выравнивание блоков по размерам
+      if (subCatHeight > mainCatHeight) {
+        $('#menu .catalog__items .catalog__item[data-level="0"].parent.hover .sub[data-level="1"]').css('border-bottom','1px solid #ececef');
+        $('#menu .catalog__items').css('height', subCatHeight)
+      }else {
+        $('#menu .catalog__items').css('height', 'auto')
+      }
+    },500);
+  });
+}
+
+// Функция Открытия каталога
+function openCatalog(){
+	var subs = 3;
+	var length = $('.catalog__content .catalog__items .catalog__item').length;
+	// Сортируем подкатегории по уровням
+	$('.catalog__content .catalog__items .catalog__item').each(function(){
+		var level = $(this).data('level')
+		var id = $(this).data('id')
+		var parent = $(this).data('parent')
+		console.log('id-', id)
+		console.log('parent-', parent)
+		for (var i = 0; i < subs; i++){
+			if (level == i) {
+				$(this).addClass('level-'+ i +'');
+				$('.catalog__sub-level-'+ i +' .catalog__sub-items').append($(this))
+				console.log('this--', $(this))
+			}
+			level == '0' ? $(this).addClass('show') : $(this).removeClass('show')
+			if (level == '2') {
+				console.log('this-2-', $(this))
+				console.log('this-id-', $(this).data('id'))
+				console.log('this-parent-', $(this).data('parent'))
+				$('.catalog__sub .catalog__item[data-id="'+ $(this).data('parent') +'"]').append($(this))
+			}
+		}
+	});
+
+	// Отображаем подкатегории при наведении
+	$('.catalog__sub .catalog__item').mouseover(function(){
+		$('.catalog__sub .catalog__item').removeClass('hover')
+		$(this).addClass('hover')
+		var id = $(this).data('id');
+		var level = $(this).data('level')
+		var next = level + 1;
+		var next2 = level + 2;
+		var prev = next - 1;
+		$('.catalog__sub-level-'+ next +' .catalog__item').each(function(){
+			$('.catalog__sub-level-'+ next +' .catalog__item').removeClass('show')
+			$('.catalog__sub-level-'+ next +' .catalog__item').parent().parent().removeClass('show')
+			$('.catalog__sub-level-'+ next2 +' .catalog__item').removeClass('show')
+			$('.catalog__sub-level-'+ next2 +' .catalog__item').parent().parent().removeClass('show')
+			$('.catalog__sub-level-'+ prev +' .catalog__item').removeClass('hovered')
+			$('.catalog__sub-level-'+ next +' .catalog__item[data-parent="'+ id +'"]').addClass('show')
+			$('.catalog__sub-level-'+ next +' .catalog__item[data-parent="'+ id +'"]').parent().parent().addClass('show')
+			$('.catalog__sub-level-'+ prev +' .catalog__item[data-id="'+ id +'"]').parent().parent().addClass('show')
+			$('.catalog__sub-level-'+ prev +' .catalog__item[data-id="'+ id +'"]').addClass('hovered')
+			var txt = $('.catalog__sub-level-'+ prev +' .catalog__item[data-id="'+ id +'"] .catalog__name').text();
+			var img = $('.catalog__sub-level-'+ prev +' .catalog__item[data-id="'+ id +'"].parent .catalog__image').html();
+			$('.catalog__sub-level-1 .catalog__sub-label').text(txt);
+			$('.catalog__sub-image').html(img);
+		});
+	});	
 }
