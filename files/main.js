@@ -593,7 +593,7 @@ function mainnav(id,rows){
   var menuCount = mainnav.find('.mainnav__list li').length + 1;
   var nextCheck = 0;
   for(var i=1; i < menuCount;  i++){
-    var currentWidth = parseInt(Math.ceil(mainnav.find('.mainnav__list li:nth-child('+i+')').width())) + 16;
+    var currentWidth = parseInt(Math.ceil(mainnav.find('.mainnav__list li:nth-child('+i+')').width())) + 30;
     nextCheck += currentWidth;
     if(nextCheck > menuWidth){
       var a = i;
@@ -868,7 +868,7 @@ function pdtSales(){
     navText: [ , ],
     dots: false,
 		autoWidth: false,
-    autoHeight: false,
+    autoHeight: true,
     autoHeightClass: 'owl-height',
     autoplay: false,
     autoplayHoverPause: true,
@@ -908,7 +908,7 @@ function pdtCatalog() {
 		responsive: {
 			0:{items:1, autoHeight: true},
 			320:{items:2, autoHeight: true},
-			480:{items:2},
+			480:{items:3},
 			640:{items:3},
 			768:{items:4},
 			992:{items:5},
@@ -1015,7 +1015,7 @@ function newsCarousel() {
 			320:{items:1, autoHeight: true},
 			480:{items:2},
 			640:{items:2},
-			768:{items:3},
+			768:{items:2},
 			992:{items:3},
 			1200:{items:3}
 		}
@@ -1024,9 +1024,9 @@ function newsCarousel() {
 
 // Функция слайдер для "Вы смотрели"
 function viewed() {
-	$('.viewed .owl-carousel').owlCarousel({
-		items: 1,
-		margin: 0,
+	$('#viewed .owl-carousel').owlCarousel({
+		items: 6,
+		margin: 20,
 		loop: false,
 		rewind: true,
 		lazyLoad: true,
@@ -1044,7 +1044,16 @@ function viewed() {
 		touchDrag: true,
 		pullDrag: true,
 		responsiveClass: true,
-		responsiveRefreshRate: 100
+		responsiveRefreshRate: 100,
+		responsive: {
+			0:{items:1, autoHeight: true},
+			320:{items:2, margin: 16},
+			480:{items:2},
+			640:{items:3},
+			768:{items:4},
+			992:{items:5},
+			1200:{items:6}
+		}
 	});
 }
 
@@ -1325,8 +1334,6 @@ function addCart() {
 				//$.fancybox.open(data);
 				// Анализ системного сообщения в коризне
 				var str = $(data).html();
-				console.log('data', data)
-				console.log('str', str)
 				// Проверяем текст сообщения на наличие ошибки
 				if (str.indexOf("Не удалось") != -1) {
 					// Сообщение с ошибкой
@@ -1352,7 +1359,12 @@ function addCart() {
 							modal:false,
 							dismissQueue:false,
 							onClose:true,
-							killer:false
+							killer:false,
+							callbacks: {
+								onShow: function(){
+									$('.noty_layout').addClass('noty__cart')
+								}
+							}
 						}).show();
 					}
 				} else {
@@ -1379,7 +1391,12 @@ function addCart() {
 							modal:false,
 							dismissQueue:false,
 							onClose:true,
-							killer:false
+							killer:false,
+							callbacks: {
+								onShow: function(){
+									$('.noty_layout').addClass('noty__cart')
+								}
+							}
 						}).show();
 					}
 					// Добавляем активный класс если товар успешно добавился в корзину
@@ -1532,14 +1549,11 @@ function addTo() {
 						//if(aText.length) {
 						//  aText.text(aText.attr(isAdd == 1 ? 'data-action-text-del' : 'data-action-text-add'));
 						//}
-						
-						// Блок Сообщения
-						var textContainer = '<div class="noty__addto flex"><div class="noty__content"><a class="noty__title flex" href="'+ pageUrl +'"><i class="icon-compare"></i><span>'+ textLabel +'</span></a><a class="noty__message" href="'+ pUrl +'">'+ pName +'</a><div class="noty__price price__now '+ pDataChar +'"><span class="num">' + addSpaces(pDataPrice) + '</span></div></div><div class="noty__image flex-center"><img src="'+ pImg +'" /></div></div>';
 
 						// Если есть функция, которая отображает сообщения пользователю
 						if(typeof(Noty) == "function") {
 							new Noty({
-								text: textContainer,
+								text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-check"></i></div><div class="noty__message">'+ data.message + '</div></div>',
 								layout:"bottomRight",
 								type:"success",
 								theme:"",
@@ -1563,13 +1577,10 @@ function addTo() {
 							}).show();
 						}
 					} else if('error' == data.status) {
-						// Блок Сообщения
-						var textContainer = '<div class="noty__addto"><a class="noty__title flex-center" href="'+ pageUrl +'"><span>Не удалось</span></a><div class="noty__message"><span>Для добавления товара в сравнение Вам необходимо </span><a class="noty__link" href="/catalog">перейти в каталог</a></div></div></div>';
-
 						// Если есть функция, которая отображает сообщения пользователю
 						if(typeof(Noty) == "function") {
 							new Noty({
-								text: textContainer,
+								text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-close"></i></div><div class="noty__message">'+ data.message + '</div></div>',
 								layout:"bottomRight",
 								type:"warning",
 								theme:"",
@@ -1729,13 +1740,10 @@ function addTo() {
 						//  aText.text(aText.attr(isAdd == 1 ? 'data-action-text-del' : 'data-action-text-add'));
 						//}
 
-						// Блок Сообщения Успешно
-						var textContainer = '<div class="noty__addto flex"><div class="noty__content"><a class="noty__title flex" href="'+ pageUrl +'"><i class="icon-favorites"></i><span>'+ textLabel +'</span></a><a class="noty__message" href="'+ pUrl +'">'+ pName +'</a><div class="noty__price price__now '+ pDataChar +'"><span class="num">' + addSpaces(pDataPrice) + '</span></div></div><div class="noty__image flex-center"><img src="'+ pImg +'" /></div></div>';
-						
 						// Если есть функция, которая отображает сообщения пользователю
 						if(typeof(Noty) == "function") {
 							new Noty({
-								text: textContainer,
+								text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-check"></i></div><div class="noty__message">'+ data.message + '</div></div>',
 								layout:"bottomRight",
 								type:"success",
 								theme:"",
@@ -1759,13 +1767,10 @@ function addTo() {
 							}).show();
 						}
 					} else if('error' == data.status) {
-						// Блок Сообщения Ошибка
-						var textContainer = '<div class="noty__addto"><a class="noty__title flex-center" href="'+ pageUrl +'"><span>Не удалось</span></a><div class="noty__message"><span>Для добавления товара в избранное Вам необходимо </span><a class="noty__link" href="/user/login">войти в личный кабинет или зарегистрироваться</a></div></div></div>';
-
 						// Если есть функция, которая отображает сообщения пользователю
 						if(typeof(Noty) == "function") {
 							new Noty({
-								text: textContainer,
+								text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-close"></i></div><div class="noty__message">'+ data.message + '</div></div>',
 								layout:"bottomRight",
 								type:"warning",
 								theme:"",
@@ -3262,6 +3267,7 @@ $(document).ready(function(){
   openMenu();
   showPass();
   mainnav('#menu .mainnav', '1');
+  mainnav('#footer .footer__menu', '1');
   toTop();
 	viewed();
 	footerLinksMore();

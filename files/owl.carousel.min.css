@@ -3,8 +3,10 @@
 
 
 /*** Навигация ***/
-.owl-prev, .owl-next {width: 60px;height: 60px;font-size: 22px;padding: 0;color: #CBC3DB;background: #ffffff;box-shadow: 0px 4px 10px rgba(174, 143, 237, 0.3);border: 0;border-radius: 100%;line-height: 1;font-family: 'icomoon';font-weight: normal;z-index: 2;}
-.owl-prev:hover, .owl-next:hover {color: #FFA5D8;background: #ffffff;}
+.owl-nav {width: 5rem;margin: 1.25rem auto 0;position: relative;}
+.owl-nav:before {content: '';position: absolute;top: .25rem;left: calc(50% - 1px);width: 2px;height: 1.5rem;background-color: #CBC3DB;border-radius: 4px;}
+.owl-prev, .owl-next {width: 2rem;height: 2rem;background: transparent;box-shadow: none;font-size: 22px;padding: 0;color: #CBC3DB;border: 0;border-radius: 100%;line-height: 1;font-family: 'icomoon';font-weight: normal;z-index: 2;}
+.owl-prev:hover, .owl-next:hover {color: #FFA5D8;background: transparent;}
 .owl-prev {float: left;left: 0;}
 .owl-next {float: right;right: 0;}
 .owl-prev:before {content: '\e902';}
@@ -18,8 +20,6 @@
 .owl-dots .owl-dot {margin: 10px;padding: 0;width: 10px;height: 10px;background: #CBC3DB;border-radius: 100%;line-height: 1;display: inline-block;vertical-align: middle;position: relative;}
 .owl-dots .owl-dot.active {background: #9579D1;outline: 5px solid rgba(149, 121, 209, 0.3);}
 .owl-dots .owl-dot:hover {background: #9579D1;}
-
-
 
 
 /*** Изображения в слайдере ***/

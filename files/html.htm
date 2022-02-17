@@ -201,7 +201,12 @@
 							</div>
 							<div class="catalog__subs flex-stretch">
 								<div class="catalog__sub catalog__sub-level-0" data-level="0">
-									<div class="catalog__sub-label">Каталог</div>
+									<div class="catalog__sub-label">
+										<span>Каталог</span>
+										<div class="catalog__sub-label-close" onclick="closeAll()">
+											<i class="icon-close"></i>
+										</div>
+									</div>
 									<div class="catalog__sub-items"></div>
 								</div>
 								<div class="catalog__sub catalog__sub-level-1 flex-start" data-level="1">
@@ -268,7 +273,7 @@
 					<!-- Слайды -->
 					<div class="slider owl-carousel">
 						<!-- Слайд 1 -->
-						<div class="slider__item">
+						<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide_1.jpg?design=THEMENAME">
 							<div class="slider__content">
 								<h3><a href="{CATALOG_URL}" class="slider__title">Для любимых женщин</a></h3>
 								<div class="slider__subtitle">Подарки для женской половины семьи!</div>
@@ -279,11 +284,11 @@
 								</div>
 							</div>
 							<div class="slider__image">
-								<img src="{ASSETS_IMAGES_PATH}slide_1.jpg?design=THEMENAME" />
+								<img class="lozad" data-src="{ASSETS_IMAGES_PATH}slide_1.jpg?design=THEMENAME" />
 							</div>
 						</div>
 						<!-- Слайд 2 -->
-						<div class="slider__item">
+						<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide_2.jpg?design=THEMENAME">
 							<div class="slider__content">
 								<h3><a href="{CATALOG_URL}" class="slider__title">Подарки для женщин</a></h3>
 								<div class="slider__subtitle">Только лучшие подарки по выгодным ценам!</div>
@@ -294,11 +299,11 @@
 								</div>
 							</div>
 							<div class="slider__image">
-								<img src="{ASSETS_IMAGES_PATH}slide_2.jpg?design=THEMENAME" />
+								<img class="lozad" data-src="{ASSETS_IMAGES_PATH}slide_2.jpg?design=THEMENAME" />
 							</div>
 						</div>
 						<!-- Слайд 3 -->
-						<div class="slider__item">
+						<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide_3.jpg?design=THEMENAME">
 							<div class="slider__content">
 								<h3><a href="{CATALOG_URL}" class="slider__title">Домашним феям</a></h3>
 								<div class="slider__subtitle">Милая и неповторимая посуда</div>
@@ -309,11 +314,11 @@
 								</div>
 							</div>
 							<div class="slider__image">
-								<img src="{ASSETS_IMAGES_PATH}slide_3.jpg?design=THEMENAME" />
+								<img class="lozad" data-src="{ASSETS_IMAGES_PATH}slide_3.jpg?design=THEMENAME" />
 							</div>
 						</div>
 						<!-- Слайд 4 -->
-						<div class="slider__item">
+						<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide_4.jpg?design=THEMENAME">
 							<div class="slider__content">
 								<h3><a href="{CATALOG_URL}" class="slider__title">Для маленьких принцесс</a></h3>
 								<div class="slider__subtitle">Подберем подарок даже самой капризной даме</div>
@@ -324,11 +329,11 @@
 								</div>
 							</div>
 							<div class="slider__image">
-								<img src="{ASSETS_IMAGES_PATH}slide_4.jpg?design=THEMENAME" />
+								<img class="lozad" data-src="{ASSETS_IMAGES_PATH}slide_4.jpg?design=THEMENAME" />
 							</div>
 						</div>
 						<!-- Слайд 5 -->
-						<div class="slider__item">
+						<div class="slider__item lozad" data-background-image="{ASSETS_IMAGES_PATH}slide_5.jpg?design=THEMENAME">
 							<div class="slider__content">
 								<h3><a href="{CATALOG_URL}" class="slider__title">Романтичные подарки</a></h3>
 								<div class="slider__subtitle">Для нежных натур по специальным ценам</div>
@@ -339,7 +344,7 @@
 								</div>
 							</div>
 							<div class="slider__image">
-								<img src="{ASSETS_IMAGES_PATH}slide_5.jpg?design=THEMENAME" />
+								<img class="lozad" data-src="{ASSETS_IMAGES_PATH}slide_5.jpg?design=THEMENAME" />
 							</div>
 						</div>
 
@@ -347,7 +352,7 @@
 					<!-- Промо -->
 					<div class="slider__promo flex">
 						<div class="slider__promo-item">
-							<div class="slider__promo-icon">
+							<div class="slider__promo-icon pulse">
 								<i class="icon-Delivery"></i>
 							</div>
 							<div class="slider__promo-content">
@@ -355,7 +360,7 @@
 							</div>
 						</div>
 						<div class="slider__promo-item">
-							<div class="slider__promo-icon">
+							<div class="slider__promo-icon pulse">
 								<i class="icon-Quality"></i>
 							</div>
 							<div class="slider__promo-content">
@@ -363,7 +368,7 @@
 							</div>
 						</div>
 						<div class="slider__promo-item">
-							<div class="slider__promo-icon">
+							<div class="slider__promo-icon pulse">
 								<i class="icon-Gift"></i>
 							</div>
 							<div class="slider__promo-content">
@@ -686,7 +691,7 @@
 					{% FOR catalog_full %}
 						{% IF catalog_full.HIDE || catalog_full.LEVEL > 0 %}{continue}{% ENDIF %}
 						<div class="categories__item" data-id="{catalog_full.ID}">
-							<a class="categories__image flex-center" href="{catalog_full.URL}" title="Перейти к категории &laquo;{catalog_full.NAME}&raquo;">
+							<a class="categories__image pulse flex-center" href="{catalog_full.URL}" title="Перейти к категории &laquo;{catalog_full.NAME}&raquo;">
 								<img src="{% IF catalog_full.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{catalog_full.IMAGE_MEDIUM}{% ENDIF %}">
 							</a>
 							<a class="categories__name flex" href="{catalog_full.URL}" title="Перейти к категории &laquo;{catalog_full.NAME}&raquo;">
@@ -709,8 +714,10 @@
 						<div class="pdt__sales-promo-icon">
 							<img src="{ASSETS_IMAGES_PATH}parrot.gif?design=THEMENAME" />
 						</div>
-						<h4 class="pdt__sales-promo-title">Успей купить!</h4>
-						<div class="pdt__sales-promo-subtitle">Мы собрали для Вас наши лучшие товары по самым выгодным ценам в этом сезоне</div>
+						<div class="pdt__sales-promo-content">
+							<h4 class="pdt__sales-promo-title">Успей купить!</h4>
+							<div class="pdt__sales-promo-subtitle">Мы собрали для Вас наши лучшие товары по самым выгодным ценам в этом сезоне</div>
+						</div>
 					</div>
 					<div class="pdt__sales-grid owl-carousel">
 						{% FOR index_page_sale_goods %}
@@ -1213,7 +1220,7 @@
 		<!-- Заказать звонок -->
 		<section id="callback">
 			<div class="container">
-				<div class="callback__inner">
+				<div class="callback__inner flex">
 					<!-- Баннер 1 -->
 					<div class="callback__item flex lozad" data-background-image="{ASSETS_IMAGES_PATH}ban_5.jpg?design=THEMENAME">
 						<div class="callback__icon flex-center">
@@ -1242,7 +1249,7 @@
 								<i class="icon-user"></i>
 							</div>		
 							<div class="form__fields form__fields-icons">
-								<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
+								<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="+7 ( ___ ) - ___ - __ - __" autocomplete="off" required />
 								<i class="icon-phone"></i>
 							</div>		
 							<div class="form__buttons">
@@ -1502,18 +1509,10 @@
 			<div class="container">
 				<div class="instagram__inner">
 					<div class="instagram__items">
-						<a class="instagram__item" href="#">
-							<img src="{ASSETS_IMAGES_PATH}inst_1.jpg?design=THEMENAME" />
-						</a>
-						<a class="instagram__item" href="#">
-							<img src="{ASSETS_IMAGES_PATH}inst_2.jpg?design=THEMENAME" />
-						</a>
-						<a class="instagram__item" href="#">
-							<img src="{ASSETS_IMAGES_PATH}inst_3.jpg?design=THEMENAME" />
-						</a>
-						<a class="instagram__item" href="#">
-							<img src="{ASSETS_IMAGES_PATH}inst_4.jpg?design=THEMENAME" />
-						</a>
+						<a class="instagram__item lozad" data-background-image="{ASSETS_IMAGES_PATH}inst_1.jpg?design=THEMENAME" href="#"></a>
+						<a class="instagram__item lozad" data-background-image="{ASSETS_IMAGES_PATH}inst_2.jpg?design=THEMENAME" href="#"></a>
+						<a class="instagram__item lozad" data-background-image="{ASSETS_IMAGES_PATH}inst_3.jpg?design=THEMENAME" href="#"></a>
+						<a class="instagram__item lozad" data-background-image="{ASSETS_IMAGES_PATH}inst_4.jpg?design=THEMENAME" href="#"></a>
 					</div>
 					<a class="instagram__links flex" href="#">
 						<div class="instagram__links-label">
@@ -1549,7 +1548,7 @@
 							</noscript>
 							<img class="lozad script__on" data-src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}{news_list_shop.index | is_divided('2','news_2','news_1')}.jpg?design=THEMENAME{% ENDIF %}" alt="{news_list_shop.TITLE}" />
 							{% IF news_list_shop.SHOW_TIME %}
-							<div class="news__date flex-center">
+							<div class="news__date pulse2 flex-center">
 								<div class="day">{news_list_shop.TIME | date("d")}</div>
 								<div class="month">{news_list_shop.TIME | date("M")}</div>
 							</div>
@@ -1584,7 +1583,7 @@
 							</noscript>
 							<img class="lozad script__on" data-src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}{news_list_all.index | is_divided('2','news_2','news_1')}.jpg?design=THEMENAME{% ENDIF %}" alt="{news_list_all.TITLE}" />
 							{% IF news_list_all.SHOW_TIME %}
-							<div class="news__date flex-center">
+							<div class="news__date pulse2 flex-center">
 								<div class="day">{news_list_all.TIME | date("d")}</div>
 								<div class="month">{news_list_all.TIME | date("M")}</div>
 							</div>
@@ -1611,6 +1610,491 @@
 			</div>
 		</section>
 
+		{% ELSE %}
+
+		<!-- Основной контейнер -->
+		<section id="main">
+			<div class="container">
+				<!-- Заголовки страниц -->
+				<div id="page__title">
+					<div class="block__title">
+						{% IF MOD_LNAME=user && ACT=login %}
+						<div class="title"><span>Войти или зарегистрироваться</span></div>
+						{% ELSEIF MOD_LNAME=user && ACT=change %}
+						<div class="title"><span>Активация нового пароля</span></div>
+						{% ELSEIF MOD_LNAME=user && ACT=recovery %}
+						<div class="title"><span>Восстановление пароля</span></div>
+						{% ELSEIF MOD_LNAME=user && ACT=favorites %}
+						<div class="title"><span>Сохраненные товары</span></div>
+						{% ELSEIF MOD_LNAME=user && ACT=history_list %}
+						<div class="title"><span>Мои заказы</span></div>
+						{% ELSEIF MOD_LNAME=user && ACT=history_info %}
+						<div class="title"><span>Мой заказ</span></div>
+						{% ELSEIF MOD_LNAME=user && ACT=settings %}
+						<div class="title"><span>Личный кабинет</span></div>
+						{% ELSEIF MOD_LNAME=user && ACT=register %}
+						<div class="title"><span>Регистрация клиента</span></div>
+						{% ELSEIF MOD_LNAME=order && ACT=stage %}
+						<div class="title"><span>Оформление заказа. Шаг {ORDER_STAGE_NUM} из 4</span></div>
+						{% ELSEIF MOD_LNAME=search %}
+						<div class="title">
+							<span>
+								<div>Результат поиска по запросу: {% IFNOT search_query_empty %}&laquo;{SEARCH_QUERY}&raquo;{% ENDIF %}</div>
+								<div class="subtitle">({GOODS_PAGES_RESULTS} товар{GOODS_PAGES_RESULTS | gen_word_end("","а","ов")} найд{GOODS_PAGES_RESULTS | gen_word_end("ен","ено","ено")} по запросу)</div>
+							</span>
+						</div>
+						{% ELSEIF MOD_LNAME=discount && ACT=index && ID %}
+						<div class="title"><span>{PROMOTIONAL_CAMPAIGN_NAME}</span></div>
+						{% ELSEIF MOD_LNAME=discount && ACT=index %}
+						<div class="title"><span>Акции</span></div>
+						{% ELSEIF MOD_LNAME=feedback %}
+						<div class="title"><span>Связь с администрацией</span></div>
+						{% ELSEIF CURRENT_URL=NEWS_SHOP_URL || CURRENT_URL=NEWS_ARTICLES_URL || CURRENT_URL=NEWS_MASS_MEDIA_URL %}
+						<div class="title"><span>{NEWS_SECTION_NAME}</span></div>
+						{% ELSEIF MOD_LNAME=news %}
+						<div class="title"><span>{PAGE_TITLE}</span></div>
+						{% ELSEIF MOD_LNAME=compare %}
+						<div class="title"><span>{% IF compare_list_empty %}Ваш список сравнения пуст{% ELSE %}Сравнение товаров{% ENDIF %}</span></div>
+						{% ELSEIF MOD_LNAME=page %}
+						<div class="title"><span>{PAGE_NAME}</span></div>
+						{% ELSEIF MOD_LNAME= %}
+						<div class="title"><span>Внутренняя ошибка сервера. {MSG_HEADER}</span></div>
+						{% ELSEIF MOD_LNAME=callback %}
+						<div class="title"><span>Заказ обратного звонка</span></div>
+						{% ELSEIF MOD_LNAME=catalog %}
+						<div class="title"><span>{CATEGORY_NAME}</span></div>
+						{% ELSEIF MOD_LNAME=cart %}
+						<div class="title"><a href="{CART_URL}" title="Корзина"><span>Корзина</span></a></div>
+						{% ELSEIF MOD_LNAME=goods %}
+						<div class="title"><span>{GOODS_NAME}</span></div>
+						{% ENDIF %}
+					</div>
+					<!-- Хлебные крошки -->
+					<div id="breadcrumbs">
+						<ul class="flex-center unstyled" itemscope itemtype="https://schema.org/BreadcrumbList">
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" class="home">
+								<a itemprop="item" href="{INDEX_PAGE_URL}" title="Перейти на главную"><i class="icon-home"></i><span itemprop="name">Главная</span>
+									<meta itemprop="position" content="1" />
+								</a>
+							</li>
+							{% IF MOD_LNAME=cart %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{CART_URL}" title="Перейти в корзину">
+									<span itemprop="name">{% IF cart_items_empty %}Корзина покупок пуста{% ELSE %}Корзина{% ENDIF %}</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							{% ELSEIF MOD_LNAME=user && ACT=login %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Войти или зарегистрироваться</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=user && ACT=change %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{USER_RECOVERY_URL}" title="Восстановление пароля"><span itemprop="name">Восстановление пароля</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Активация нового пароля</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=user && ACT=recovery %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Восстановление пароля</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=user && ACT=favorites %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Сохраненные товары</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=user && ACT=history_info %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{USER_SETTINGS_URL}" title="Личный кабинет"><span itemprop="name">Личный кабинет</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{USER_HISTORY_LIST_URL}" title="История моих заказов"><span itemprop="name">Мои заказы</span>
+									<meta itemprop="position" content="3" />
+								</a>
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Карточка заказа</span>
+								<meta itemprop="position" content="4" />
+							</li>
+							{% ELSEIF MOD_LNAME=user && ACT=history_list %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{USER_SETTINGS_URL}" title="Личный кабинет"><span itemprop="name">Личный кабинет</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Мои заказы</span>
+								<meta itemprop="position" content="3" />
+							</li>
+							{% ELSEIF MOD_LNAME=user && ACT=settings %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Личный кабинет</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=user && ACT=register %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Регистрация клиента</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=order && ACT=stage %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{CART_URL}" title="Перейти в корзину">
+									<span itemprop="name">Корзина</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Оформление заказа</span>
+								<meta itemprop="position" content="3" />
+							</li>
+							{% ELSEIF MOD_LNAME=search %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Поиск</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=discount && ACT=index && ID %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{DISCOUNT_URL}" title="Перейти на страницу акций магазина"><span itemprop="name">Акции магазина</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">{PROMOTIONAL_CAMPAIGN_NAME}</span>
+								<meta itemprop="position" content="3" />
+							</li>
+							{% ELSEIF MOD_LNAME=discount && ACT=index %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Акции магазина</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=order && ACT=info %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{CART_URL}" title="Перейти в корзину"><span itemprop="name">Корзина</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{CART_URL}"><span itemprop="name">Оформление заказа</span>
+									<meta itemprop="position" content="3" />
+								</a>
+							</li>
+							<li><span>Заказ {% IF ORDER_NUM %}№{ORDER_NUM}{% ENDIF %} успешно оформлен.</span></li>
+							{% ELSEIF MOD_LNAME=feedback && ACT=index %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Связь с администрацией</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF CURRENT_URL=NEWS_SHOP_URL || CURRENT_URL=NEWS_ARTICLES_URL || CURRENT_URL=NEWS_MASS_MEDIA_URL || CURRENT_URL=NEWS_ALL_URL %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">{NEWS_SECTION_NAME}</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=news %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{NEWS_SECTION_URL}" title="{NEWS_SECTION_NAME}"><span itemprop="name">{NEWS_SECTION_NAME}</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">{NEWS_TITLE}</span>
+								<meta itemprop="position" content="3" />
+							</li>
+							{% ELSEIF MOD_LNAME=compare %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Список сравнения</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=page %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">{PAGE_NAME}</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME= %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Внутренняя ошибка сервера</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=callback %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name">Заказ обратного звонка</span>
+								<meta itemprop="position" content="2" />
+							</li>
+							{% ELSEIF MOD_LNAME=goods %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{CATALOG_URL}" title="Перейти в каталог товаров"><span itemprop="name">Каталог</span>
+									<meta itemprop="position" content="2" />
+								</a>
+							</li>
+							{% FOR upper_navigation %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<a itemprop="item" href="{upper_navigation.URL}" title="Перейти в категорию &laquo;{upper_navigation.NAME}&raquo;"><span itemprop="name" title="{upper_navigation.NAME}">{upper_navigation.NAME}</span>
+									<meta itemprop="position" content="{upper_navigation.LEVEL | plus('3')}" /></a></li>
+							{% ENDFOR %}
+							<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+								<span itemprop="name" title="{GOODS_NAME}">{GOODS_NAME}</span>
+								<meta itemprop="position" content='{% FOR upper_navigation %}{%IF upper_navigation.last%}{upper_navigation.index | plus("3")}{%ENDIF%}{%ENDFOR%}' />
+							</li>
+							{% ELSEIF MOD_LNAME=catalog %}
+								{% IF IS_FULL_CATALOG %}
+									<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+										<span itemprop="name">Каталог</span>
+										<meta itemprop="position" content="2" />
+									</li>
+								{% ELSE %}
+									<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+										<a itemprop="item" href="{CATALOG_URL}" title="Перейти в каталог продукции нашего магазина"><span itemprop="name">Каталог</span>
+											<meta itemprop="position" content="2" />
+										</a>
+									</li>
+									{% FOR upper_navigation %}
+										{% IF upper_navigation.CURRENT %}
+										<li><span title="{upper_navigation.NAME}">{upper_navigation.NAME}</span></li>
+										{% ELSEIF upper_navigation.CURRENT_PARENT %}
+										<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+											<a itemprop="item" href="{upper_navigation.URL}" title="Перейти в категорию &laquo;{upper_navigation.NAME}&raquo;"><span itemprop="name" title="{upper_navigation.NAME}">{upper_navigation.NAME}</span>
+												<meta itemprop="position" content='{upper_navigation.index | plus("2")}' />
+											</a>
+										</li>
+										{% ENDIF %}
+									{% ENDFOR upper_navigation %}
+								{% ENDIF %}
+							{% ENDIF %}
+						</ul>
+					</div>
+				</div>
+				<div class="body">{BODY}</div>
+			</div>
+		</section>
+
+		<!-- Вы смотрели -->
+		{% IFNOT recently_viewed_goods_empty %}
+		<section id="viewed">
+			<div class="container">
+				<div class="block__title">
+					<div class="title"><span>Вы смотрели</span></div>
+				</div>
+				<div class="products__grid owl-carousel">
+					{% FOR recently_viewed_goods %}
+					<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && recently_viewed_goods.MAX_REST_VALUE=0 %}empty{% ENDIF %} {% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF recently_viewed_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{recently_viewed_goods.ID}" itemscope itemtype="https://schema.org/Product">
+						<form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form-{recently_viewed_goods.MIN_PRICE_NOW_ID} goodsListForm">
+							<input type="hidden" name="hash" value="{HASH}" />
+							<input type="hidden" name="form[goods_from]" value="{recently_viewed_goods.GOODS_FROM}" />
+							<input type="hidden" name="form[goods_mod_id]" value="{recently_viewed_goods.MIN_PRICE_NOW_ID}" />
+							<input type="hidden" name="form[goods_id][{recently_viewed_goods.ID}]" value="{recently_viewed_goods.ID}" />
+							<!-- <input type="hidden" name="form[goods_unique_put_only_one]" value="1" /> -->
+							<link itemprop="image" href="{% IF recently_viewed_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{recently_viewed_goods.IMAGE_MEDIUM}{% ENDIF %}" />
+							<!-- Изображение товара -->
+							<div class="product__image">
+								<!-- Изображение -->
+								<a class="product__img flex-center" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}" title="{recently_viewed_goods.NAME}" itemprop="url">
+									<noscript>
+										<img src="{% IF recently_viewed_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{recently_viewed_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{recently_viewed_goods.NAME}" />
+									</noscript>
+									<img class="lozad script__on" src="{ASSETS_IMAGES_PATH}placeholder.png?design=THEMENAME" data-src="{% IF recently_viewed_goods.IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{recently_viewed_goods.IMAGE_MEDIUM}{% ENDIF %}" alt="{recently_viewed_goods.NAME}" />
+								</a>
+
+								<!-- Стикеры -->
+								<div class="product__ico">
+									{% IF recently_viewed_goods.IS_NEW %}
+									<span class="ico__new"></span>
+									{% ENDIF %}
+									{% IF recently_viewed_goods.IS_TOP %}
+									<span class="ico__best"></span>
+									{% ENDIF %}
+									{% IF recently_viewed_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT > recently_viewed_goods.MIN_PRICE_NOW %}
+									<span class="ico__sale"></span>
+									{% ELSEIF recently_viewed_goods.MIN_PRICE_OLD > recently_viewed_goods.MIN_PRICE_NOW %}
+									<span class="ico__sale"></span>
+									{% ENDIF %}
+								</div>
+
+								<!-- Быстрый просмотр -->
+								<a class="quickview" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}" title="{recently_viewed_goods.NAME}">
+									<i class="icon-loupe"></i>
+								</a>
+
+								<!-- Добавление товара в избранное и сравнение и в корзину -->
+								<div class="product__links flex {% IF recently_viewed_goods.IS_HAS_IN_COMPARE_LIST || recently_viewed_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
+									<!-- Если в тарифном плане подключен модуль сравнения товаров и он не выключен в настройках магазина -->
+									{% IFNOT SETTINGS_COMPARE_DISABLE && recently_viewed_goods.IS_HAS_IN_COMPARE_LIST %}
+									<a class="add-compare added"
+										data-action-is-add="0"
+										data-action-url="{COMPARE_URL}"
+										data-action-add-url="{COMPARE_ADD_URL}"
+										data-action-delete-url="{COMPARE_DELETE_URL}"
+										data-action-add-title="Добавить &laquo;{recently_viewed_goods.NAME}&raquo; в список сравнения с другими товарами"
+										data-action-delete-title="Убрать &laquo;{recently_viewed_goods.NAME}&raquo; из списка сравнения с другими товарами"
+										data-prodname="{recently_viewed_goods.NAME}"
+										data-produrl="{recently_viewed_goods.URL}"
+										data-prodimg="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{recently_viewed_goods.IMAGE_ICON}{% ENDIF %}"
+										data-id="{recently_viewed_goods.ID}"
+										data-mod-id="{recently_viewed_goods.MIN_PRICE_NOW_ID}"
+										data-mod-price="{recently_viewed_goods.MIN_PRICE_NOW}"
+										data-char-code="{CURRENCY_CHAR_CODE}"
+										data-add-tooltip="Добавить в сравнение"
+										data-del-tooltip="Убрать из сравнения"
+										data-tooltipOFF="Убрать из сравнения"
+										title="Убрать &laquo;{recently_viewed_goods.NAME}&raquo; из списка сравнения с другими товарами"
+										href="{COMPARE_DELETE_URL}?id={recently_viewed_goods.MIN_PRICE_NOW_ID}&amp;from={recently_viewed_goods.GOODS_FROM}&amp;return_to={CURRENT_URL | urlencode}"
+										rel="nofollow"
+									></a>
+									{% ELSEIF SETTINGS_COMPARE_DISABLE=0 %}
+									<a class="add-compare"
+										data-action-is-add="1"
+										data-action-url="{COMPARE_URL}"
+										data-action-add-url="{COMPARE_ADD_URL}"
+										data-action-delete-url="{COMPARE_DELETE_URL}"
+										data-action-add-title="Добавить &laquo;{recently_viewed_goods.NAME}&raquo; в список сравнения с другими товарами"
+										data-action-delete-title="Убрать &laquo;{recently_viewed_goods.NAME}&raquo; из списка сравнения с другими товарами"
+										data-prodname="{recently_viewed_goods.NAME}"
+										data-produrl="{recently_viewed_goods.URL}"
+										data-prodimg="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{recently_viewed_goods.IMAGE_ICON}{% ENDIF %}"
+										data-id="{recently_viewed_goods.ID}"
+										data-mod-id="{recently_viewed_goods.MIN_PRICE_NOW_ID}"
+										data-mod-price="{recently_viewed_goods.MIN_PRICE_NOW}"
+										data-char-code="{CURRENCY_CHAR_CODE}"
+										data-add-tooltip="Добавить в сравнение"
+										data-del-tooltip="Убрать из сравнения"
+										data-tooltipOFF="Добавить в сравнение"
+										title="Добавить &laquo;{recently_viewed_goods.NAME}&raquo; в список сравнения с другими товарами"
+										href="{COMPARE_ADD_URL}?id={recently_viewed_goods.MIN_PRICE_NOW_ID}&amp;from={recently_viewed_goods.GOODS_FROM}&amp;return_to={CURRENT_URL | urlencode}"
+										rel="nofollow"
+									></a>
+									{% ENDIF %}
+									<!-- //END Добавление товара в избранное и сравнение и в корзину -->
+									
+									<!-- Добавление товара в избранное и сравнение и в корзину -->
+									<div class="product__addCart {% IF recently_viewed_goods.IS_HAS_IN_COMPARE_LIST || recently_viewed_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
+										<!-- Добавление в корзину -->
+										{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && recently_viewed_goods.MAX_REST_VALUE=0 %}
+										<a class="add-notify"
+											title="Уведомить"
+											data-tooltipOFF="Уведомить"
+											rel="nofollow"
+											data-fancybox
+											data-src="#fancybox__notify"
+											href="javascript:;"
+											data-name="{recently_viewed_goods.NAME}"
+											data-art="{recently_viewed_goods.ART_NUMBER}"
+										>												
+											<i class="icon-notify"></i>
+											<span>Уведомить</span>
+										</a>
+										{% ELSE %}
+										<a class="{% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
+											title="Добавить в корзину &laquo;{recently_viewed_goods.NAME}&raquo;"
+											data-tooltipOFF="В корзину"
+											rel="nofollow"
+											href="{% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}{recently_viewed_goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={recently_viewed_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={recently_viewed_goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
+										>
+											<i class="icon-cart"></i>
+											<span>Купить</span>
+										</a>
+										{% ENDIF %}
+									</div>
+									
+									<!-- Если есть возможность добавить товар в Избранное -->
+									{% IF recently_viewed_goods.IS_HAS_IN_FAVORITES_LIST %}
+									<a class="add-favorites added"
+										data-action-is-add="0"
+										data-action-url="{FAVORITES_URL}"
+										data-action-add-url="{FAVORITES_ADD_URL}"
+										data-action-delete-url="{FAVORITES_DELETE_URL}"
+										data-action-add-title="Добавить &laquo;{recently_viewed_goods.NAME}&raquo; в Избранное"
+										data-action-delete-title="Убрать &laquo;{recently_viewed_goods.NAME}&raquo; из Избранного"
+										data-prodname="{recently_viewed_goods.NAME}"
+										data-produrl="{recently_viewed_goods.URL}"
+										data-prodimg="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{recently_viewed_goods.IMAGE_ICON}{% ENDIF %}"
+										data-id="{recently_viewed_goods.ID}"
+										data-mod-id="{recently_viewed_goods.MIN_PRICE_NOW_ID}"
+										data-mod-price="{recently_viewed_goods.MIN_PRICE_NOW}"
+										data-char-code="{CURRENCY_CHAR_CODE}"
+										data-add-tooltip="Добавить в избранное"
+										data-del-tooltip="Убрать из избранного"
+										data-tooltipOFF="Убрать из избранного"
+										title="Убрать &laquo;{recently_viewed_goods.NAME}&raquo; из Избранного"
+										href="{FAVORITES_DELETE_URL}?id={recently_viewed_goods.MIN_PRICE_NOW_ID}&amp;return_to={CURRENT_URL | urlencode}"
+										rel="nofollow"
+									></a>
+									{% ELSE %}
+									<a class="add-favorites"
+										data-action-is-add="1"
+										data-action-url="{FAVORITES_URL}"
+										data-action-add-url="{FAVORITES_ADD_URL}"
+										data-action-delete-url="{FAVORITES_DELETE_URL}"
+										data-action-add-title="Добавить &laquo;{recently_viewed_goods.NAME}&raquo; в Избранное"
+										data-action-delete-title="Убрать &laquo;{recently_viewed_goods.NAME}&raquo; из Избранного"
+										data-prodname="{recently_viewed_goods.NAME}"
+										data-produrl="{recently_viewed_goods.URL}"
+										data-prodimg="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{recently_viewed_goods.IMAGE_ICON}{% ENDIF %}"
+										data-id="{recently_viewed_goods.ID}"
+										data-mod-id="{recently_viewed_goods.MIN_PRICE_NOW_ID}"
+										data-mod-price="{recently_viewed_goods.MIN_PRICE_NOW}"
+										data-char-code="{CURRENCY_CHAR_CODE}"
+										data-add-tooltip="Добавить в избранное"
+										data-del-tooltip="Убрать из избранного"
+										data-tooltipOFF="Добавить в избранное"
+										title="Добавить &laquo;{recently_viewed_goods.NAME}&raquo; в Избранное"
+										href="{FAVORITES_ADD_URL}?id={recently_viewed_goods.MIN_PRICE_NOW_ID}&amp;return_to={CURRENT_URL | urlencode}"
+										rel="nofollow"
+									></a>
+									{% ENDIF %}
+								</div>
+							</div><!-- //END Изображение товара -->
+							<!-- Информация товара -->
+							<div class="product__shop">
+								<!-- Доступность товара -->
+								<div class="product__available">
+									<span class="goodsModRestValue" data-value="{recently_viewed_goods.MAX_REST_VALUE}">
+										{% IF recently_viewed_goods.MAX_REST_VALUE > 0 %}
+											В наличии {% IF recently_viewed_goods.MAX_REST_VALUE > 10 %}Много{% ELSE %}Мало{% ENDIF %}
+										{% ELSE %}
+											нет в наличии
+										{% ENDIF %}
+									</span>
+								</div>
+								<!-- Название товара -->
+								<a class="product__name flex-center" href="{recently_viewed_goods.URL_MIN_PRICE_NOW | url_amp}" title="{recently_viewed_goods.NAME}">
+									<span itemprop="name">{recently_viewed_goods.NAME}</span>
+								</a>
+								<!-- Артикул товара -->
+								<meta itemprop="sku" content="{recently_viewed_goods.ART_NUMBER}" />
+								<!-- Цена для поисковиков -->
+								<div itemprop="offers" itemscope itemtype="http://schema.org/AggregateOffer">
+									<meta itemprop="priceCurrency" content="{CURRENCY_CHAR_CODE}" />
+									<meta itemprop="lowPrice" content="{recently_viewed_goods.MIN_PRICE_NOW}">
+									<meta itemprop="highPrice" content="{recently_viewed_goods.MAX_PRICE_NOW}">
+									<meta itemprop="offerCount" content="{% FOR mods %}{% IF recently_viewed_goods.mods.last %}{recently_viewed_goods.mods.length}{% ENDIF %}{% ENDFOR %}">
+								</div>
+								<!-- Цена -->
+								<div class="product__price {CURRENCY_CHAR_CODE} {% IF recently_viewed_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>recently_viewed_goods.MIN_PRICE_NOW %}has-oldPrice{% ELSEIF recently_viewed_goods.MIN_PRICE_OLD>recently_viewed_goods.MIN_PRICE_NOW %}has-oldPrice{% ENDIF %}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+									<meta itemprop="priceCurrency" content="{CURRENCY_CHAR_CODE}" />
+									<meta itemprop="availability" content="{% IF recently_viewed_goods.MAX_REST_VALUE>0 %}http://schema.org/InStock{% ELSE %}http://schema.org/OutOfStock{% ENDIF %}" />
+									<meta itemprop="priceValidUntil" content="{recently_viewed_goods.MAX_DISCOUNT_EXPIRED_AT | date('Y-m-d')}" />
+									<span class="price__now {CURRENCY_CHAR_CODE}" itemprop="price" content="{recently_viewed_goods.MIN_PRICE_NOW}">{recently_viewed_goods.MIN_PRICE_NOW | money_format}</span>
+									{% IF recently_viewed_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT>recently_viewed_goods.MIN_PRICE_NOW %}
+									<span class="price__old {CURRENCY_CHAR_CODE}">{recently_viewed_goods.MIN_PRICE_NOW_WITHOUT_DISCOUNT | money_format}</span>
+									{% ELSEIF recently_viewed_goods.MIN_PRICE_OLD>recently_viewed_goods.MIN_PRICE_NOW %}
+									<span class="price__old {CURRENCY_CHAR_CODE}">{recently_viewed_goods.MIN_PRICE_OLD | money_format}</span>
+									{% ENDIF %}
+								</div>
+							</div>
+						</form>
+					</div>
+					{% ENDFOR %}
+				</div>
+			</div>
+		</section>
+		{% ENDIF recently_viewed_goods_empty %}
+
 		{% ENDIF index_page %}
 
 		<!-- Подвал -->
@@ -1620,7 +2104,7 @@
 				<div class="footer__contacts flex" itemscope itemtype="https://schema.org/Organization">
 					{% IF SETTINGS_STORE_REGION %}
 					<a class="contacts__block region flex-center" href="https://yandex.ru/maps/?text={SETTINGS_STORE_REGION}&z=17" target="_blank" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
-						<div class="contacts__block-icon">
+						<div class="contacts__block-icon pulse">
 							<i class="icon-location"></i>
 						</div>
 						<div class="contacts__block-content">
@@ -1631,7 +2115,7 @@
 					
 					{% IF SETTINGS_STORE_EMAIL_MAIN %}
 					<a class="contacts__block email flex-center" href="mailto:{SETTINGS_STORE_EMAIL_MAIN}" title="{SETTINGS_STORE_EMAIL_MAIN}">
-						<div class="contacts__block-icon">
+						<div class="contacts__block-icon pulse">
 							<i class="icon-mail"></i>
 						</div>
 						<div class="contacts__block-content">
@@ -1642,7 +2126,7 @@
 
 					{% IF SETTINGS_STORE_WORK_TIME %}
 					<a class="contacts__block worktime flex-center" href="{FEEDBACK_URL}" title="Режим работы">
-						<div class="contacts__block-icon">
+						<div class="contacts__block-icon pulse">
 							<i class="icon-clock"></i>
 						</div>
 						<div class="contacts__block-content">
@@ -1653,7 +2137,7 @@
 
 					{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
 					<div class="contacts__block phone flex-center" href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}" title="{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}">
-						<div class="contacts__block-icon">
+						<div class="contacts__block-icon pulse">
 							<i class="icon-phone"></i>
 						</div>
 						<div class="contacts__block-content">
@@ -1685,7 +2169,7 @@
 
 				<!-- Подвал. Меню -->
 				<div class="footer__menu">
-					<ul class="mainnav__list unstyled flex" itemscope itemtype="https://schema.org/SiteNavigationElement">
+					<ul class="mainnav__list unstyled flex-center" itemscope itemtype="https://schema.org/SiteNavigationElement">
 						{% FOR menu %}
 							{% FOR footer %}
 								{% FOR links %}
@@ -1757,12 +2241,6 @@
 
 					<!-- Подвал. Оплата -->
 					<div class="footer__icons payments flex">
-						<a href="#" class="iomoney" title="Способы оплаты">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 301 63" style="enable-background:new 0 0 301 63" xml:space="preserve"><path d="m291.7 17.3-7 17.1c-.2.2-.2.6-.2.8l-.2.4-.2-.4c0-.2-.2-.6-.2-.8l-7-17.1h-9l11.8 29.3-5 11.2h9l16.5-40.5h-8.5zM225.5 18.9c-1.6-1.2-3.6-2-6-2.2-4-.4-7.8 1-10.4 3.6v-3.2H201v29.3h8.2V31.1c0-3.4.6-4.4 1.2-5.2 1-1.6 2.8-2.4 5-2.4s4.2 1 5.2 2.6c.6 1.2.8 2.8.8 3.6v16.7h8.2V28.7c-.1-4.6-1.3-7.8-4.1-9.8zM185.6 17.5c-4-1.4-8.4-1.2-12.4.6-2.6 1.2-5 3.2-6.4 5.8-1.4 2.2-2 5-2 8s.6 5.8 2 8 3.2 4.2 5.6 5.4c2.4 1.2 5.2 2 7.8 2 1.4 0 2.8-.2 4.2-.6 1.2-.4 2.4-.8 3.6-1.4 2.4-1.4 4.4-3.2 5.6-5.4 1.4-2.2 2-5 2-8 0-6.6-3.8-12.2-10-14.4zm2.2 14.8c-.2 2.6-1 4.8-2.6 6.2-1.2 1-3 1.6-5.2 1.8-2.2 0-3.8-.6-5.2-1.8-1.6-1.4-2.4-3.6-2.6-6.2-.2-3 1-5.4 3.2-7 1.2-.8 2.8-1.4 4.4-1.4 1.8 0 3.2.6 4.6 1.4 2.4 1.4 3.6 4 3.4 7zM155.3 18.9c-1.6-1.2-3.6-2-6-2.2h-1.4c-3.2 0-6 1.4-8.4 4.2l-.4.6h-.8c-.6-1-1.4-1.8-2.2-2.4-1.6-1.2-3.6-2-6-2.2-3.8-.4-6.8.8-9.4 3.6v-3h-8.2v29.3h8.2V31.1c0-3.2.4-4 1-5 1-1.6 2.8-2.6 4.8-2.4 2 0 3.8 1 4.8 2.6.8 1.2.8 2.6.8 4v16.3h8.2V30.9c0-3 .4-4 1-5 1-1.6 2.8-2.4 4.8-2.4s3.6 1 4.6 2.6c.6 1 .8 2.2.8 3v17.3h8.2V28.5c0-1.6-.2-3.2-.6-4.6-.8-2-2-3.8-3.8-5zM260.2 37.7c-1.2 1.2-4 3.4-7.8 3.6-3.2.2-5.6-.8-7.4-2.6-.8-.8-1.4-2-1.8-3.2h22.5v-.2c.2-1.2.4-2.2.4-3.4 0-1-.2-2.4-.6-4.2-1-3.4-3-6-5.6-8-3-2.2-5.8-2.8-6.6-2.8-5.8-1-12.4 1.6-15.8 7-2.4 3.8-2.2 7.6-2.2 8.8 0 1.4.2 5.8 3.8 9.8 4.2 4.6 10 4.8 11.8 5 8 .2 13.4-4.8 14.6-5.8l-5.3-4zm-14-12.4c1.2-.8 2.6-1.4 4.4-1.4 1.8 0 3.2.6 4.6 1.4 1.2 1 2.2 2.2 2.8 3.6h-14.4c.4-1.4 1.2-2.8 2.6-3.6zM57.2 0C39.7 0 25.7 14.2 25.7 31.5 25.7 49 39.9 63 57.2 63s31.5-14.2 31.5-31.5S74.6 0 57.2 0zm0 43.1c-6.4 0-11.8-5.4-11.8-11.8s5.4-11.8 11.8-11.8S69 24.9 69 31.3c-.2 6.6-5.4 11.8-11.8 11.8zM25.5 9v45.9H14.4L0 9h25.5z"/></svg>
-						</a>
-						<a href="#" class="iokassa" title="Способы оплаты">
-							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 266 63" style="enable-background:new 0 0 266 63" xml:space="preserve"><path d="M138.8 17.3h-8.6L124.1 28H121l-.1-23.1h-8.1v41.8h8.1l.1-11.5h3.1l8.1 11.5h9l-10.5-15.2 8.1-14.2zM200.3 31.1c-1.7-1.1-3.4-1.9-5.3-2.5l-1.8-.7-.5-.2c-1.1-.4-2.3-.9-2.3-2 0-.3.1-.7.2-1 .2-.3.4-.6.7-.7.6-.4 1.3-.6 2-.7 1.6-.1 3.1.4 4.3 1.3l.2.1 4.3-5-.2-.2c-.5-.5-1.1-.9-1.8-1.3-1.1-.6-2.3-1.1-3.6-1.3-1.8-.4-3.7-.4-5.5 0-1.8.2-3.4.9-4.9 2-.9.7-1.7 1.6-2.2 2.6-.6 1-.9 2.1-1.1 3.3-.2 2.1.3 4.2 1.5 5.9 1.6 1.8 3.7 3 6 3.6l.4.1.8.3c3 1 3.8 1.4 4.3 2 .2.3.3.7.4 1 0 1.4-1.7 2-2.9 2.4-.8.2-1.7.1-2.5 0-.8-.2-1.6-.5-2.3-1-1.1-.7-2-1.7-2.8-2.8-.5.5-5 4.9-4.9 5l.1.2c2.2 2.7 5.2 4.6 8.6 5.3.8.2 1.6.3 2.4.3h.8c2.7.1 5.3-.8 7.5-2.3 1.5-1 2.6-2.5 3.2-4.2.4-1.1.5-2.3.4-3.5-.1-1.2-.5-2.3-1.1-3.4-.6-1.1-1.4-1.9-2.4-2.6zM226.6 31.1c-1.6-1.1-3.4-1.9-5.3-2.5l-1.8-.7-.5-.2c-1.1-.4-2.3-.9-2.4-2 0-.3.1-.7.2-1 .2-.3.4-.6.7-.8.6-.4 1.3-.6 2-.7 1.6-.1 3.1.4 4.3 1.3l.2.1 4.3-5-.2-.2c-.5-.5-1.1-.9-1.8-1.3-1.1-.6-2.3-1.1-3.6-1.3-1.8-.4-3.7-.4-5.6 0-1.8.2-3.4.9-4.9 2-.9.7-1.7 1.6-2.3 2.6-.6 1-.9 2.1-1.1 3.3-.3 2.1.3 4.2 1.5 5.9 1.6 1.8 3.7 3 6 3.6l.3.1.8.3c3 1 3.8 1.4 4.3 2 .2.3.3.7.3 1 0 1.4-1.7 2-2.9 2.4-.8.2-1.7.1-2.5 0-.8-.2-1.6-.5-2.3-1-1.1-.7-2-1.7-2.8-2.8-.4.5-4.9 4.9-4.9 5l.2.2c2.2 2.7 5.2 4.6 8.6 5.3.8.2 1.6.3 2.4.3h.8c2.7.1 5.3-.8 7.5-2.3 1.5-1 2.6-2.5 3.2-4.2.4-1.1.5-2.3.4-3.5-.1-1.2-.5-2.3-1.1-3.4-.2-1-1-1.8-2-2.5zM165.5 17.3v2.9h-.4c-2.2-2.2-5.2-3.5-8.4-3.5-1.9 0-3.8.3-5.6 1.1-1.8.8-3.4 1.9-4.7 3.3-2.7 3-4.1 6.9-4 10.8-.1 4.1 1.3 8 4 11.1 1.3 1.4 2.9 2.5 4.6 3.3 1.8.7 3.7 1.1 5.6 1.1 3.2-.1 6.2-1.2 8.6-3.3h.3v2.6h8.5V17.3h-8.5zm.4 14.8c.1 2.4-.7 4.7-2.2 6.5-.7.8-1.6 1.5-2.6 1.9-1 .4-2.1.6-3.2.6s-2.1-.2-3.1-.6c-1-.4-1.8-1.1-2.5-1.9-1.5-1.9-2.3-4.2-2.2-6.6-.1-2.3.7-4.6 2.2-6.3.7-.8 1.5-1.4 2.5-1.9 1-.4 2-.7 3.1-.6 1.1 0 2.2.2 3.1.6 1 .4 1.9 1.1 2.6 1.9 1.6 1.7 2.4 4 2.3 6.4zM257.4 17.3v2.9h-.4c-2.2-2.2-5.2-3.5-8.4-3.5-1.9 0-3.9.3-5.6 1.1-1.8.8-3.4 1.9-4.7 3.3-2.7 3-4.1 6.9-4 10.8-.1 4.1 1.3 8 4 11.1 1.3 1.4 2.9 2.5 4.6 3.3 1.8.7 3.7 1.1 5.6 1.1 3.2-.1 6.2-1.2 8.6-3.3h.3v2.6h8.5V17.3h-8.5zm.4 14.8c.1 2.4-.7 4.7-2.2 6.5-.7.8-1.6 1.5-2.6 1.9-1 .4-2.1.6-3.2.6s-2.1-.2-3.1-.6c-1-.4-1.8-1.1-2.5-1.9-1.5-1.9-2.3-4.2-2.2-6.6-.1-2.3.7-4.6 2.2-6.3.7-.8 1.5-1.4 2.5-1.9 1-.4 2-.7 3.1-.6 1.1 0 2.2.2 3.1.6s1.9 1.1 2.6 1.9c1.6 1.7 2.4 4 2.3 6.4zM57.2 0C39.7 0 25.7 14.2 25.7 31.5 25.7 49 39.9 63 57.2 63s31.5-14.2 31.5-31.5S74.6 0 57.2 0zm0 43.1c-6.4 0-11.8-5.4-11.8-11.8s5.4-11.8 11.8-11.8S69 24.9 69 31.3c-.2 6.6-5.4 11.8-11.8 11.8zM25.5 9v45.9H14.4L0 9h25.5z"/></svg>
-						</a>
 						<a href="#" class="mastercard" title="Способы оплаты">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M16 9C7.178 9 0 16.178 0 25s7.178 16 16 16c3.335 0 6.434-1.028 9-2.781A15.91 15.91 0 0 0 34 41c8.825 0 16-7.175 16-16S42.825 9 34 9a15.91 15.91 0 0 0-9 2.781A15.905 15.905 0 0 0 16 9zm18 2c7.744 0 14 6.256 14 14s-6.256 14-14 14c-2.7 0-5.211-.774-7.348-2.094C29.926 33.974 32 29.73 32 25s-2.074-8.974-5.348-11.906A13.93 13.93 0 0 1 34 11z"/></svg>
 						</a>
@@ -1781,6 +2259,12 @@
 						<a href="#" class="walletone" title="Способы оплаты">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M492.2 158.1v196.8c-4.3 10.1-9.1 19.9-14.6 29.4-5.9 4.4-13.3 7-21.3 7-19.8 0-35.9-16.1-35.9-35.9V243.8L281.2 381c-6.8 6.8-15.9 10.3-25.2 10.3-4.7 0-9.4-.9-13.8-2.8-13.3-5.6-22-18.6-22-33.1V243.8L80.9 381C70.6 391.1 63 396.3 45 395c-2.7-1.1-14.7-1.3-20.7-10.7-5.9-9.2-4-16.7-4.5-29.4V156.6c0-11.9 5.8-22.4 14.6-28.9 5.9-4.4 13.3-7 21.2-7 19.8 0 35.9 16.1 35.9 35.9v113.1s137.7-137.1 138.6-138c6.5-6.8 15.7-11 25.8-11 19.8 0 35.9 16.1 35.9 35.9v113.1l139.3-137.2c10.3-10.1 25.7-13.1 39-7.5 3.3 1.4 6.3 3.2 8.9 5.4 7.9 6.5 12.8 16.1 13.1 26.7.1.3.1.6.1 1z"/><path d="M492.2 158.1v196.8c.1 14.1-1.8 21.4-12.5 30.7-5.9 4.4-15.4 5.6-23.3 5.6-19.8 0-35.9-16.1-35.9-35.9V243.8l-9 8.9c-14.1 13.9-36.8 13.7-50.7-.4-13.9-14.1-13.7-36.8.4-50.7l70-69c10.3-10.1 25.7-13.1 39-7.5 3.3 1.4 6.3 3.2 8.9 5.4 7.9 6.5 12.8 16.1 13.1 26.7v.9z" fill="#fff" stroke="#000" stroke-miterlimit="10"/></svg>
 						</a>
+						<a style="display: none;" href="#" class="iomoney" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 301 63" style="enable-background:new 0 0 301 63" xml:space="preserve"><path d="m291.7 17.3-7 17.1c-.2.2-.2.6-.2.8l-.2.4-.2-.4c0-.2-.2-.6-.2-.8l-7-17.1h-9l11.8 29.3-5 11.2h9l16.5-40.5h-8.5zM225.5 18.9c-1.6-1.2-3.6-2-6-2.2-4-.4-7.8 1-10.4 3.6v-3.2H201v29.3h8.2V31.1c0-3.4.6-4.4 1.2-5.2 1-1.6 2.8-2.4 5-2.4s4.2 1 5.2 2.6c.6 1.2.8 2.8.8 3.6v16.7h8.2V28.7c-.1-4.6-1.3-7.8-4.1-9.8zM185.6 17.5c-4-1.4-8.4-1.2-12.4.6-2.6 1.2-5 3.2-6.4 5.8-1.4 2.2-2 5-2 8s.6 5.8 2 8 3.2 4.2 5.6 5.4c2.4 1.2 5.2 2 7.8 2 1.4 0 2.8-.2 4.2-.6 1.2-.4 2.4-.8 3.6-1.4 2.4-1.4 4.4-3.2 5.6-5.4 1.4-2.2 2-5 2-8 0-6.6-3.8-12.2-10-14.4zm2.2 14.8c-.2 2.6-1 4.8-2.6 6.2-1.2 1-3 1.6-5.2 1.8-2.2 0-3.8-.6-5.2-1.8-1.6-1.4-2.4-3.6-2.6-6.2-.2-3 1-5.4 3.2-7 1.2-.8 2.8-1.4 4.4-1.4 1.8 0 3.2.6 4.6 1.4 2.4 1.4 3.6 4 3.4 7zM155.3 18.9c-1.6-1.2-3.6-2-6-2.2h-1.4c-3.2 0-6 1.4-8.4 4.2l-.4.6h-.8c-.6-1-1.4-1.8-2.2-2.4-1.6-1.2-3.6-2-6-2.2-3.8-.4-6.8.8-9.4 3.6v-3h-8.2v29.3h8.2V31.1c0-3.2.4-4 1-5 1-1.6 2.8-2.6 4.8-2.4 2 0 3.8 1 4.8 2.6.8 1.2.8 2.6.8 4v16.3h8.2V30.9c0-3 .4-4 1-5 1-1.6 2.8-2.4 4.8-2.4s3.6 1 4.6 2.6c.6 1 .8 2.2.8 3v17.3h8.2V28.5c0-1.6-.2-3.2-.6-4.6-.8-2-2-3.8-3.8-5zM260.2 37.7c-1.2 1.2-4 3.4-7.8 3.6-3.2.2-5.6-.8-7.4-2.6-.8-.8-1.4-2-1.8-3.2h22.5v-.2c.2-1.2.4-2.2.4-3.4 0-1-.2-2.4-.6-4.2-1-3.4-3-6-5.6-8-3-2.2-5.8-2.8-6.6-2.8-5.8-1-12.4 1.6-15.8 7-2.4 3.8-2.2 7.6-2.2 8.8 0 1.4.2 5.8 3.8 9.8 4.2 4.6 10 4.8 11.8 5 8 .2 13.4-4.8 14.6-5.8l-5.3-4zm-14-12.4c1.2-.8 2.6-1.4 4.4-1.4 1.8 0 3.2.6 4.6 1.4 1.2 1 2.2 2.2 2.8 3.6h-14.4c.4-1.4 1.2-2.8 2.6-3.6zM57.2 0C39.7 0 25.7 14.2 25.7 31.5 25.7 49 39.9 63 57.2 63s31.5-14.2 31.5-31.5S74.6 0 57.2 0zm0 43.1c-6.4 0-11.8-5.4-11.8-11.8s5.4-11.8 11.8-11.8S69 24.9 69 31.3c-.2 6.6-5.4 11.8-11.8 11.8zM25.5 9v45.9H14.4L0 9h25.5z"/></svg>
+						</a>
+						<a style="display: none;" href="#" class="iokassa" title="Способы оплаты">
+							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 266 63" style="enable-background:new 0 0 266 63" xml:space="preserve"><path d="M138.8 17.3h-8.6L124.1 28H121l-.1-23.1h-8.1v41.8h8.1l.1-11.5h3.1l8.1 11.5h9l-10.5-15.2 8.1-14.2zM200.3 31.1c-1.7-1.1-3.4-1.9-5.3-2.5l-1.8-.7-.5-.2c-1.1-.4-2.3-.9-2.3-2 0-.3.1-.7.2-1 .2-.3.4-.6.7-.7.6-.4 1.3-.6 2-.7 1.6-.1 3.1.4 4.3 1.3l.2.1 4.3-5-.2-.2c-.5-.5-1.1-.9-1.8-1.3-1.1-.6-2.3-1.1-3.6-1.3-1.8-.4-3.7-.4-5.5 0-1.8.2-3.4.9-4.9 2-.9.7-1.7 1.6-2.2 2.6-.6 1-.9 2.1-1.1 3.3-.2 2.1.3 4.2 1.5 5.9 1.6 1.8 3.7 3 6 3.6l.4.1.8.3c3 1 3.8 1.4 4.3 2 .2.3.3.7.4 1 0 1.4-1.7 2-2.9 2.4-.8.2-1.7.1-2.5 0-.8-.2-1.6-.5-2.3-1-1.1-.7-2-1.7-2.8-2.8-.5.5-5 4.9-4.9 5l.1.2c2.2 2.7 5.2 4.6 8.6 5.3.8.2 1.6.3 2.4.3h.8c2.7.1 5.3-.8 7.5-2.3 1.5-1 2.6-2.5 3.2-4.2.4-1.1.5-2.3.4-3.5-.1-1.2-.5-2.3-1.1-3.4-.6-1.1-1.4-1.9-2.4-2.6zM226.6 31.1c-1.6-1.1-3.4-1.9-5.3-2.5l-1.8-.7-.5-.2c-1.1-.4-2.3-.9-2.4-2 0-.3.1-.7.2-1 .2-.3.4-.6.7-.8.6-.4 1.3-.6 2-.7 1.6-.1 3.1.4 4.3 1.3l.2.1 4.3-5-.2-.2c-.5-.5-1.1-.9-1.8-1.3-1.1-.6-2.3-1.1-3.6-1.3-1.8-.4-3.7-.4-5.6 0-1.8.2-3.4.9-4.9 2-.9.7-1.7 1.6-2.3 2.6-.6 1-.9 2.1-1.1 3.3-.3 2.1.3 4.2 1.5 5.9 1.6 1.8 3.7 3 6 3.6l.3.1.8.3c3 1 3.8 1.4 4.3 2 .2.3.3.7.3 1 0 1.4-1.7 2-2.9 2.4-.8.2-1.7.1-2.5 0-.8-.2-1.6-.5-2.3-1-1.1-.7-2-1.7-2.8-2.8-.4.5-4.9 4.9-4.9 5l.2.2c2.2 2.7 5.2 4.6 8.6 5.3.8.2 1.6.3 2.4.3h.8c2.7.1 5.3-.8 7.5-2.3 1.5-1 2.6-2.5 3.2-4.2.4-1.1.5-2.3.4-3.5-.1-1.2-.5-2.3-1.1-3.4-.2-1-1-1.8-2-2.5zM165.5 17.3v2.9h-.4c-2.2-2.2-5.2-3.5-8.4-3.5-1.9 0-3.8.3-5.6 1.1-1.8.8-3.4 1.9-4.7 3.3-2.7 3-4.1 6.9-4 10.8-.1 4.1 1.3 8 4 11.1 1.3 1.4 2.9 2.5 4.6 3.3 1.8.7 3.7 1.1 5.6 1.1 3.2-.1 6.2-1.2 8.6-3.3h.3v2.6h8.5V17.3h-8.5zm.4 14.8c.1 2.4-.7 4.7-2.2 6.5-.7.8-1.6 1.5-2.6 1.9-1 .4-2.1.6-3.2.6s-2.1-.2-3.1-.6c-1-.4-1.8-1.1-2.5-1.9-1.5-1.9-2.3-4.2-2.2-6.6-.1-2.3.7-4.6 2.2-6.3.7-.8 1.5-1.4 2.5-1.9 1-.4 2-.7 3.1-.6 1.1 0 2.2.2 3.1.6 1 .4 1.9 1.1 2.6 1.9 1.6 1.7 2.4 4 2.3 6.4zM257.4 17.3v2.9h-.4c-2.2-2.2-5.2-3.5-8.4-3.5-1.9 0-3.9.3-5.6 1.1-1.8.8-3.4 1.9-4.7 3.3-2.7 3-4.1 6.9-4 10.8-.1 4.1 1.3 8 4 11.1 1.3 1.4 2.9 2.5 4.6 3.3 1.8.7 3.7 1.1 5.6 1.1 3.2-.1 6.2-1.2 8.6-3.3h.3v2.6h8.5V17.3h-8.5zm.4 14.8c.1 2.4-.7 4.7-2.2 6.5-.7.8-1.6 1.5-2.6 1.9-1 .4-2.1.6-3.2.6s-2.1-.2-3.1-.6c-1-.4-1.8-1.1-2.5-1.9-1.5-1.9-2.3-4.2-2.2-6.6-.1-2.3.7-4.6 2.2-6.3.7-.8 1.5-1.4 2.5-1.9 1-.4 2-.7 3.1-.6 1.1 0 2.2.2 3.1.6s1.9 1.1 2.6 1.9c1.6 1.7 2.4 4 2.3 6.4zM57.2 0C39.7 0 25.7 14.2 25.7 31.5 25.7 49 39.9 63 57.2 63s31.5-14.2 31.5-31.5S74.6 0 57.2 0zm0 43.1c-6.4 0-11.8-5.4-11.8-11.8s5.4-11.8 11.8-11.8S69 24.9 69 31.3c-.2 6.6-5.4 11.8-11.8 11.8zM25.5 9v45.9H14.4L0 9h25.5z"/></svg>
+						</a>
 						<a href="#" class="webmoney" title="Способы оплаты">
 							<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M24.389 2.033c-6.452.142-13.18 2.976-17.854 9.256C-1.03 21.461.965 35.528 11.08 43.311a22.576 22.576 0 0 0 13.856 4.722c5.103 0 9.91-1.712 13.36-4.492l.048.055 1.502-1.32-5.09-5.796-2.121 1.944a162.644 162.644 0 0 0-3.254 3.021c-1.702-1.943-3.428-3.867-5.152-5.79-.831-.928-1.662-1.856-2.49-2.786a3.64 3.64 0 0 1-.14-.164l2.43-2.271-6.256-7.065 2.45-2.295-6.358-7.078 8.655-7.818 3.195 3.457 5.295-4.701.133.043 3.029 3.318 2.832-2.592s-.75-.695-1.488-1.101a.625.625 0 0 0-.319-.079c-3.167-1.69-6.938-2.575-10.808-2.49zm14.279 5.215-2.53 2.314 2.282 2.532 2.539-2.283-2.291-2.563zm-7.697.684-3.912 3.554 3.52 3.91 3.905-3.527-3.513-3.937zm-8.7 1.44-5.275 4.778 4.76 5.295 5.287-4.773-4.772-5.3zm19.885 6.064-2.521 2.296 2.299 2.543 2.54-2.304-2.318-2.535zm-7.402.802-3.906 3.541 3.517 3.926 3.916-3.54-3.527-3.927zm-8.557 2.524-5.277 4.79 4.77 5.296 5.261-4.785-4.754-5.301zm19.475 4.855-2.535 2.281 2.3 2.543 2.542-2.287-2.307-2.537zm-7.402 1.35-3.907 3.531 3.522 3.932 3.91-3.55-3.525-3.913zm-8.174 3.312-5.276 4.772 4.748 5.308 5.295-4.779-4.767-5.3zm11.773 5.026-3.89 3.547 3.525 3.902 3.918-3.531-3.553-3.918z"/></svg>
 						</a>
@@ -1796,6 +2280,47 @@
 				</div>
 			</div>
 		</footer>
+
+		<!-- Боковая навигация -->
+		<div class="sidenav">
+			<div class="sidenav__items flex">
+				<div class="sidenav__item favorites flex-center {% IF FAVORITES_GOODS_COUNT > 0 %}has-items{% ENDIF %}" data-open="favorites">
+					<a class="flex-center" href="{FAVORITES_URL}" title="Перейти в Избранное">
+						<i class="icon-favorites"></i>
+						<span class="favorites__count" data-count="{FAVORITES_GOODS_COUNT}">{FAVORITES_GOODS_COUNT}</span>
+					</a>
+				</div>
+				{% IFNOT MOD_LNAME = compare && SETTINGS_COMPARE_DISABLE=0 %}
+				<div class="sidenav__item compare flex-center {% IF COMPARE_GOODS_COUNT > 0 %}has-items{% ENDIF %}" data-open="compare">
+					<a class="flex-center" href="{COMPARE_URL}" title="Перейти в сравнение">
+						<i class="icon-compare"></i>
+						<span class="compare__count" data-count="{COMPARE_GOODS_COUNT}">{COMPARE_GOODS_COUNT}</span>
+					</a>
+				</div>
+				{% ENDIF %}
+
+				<!-- Корзина -->
+				<div class="sidenav__item cart flex-center {% IF CART_COUNT_TOTAL > 0 %}has-items{% ENDIF %}" data-open="cart">
+					<a class="flex-center" href="{CART_URL}" title="Перейти в Корзину">
+						<i class="icon-cart"></i>
+						<span class="cart__count" data-count="{CART_COUNT_TOTAL}">{CART_COUNT_TOTAL}</span>
+					</a>
+				</div>
+				<!-- Меню -->
+				<div class="sidenav__item menu flex-center" data-open="menu">
+					<a class="flex-center" href="javascript:;" title="Меню">
+						<i class="icon-catalog_2"></i>
+					</a>
+				</div>
+
+				<!-- Наверх -->
+				<div class="sidenav__item flex-center toTop" id="toTop">
+					<a class="flex-center" href="javascript:;" title="Перейти наверх">
+						<i class="icon-arrow_up"></i>
+					</a>
+				</div>
+			</div>
+		</div>
 
 		<!-- Фон шапки -->
 		<div class="overlay-prefooter">

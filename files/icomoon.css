@@ -127,10 +127,10 @@
 .icon-favorites:before {
   content: "\e921";
 }
-.icon-table:before {
+.icon-grid-sm:before {
   content: "\e922";
 }
-.icon-table_big:before {
+.icon-grid:before {
   content: "\e923";
 }
 .icon-timer:before {
