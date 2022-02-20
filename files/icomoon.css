@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('fonts/icomoon.eot?4wc2fg');
-  src:  url('fonts/icomoon.eot?4wc2fg#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?4wc2fg') format('truetype'),
-    url('fonts/icomoon.woff?4wc2fg') format('woff'),
-    url('fonts/icomoon.svg?4wc2fg#icomoon') format('svg');
+  src:  url('fonts/icomoon.eot?u52qh8');
+  src:  url('fonts/icomoon.eot?u52qh8#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?u52qh8') format('truetype'),
+    url('fonts/icomoon.woff?u52qh8') format('woff'),
+    url('fonts/icomoon.svg?u52qh8#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-star2:before {
+  content: "\e927";
+}
 .icon-arrow_circle:before {
   content: "\e900";
 }
@@ -70,13 +73,13 @@
 .icon-Delivery:before {
   content: "\e90e";
 }
-.icon-garfik_malo:before {
+.icon-few:before {
   content: "\e90f";
 }
 .icon-Gift:before {
   content: "\e910";
 }
-.icon-grafik_mnogo:before {
+.icon-alot:before {
   content: "\e911";
 }
 .icon-list:before {

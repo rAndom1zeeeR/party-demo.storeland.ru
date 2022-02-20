@@ -1280,7 +1280,7 @@ function priceDiff() {
 function goodsModRest() {
 	$('.goodsModRestValue').each(function(){
 		var value = $(this).data('value');
-		if (value > 0) {
+		if (value < 10) {
 			$(this).text('В наличии мало');
 			$(this).css('opacity', '1');
 			$(this).parent().addClass('few');
@@ -2433,17 +2433,18 @@ function pageGoods() {
 		var buttons = id.find('.products__buttons');
 		var dots = id.find('.owl-dots');
 		carousel.owlCarousel({
-			items: 5,
-			margin: 32,
+			items: 4,
+			margin: 20,
+			slideBy: 1,
 			loop: false,
 			rewind: true,
 			lazyLoad: true,
-			nav: false,
+			nav: true,
 			navContainer: '',
 			navText: [ , ],
-			dots: true,
+			dots: false,
 			dotsContainer: dots,
-			autoHeight: true,
+			autoHeight: false,
 			autoHeightClass: 'owl-height',
 			autoplay: false,
 			autoplayHoverPause: true,
@@ -2458,49 +2459,10 @@ function pageGoods() {
 				320:{items:1, autoHeight: true},
 				480:{items:2},
 				640:{items:2},
-				768:{items:3},
-				992:{items:4},
-				1200:{items:5}
-			},
-			onInitialized: number,
-			onChanged: number,
-			onResize: number,
-			onResized: number
-		});
-
-		// Нумерация страниц
-		function number() {
-			dots.find('.owl-dot').each(function(i){
-				$(this).find('span').text(i+1)
-			});
-			// Скрываем кнопки навигации
-			dots.hasClass('disabled') ? buttons.hide() : buttons.show();
-			// Скрываем не активные элементы навигации
-			var dotActiveIndex = dots.find('.owl-dot.active').index();
-			var dotVisibleStep = 2;
-			var dotPrevActiveIndex = dotActiveIndex - dotVisibleStep;
-			var dotNextActiveIndex = dotActiveIndex + dotVisibleStep;
-
-			dots.find('.owl-dot')
-				.hide()
-				.filter(function(index, item){
-					if(index >= dotPrevActiveIndex &&  index <= dotNextActiveIndex){
-						return true;
-					}
-					return false;
-				})
-				.show()
-				.addClass('show')
-		}
-
-		// Навигация при клике НАЗАД
-		buttons.find('.prev').on('click', function () {
-			carousel.trigger('prev.owl.carousel');
-		});
-
-		// Навигация при клике ВПЕРЕД
-		buttons.find('.next').on('click', function () {
-			carousel.trigger('next.owl.carousel');
+				768:{items:2},
+				992:{items:3},
+				1200:{items:4}
+			}
 		});
 	}
 	// Сопутствующие товары Запуск Слайдера
@@ -2512,17 +2474,18 @@ function pageGoods() {
 		var carousel = id.find('.owl-carousel');
 		var dots = id.find('.owl-dots');
 		carousel.owlCarousel({
-			items: 2,
-			margin: 16,
+			items: 4,
+			margin: 20,
+			slideBy: 1,
 			loop: false,
 			rewind: true,
 			lazyLoad: true,
 			nav: true,
 			navContainer: '',
 			navText: [ , ],
-			dots: true,
+			dots: false,
 			dotsContainer: dots,
-			autoHeight: true,
+			autoHeight: false,
 			autoHeightClass: 'owl-height',
 			autoplay: false,
 			autoplayHoverPause: true,
@@ -2535,11 +2498,11 @@ function pageGoods() {
 			responsive: {
 				0:{items:1, autoHeight: true},
 				320:{items:1, autoHeight: true},
-				480:{items:1},
+				480:{items:2},
 				640:{items:2},
-				768:{items:1},
-				992:{items:2},
-				1200:{items:2}
+				768:{items:2},
+				992:{items:3},
+				1200:{items:4}
 			}
 		});
 	}
@@ -2612,6 +2575,18 @@ function pageGoods() {
 		}
 	});
 
+	// Открытие зон доставки
+	$('.delivery__name').on('click', function(event){
+		event.preventDefault();
+		if ($(this).hasClass('active')) {
+			$(this).removeClass('active');
+			$(this).next().slideUp(600);
+		}else{
+			$(this).addClass('active');
+			$(this).next().slideDown(600);
+		}
+	});
+
 	// Свернуть и Развернуть дополнительное описание
 	$('.opinion__more').on('click', function(event) {
 		event.preventDefault();
@@ -2642,6 +2617,65 @@ function pageGoods() {
 			$(this).parent().find('.opinion__text.comment').removeClass('mask');
 		}
 	});
+
+	// Проверяем высоту описания товара
+	$('.productView__description').each(function (){
+		var contentHeight = $(this).find('.productView__content').height();
+		if(contentHeight >= 120){
+			$(this).parent().find('.productView__buttons').show();
+			$(this).parent().find('.productView__content').addClass('mask');
+		}else{
+			$(this).parent().find('.productView__buttons').hide();
+			$(this).parent().find('.productView__content').removeClass('mask');
+		}
+	});
+
+	// Свернуть и Развернуть описание товара
+	$('.productView__buttons-open').on('click', function (event){
+		event.preventDefault();
+		var t = $(this);
+		if (t.hasClass('active')){
+			t.removeClass('active')
+			t.parents().find('.productView__content').removeClass('active');
+			t.parents().find('.productView__content').addClass('mask');
+			t.find('span').text('Посмотреть полное описание товара')
+			$('html, body').animate({scrollTop : $('.productView__description').offset().top}, 500);
+		}else{
+			t.addClass('active')
+			t.parents().find('.productView__content').addClass('active');
+			t.parents().find('.productView__content').removeClass('mask');
+			t.find('span').text('Скрыть полное описание товара')
+		}
+	});
+
+	// Проверяем отображаемые характеристики
+	$('.features__items').each(function (){
+		var f_item_length = $('.features__item').length;
+		var f_item_visible = $('.features__item').filter(':visible').length;
+		if (f_item_length > f_item_visible){
+			$('.features__buttons').show();
+		}else{		
+			$('.features__buttons').hide();
+		}
+	});
+
+	// Свернуть и Развернуть характеристики
+	$('.features__buttons-open').on('click', function(event){
+		event.preventDefault();
+		var t = $(this);
+		if (t.hasClass('active')){
+			t.removeClass('active')
+			t.parents().find('.features__item').removeClass('show');
+			t.find('span').text('Посмотреть все характеристики товара')
+		}else{
+			t.addClass('active')
+			t.parents().find('.features__item').addClass('show');
+			t.find('span').text('Скрыть все характеристики товара')
+		}
+	});
+
+	// Первая буква имени в аватаре
+	$('.opinion__avatar span').text($('.opinion__name').text()[0])
 }
 
 // Инициализация табов на странице товара
@@ -2922,8 +2956,6 @@ function goodsModification() {
 				}
 				// Есть ли товар есть в наличии
 				if(modificationRestValue>0) {
-					goodsAvailableTrue.show();
-					goodsAvailableFalse.hide();
 					goodsModView.removeClass('empty');
 					goodsModRestValue.html('В наличии');
 					goodsModRestValue.attr('data-value', modificationRestValue);
@@ -2931,9 +2963,8 @@ function goodsModification() {
 					goodsAvailableQty.find('.quantity').val("1");
 					// Если товара нет в наличии
 				} else {
-					goodsAvailableTrue.hide();
-					goodsAvailableFalse.show();
 					goodsModView.addClass('empty');
+					goodsAvailable.find('i').attr('class', 'icon-close');
 					goodsModRestValue.html(modificationRestValue);
 					goodsModRestValue.attr('data-value', modificationRestValue);
 					goodsAvailableQty.find('.quantity').attr('max', modificationRestValue);
@@ -2942,8 +2973,10 @@ function goodsModification() {
 				// Много Мало
 				if(modificationRestValue>10) {
 					goodsModRestValue.html('В наличии Много');
+					goodsAvailable.find('i').attr('class', 'icon-alot');
 				} else {
 					goodsModRestValue.html('В наличии Мало');
+					goodsAvailable.find('i').attr('class', 'icon-few');
 				}
 
 				// Покажем артикул модификации товара, если он указан
@@ -3376,19 +3409,13 @@ function openCatalog(){
 		var level = $(this).data('level')
 		var id = $(this).data('id')
 		var parent = $(this).data('parent')
-		console.log('id-', id)
-		console.log('parent-', parent)
 		for (var i = 0; i < subs; i++){
 			if (level == i) {
 				$(this).addClass('level-'+ i +'');
 				$('.catalog__sub-level-'+ i +' .catalog__sub-items').append($(this))
-				console.log('this--', $(this))
 			}
 			level == '0' ? $(this).addClass('show') : $(this).removeClass('show')
 			if (level == '2') {
-				console.log('this-2-', $(this))
-				console.log('this-id-', $(this).data('id'))
-				console.log('this-parent-', $(this).data('parent'))
 				$('.catalog__sub .catalog__item[data-id="'+ $(this).data('parent') +'"]').append($(this))
 			}
 		}

@@ -823,7 +823,7 @@
 												href="{% IF index_page_sale_goods.COUNT_MODIFICATION > 1 %}{index_page_sale_goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={index_page_sale_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={index_page_sale_goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
 											>
 												<i class="icon-cart"></i>
-												<span>Купить</span>
+												<span>В корзину</span>
 											</a>
 											{% ENDIF %}
 										</div>
@@ -2651,7 +2651,7 @@
 	<script defer type="text/javascript" src="{ASSETS_JS_PATH}jquery-star-rating.js?design=Deluxe"></script>
 	<script defer type="text/javascript" src="{ASSETS_JS_PATH}air-datepicker.js?design=THEMENAME"></script>
 	<style>
-		#page__title {display: none;}
+		#page__title .block__title {display: none;}
 	</style>
 	{% ENDIF %}
 
