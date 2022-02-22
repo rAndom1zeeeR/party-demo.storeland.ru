@@ -2252,6 +2252,14 @@ function coupons() {
 	});
 }
 
+// Экономия в корзине
+function economy() {
+	var cartSumOldWithDelivery = parseInt($('.cartSumOldWithDelivery .num').text().toString().replace(/\s/g, ''))
+	var cartSumTotal =  parseInt($('.cartSumTotal .num').text().toString().replace(/\s/g, ''))
+	$('.cartSumWithDelivery .num').text(addSpaces(cartSumOldWithDelivery - cartSumTotal));
+	console.log('cartSumOldWithDelivery', cartSumOldWithDelivery)
+	console.log('cartSumTotal', cartSumTotal)
+}
 
 ///////////////////////////////////////
 /* Скрипты для Товары, Категории */
@@ -3141,6 +3149,7 @@ function cartQuantity(){
 						startOrder();
 						return false;
 					});
+					economy();
 					if(qty > c){
 						$('.cart__error').remove();
 						$('.cartTable').before('<div class="cart__error warning">Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div>');
@@ -3169,6 +3178,7 @@ function cartDelete(s){
 			success:function(d){
 				$('.page-cartTable').html($(d).find('.page-cartTable').html());
 				cartQuantity();
+				economy();
 				$('#startOrder').on('click', function() {
 					startOrder();
 					return false;

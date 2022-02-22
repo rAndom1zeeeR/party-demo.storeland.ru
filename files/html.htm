@@ -380,7 +380,9 @@
 				</div>
 			</div>
 		</section>
+		{% ENDIF %}
 
+		{% IF index_page %}
 		<!-- Хиты продаж -->
 		{% IFNOT index_page_favorites_goods_empty %}
 		<section id="pdt__best">
@@ -2670,6 +2672,7 @@
 	$(document).ready(function(){
 		cartQuantity();
 		pdtCart();
+		economy();
 		// Вызов функции быстрого заказа в корзине
 		$('#startOrder').on('click', function() {
 			startOrder();
