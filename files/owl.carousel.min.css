@@ -5,8 +5,8 @@
 /*** Навигация ***/
 .owl-nav {width: 5rem;margin: 1.25rem auto 0;position: relative;}
 .owl-nav:before {content: '';position: absolute;top: .25rem;left: calc(50% - 1px);width: 2px;height: 1.5rem;background-color: #CBC3DB;border-radius: 4px;}
-.owl-prev, .owl-next {width: 2rem;height: 2rem;background: transparent;box-shadow: none;font-size: 22px;padding: 0;color: #CBC3DB;border: 0;border-radius: 100%;line-height: 1;font-family: 'icomoon';font-weight: normal;z-index: 2;}
-.owl-prev:hover, .owl-next:hover {color: #FFA5D8;background: transparent;}
+.owl-prev, .owl-next {width: 2rem;height: 2rem;line-height: 2rem;background: transparent;box-shadow: none;font-size: 22px;padding: 0;color: #CBC3DB;border: 0;border-radius: 100%;font-family: 'icomoon';font-weight: normal;z-index: 2;display: inline-block;text-align: center;}
+.owl-prev:hover, .owl-next:hover {color: #FFA5D8;background: transparent;cursor: pointer;}
 .owl-prev {float: left;left: 0;}
 .owl-next {float: right;right: 0;}
 .owl-prev:before {content: '\e902';}

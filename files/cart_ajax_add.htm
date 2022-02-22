@@ -1,4 +1,5 @@
-<div class="noty__body">
+{% IF FORM_NOTICE %}<div class="ajax__notice">{FORM_NOTICE}</div>{% ENDIF %}
+<div class="noty__body" style="display: none;">
 	<div class="noty__cart">
 		{% IF FORM_NOTICE_IS_GOOD %}
 			{% FOR cart_items %}

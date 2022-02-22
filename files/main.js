@@ -211,7 +211,7 @@ function validEmail(id){
 ///////////////////////////////////////
 function ajaxForms(id,flag,successMessage,errorMessage){
   var flag = false;
-  console.log('ajaxForms loaded ', id)
+  // console.log('ajaxForms loaded ', id)
   var form = $(id).find('.form__callback');
   form.on('submit',function(event){
     event.preventDefault();
@@ -240,7 +240,7 @@ function ajaxForms(id,flag,successMessage,errorMessage){
 							t.parent().append('<div class="form__text">'+ errorMessage +'</div>');
 						},4000);
             // new Noty({
-            //   text: '<div class="noty__addto"><div class="noty__title">Успешно</div><div class="noty__message">' + successMessage + '</div></div>',
+            //   text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-close"></i></div><div class="noty__message">' + successMessage + '</div></div>',
             //   layout:"bottomRight",
             //   type:"success",
             //   easing:"swing",
@@ -262,7 +262,7 @@ function ajaxForms(id,flag,successMessage,errorMessage){
         t.find('.form__input').val(' ');
         t.parent().find('.form__text').hide();
         new Noty({
-          text: '<div class="noty__addto"><div class="noty__title">Не удалось</div><div class="noty__message">' + errorMessage + '</div></div>',
+          text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-close"></i></div><div class="noty__message">' + errorMessage + '</div></div>',
           layout:"bottomRight",
           type:"warning",
           easing:"swing",
@@ -1154,9 +1154,6 @@ function quickViewMod() {
 				// 	'</div>'
 				// );
 			});
-			block.removeClass('productViewQuick');
-			block.addClass('productViewMod');
-			block.find('.productView__addto .add-cart span').text('Добавить в корзину')
 			block.find('.productView__image img').attr('src', block.find('.productView__image img').data('src'))
 			return block;
 		}
@@ -1199,6 +1196,22 @@ function quickViewMod() {
 				observer.observe();
 			});
 			preload();
+			$('.productViewBlock').removeClass('productViewQuick');
+			$('.productViewBlock').addClass('productViewMod');
+			return false;
+		});
+		// Действие при нажатии на кнопку быстрого просмотра.
+		$(document).on('click', 'a.quickview', function() {
+			var href = $(this).attr('href');
+			href += (false !== href.indexOf('?') ? '&' : '?') + 'only_body=1';
+			quickViewShowMod(href);
+			$(function(){
+				var observer = lozad(); // lazy loads elements with default selector as '.lozad'
+				observer.observe();
+			});
+			preload();
+			$('.productViewBlock').addClass('productViewQuick');
+			$('.productViewBlock').removeClass('productViewMod');
 			return false;
 		});
 	});
@@ -1251,7 +1264,7 @@ function quickViewShowMod(href, atempt) {
 	}
 }
 
-// Разница в цене в процентах %
+// Разница цены в процентах %
 function priceDiff() {
 	var old = parseFloat($('.productView .price__old .num').text().replace(' ',''));
 	var now = parseFloat($('.productView .price__now .num').text().replace(' ',''));
@@ -1334,12 +1347,13 @@ function addCart() {
 				//$.fancybox.open(data);
 				// Анализ системного сообщения в коризне
 				var str = $(data).html();
+				console.log('str', str)
 				// Проверяем текст сообщения на наличие ошибки
 				if (str.indexOf("Не удалось") != -1) {
 					// Сообщение с ошибкой
 					if(typeof(Noty) == "function") {
 						new Noty({
-							text: str,
+							text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-close"></i></div><div class="noty__message">'+ str + '</div></div>',
 							layout:"bottomRight",
 							type:"warning",
 							theme:"",
@@ -1359,19 +1373,14 @@ function addCart() {
 							modal:false,
 							dismissQueue:false,
 							onClose:true,
-							killer:false,
-							callbacks: {
-								onShow: function(){
-									$('.noty_layout').addClass('noty__cart')
-								}
-							}
+							killer:false
 						}).show();
 					}
 				} else {
 					// Сообщение с успешным добавлением
 					if(typeof(Noty) == "function") {
 						new Noty({
-							text: str,
+							text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-check"></i></div><div class="noty__message">'+ str + '</div></div>',
 							layout:"bottomRight",
 							type:"success",
 							theme:"",
@@ -1391,12 +1400,7 @@ function addCart() {
 							modal:false,
 							dismissQueue:false,
 							onClose:true,
-							killer:false,
-							callbacks: {
-								onShow: function(){
-									$('.noty_layout').addClass('noty__cart')
-								}
-							}
+							killer:false
 						}).show();
 					}
 					// Добавляем активный класс если товар успешно добавился в корзину
@@ -2749,7 +2753,7 @@ function prodQty(){
 			t.val(max);
 			val = max;
 			new Noty({
-				text: '<div class="noty__addto"><div class="noty__title">Не удалось</div><div class="noty__message">Внимание! Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div></div>',
+				text: '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-close"></i></div><div class="noty__message">Внимание! Вы пытаетесь положить в корзину товара больше, чем есть в наличии</div></div>',
 				layout:"bottomRight",
 				type:"warning",
 				easing:"swing",

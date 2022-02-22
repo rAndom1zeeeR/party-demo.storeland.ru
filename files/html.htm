@@ -2599,7 +2599,7 @@
 	<script async type="text/javascript">
 		// Модальное окно уведомления при отправке сообщения
 		var type = '{% IF FORM_NOTICE_IS_GOOD %}success{% ELSE %}warning{% ENDIF %}';
-		var text = '<div class="noty__addto"><div class="noty__title">{% IF FORM_NOTICE_IS_GOOD %}Успешно{% ELSE %}Не удалось{% ENDIF %}</div><div class="noty__message">{FORM_NOTICE | nl2br}</div></div>'
+		var text = '<div class="noty__addto flex"><div class="noty__icon flex-center"><i class="icon-{% IF FORM_NOTICE_IS_GOOD %}check{% ELSE %}close{% ENDIF %}"></i></div><div class="noty__message">{FORM_NOTICE | nl2br}</div></div>'
 		setTimeout(function () {
 			notyStart(text, type)
 		}, 1000);

@@ -155,37 +155,39 @@
 					<input type="hidden" class="goodsDataMainImage" data-id="{GOODS_IMAGE_ID}" data-src="{% IF GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=florist{% ELSE %}{GOODS_IMAGE_MEDIUM}{% ENDIF %}" />
 					<!-- Модификации -->
 					<div class="goodsModificationsBlock" {% IF GOODS_NO_CHOISE_IN_PROPERTIES_FOR_MODIFICATIONS %}style="display:none;" {% ENDIF %}>
-						{% FOR goods_modifications_properties %}
-						<div class="goodsModificationsProperty">
-							<!-- Выдаем списки со свойствами для модификаций, чтобы определить какую модификацию товара хочет пользователь -->
-							{% FOR values %}
-							<!-- Если это первый элемент в списке -->
-							{% IF goods_modifications_properties.values.first %}
-							<label for="prop-{goods_modifications_properties.values.ID}">{goods_modifications_properties.NAME}:</label>
-							<div class="selectBox">
-								<select name="form[properties][]" class="select" id="prop-{goods_modifications_properties.values.ID}">
-									{% ENDIF %}
-									<option value="{goods_modifications_properties.values.ID}" {% IF goods_modifications_properties.values.SELECTED %}selected="selected" {% ENDIF %}>{goods_modifications_properties.values.NAME}</option>
-									<!-- Если это последний элемент в списке -->
-									{% IF goods_modifications_properties.values.last %}
-								</select>
+						<div class="goodsModificationsPropertys">
+							{% FOR goods_modifications_properties %}
+							<div class="goodsModificationsProperty">
+								<!-- Выдаем списки со свойствами для модификаций, чтобы определить какую модификацию товара хочет пользователь -->
+								{% FOR values %}
+								<!-- Если это первый элемент в списке -->
+								{% IF goods_modifications_properties.values.first %}
+								<label for="prop-{goods_modifications_properties.values.ID}">{goods_modifications_properties.NAME}:</label>
+								<div class="selectBox">
+									<select name="form[properties][]" class="select" id="prop-{goods_modifications_properties.values.ID}">
+										{% ENDIF %}
+										<option value="{goods_modifications_properties.values.ID}" {% IF goods_modifications_properties.values.SELECTED %}selected="selected" {% ENDIF %}>{goods_modifications_properties.values.NAME}</option>
+										<!-- Если это последний элемент в списке -->
+										{% IF goods_modifications_properties.values.last %}
+									</select>
+								</div>
+								{% ENDIF %}
+								{% ENDFOR %}
+								{% FOR values %}
+								{% IF goods_modifications_properties.values.first %}
+								<div class="goodsModificationsValues flex" style="display: none">
+								{% ENDIF %}
+									<a href="javascript:;" class="goodsModificationsValue" data-value="{goods_modifications_properties.values.ID}">
+										<span>{goods_modifications_properties.values.NAME}</span>
+									</a>
+								{% IF goods_modifications_properties.values.last %}
+								</div>
+								{% ENDIF %}
+								{% ENDFOR %}
 							</div>
-							{% ENDIF %}
-							{% ENDFOR %}
-							{% FOR values %}
-							{% IF goods_modifications_properties.values.first %}
-							<div class="goodsModificationsValues flex" style="display: none">
-							{% ENDIF %}
-								<a href="javascript:;" class="goodsModificationsValue" data-value="{goods_modifications_properties.values.ID}">
-									<span>{goods_modifications_properties.values.NAME}</span>
-								</a>
-							{% IF goods_modifications_properties.values.last %}
-							</div>
-							{% ENDIF %}
+							{goods_modifications_properties.index | is_divided("2","","")}
 							{% ENDFOR %}
 						</div>
-						{goods_modifications_properties.index | is_divided("2","","")}
-						{% ENDFOR %}
 						<!-- Данные по модификациям для текущей товарной позиции -->
 						{% FOR goods_modifications %}
 						<div class="goodsModificationsList" rel="{goods_modifications.PROPERTIES_SLUG}">
