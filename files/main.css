@@ -314,6 +314,11 @@ h6 {font-size: 0.875rem;}
 	.fancybox-content {padding: 2.75rem 1rem 1rem 1rem;}
 	.fancybox-content.modal {vertical-align: bottom;}
 }
+@media (max-width: 479px) {
+	.fancybox-content {width: 100%;}
+	.fancybox-content .block__title .title {font-size: 24px;}
+	.modal__title {display: none;}
+}
 
 
 /**************************************/
@@ -1605,7 +1610,7 @@ h6 {font-size: 0.875rem;}
 /**************************************/
 /*** Быстрый просмотр ***/
 /**************************************/
-.fancybox-content.productViewBlock {background-color: #F8F1F5;}
+.fancybox-content {background-color: #F8F1F5;}
 .fancybox-content .productView__images {width: 300px;}
 .fancybox-content .productView__shop {width: calc(100% - 300px);}
 .fancybox-content .productView__inner.justify-between {display: none;}
@@ -1728,9 +1733,9 @@ h6 {font-size: 0.875rem;}
 .fastOrderForm label.error {display: none !important;}
 .fastOrderForm .row {margin: 0 -.5rem;}
 .fastOrderForm .block__title {margin-bottom: 1rem;}
-.fastOrderForm .form__fields .form__field {margin: 0 .5rem;width: calc(33.333333% - 1rem);flex-grow: 1;}
+.fastOrderForm .form__field {margin: 0 .5rem;width: calc(33.333333% - 1rem);flex-grow: 1;}
 .fastOrderForm .form__registration {padding: 0 1rem;margin-bottom: 0;}
-.fastOrderForm .form__registration label {margin: 0;display: inline-block;}
+.fastOrderForm .form__registration label {margin: 0;display: inline-block;width: calc(100% - 24px);}
 .fastOrderForm .form__pass {margin: 1rem 1rem 0 1rem;}
 .delivery__zoneSelect {margin-top: .75rem;}
 .delivery__descriptionBlock {margin-top: .75rem;}
@@ -1739,6 +1744,7 @@ h6 {font-size: 0.875rem;}
 .payment__description {margin-top: .75rem;}
 .fastOrderForm .comment .form__field {margin: 0;width: 100%;}
 .coupon__button {position: absolute;right: 0;}
+.coupon__button i {display: none;}
 .fastOrder__title.title {font-size: 2rem;display: flex;align-items: center;justify-content: center;}
 .fastOrder__title i {font-size: 22px;color: #CBC3DB;}
 .fastOrder__title span {margin: 0 1rem;}
@@ -1751,7 +1757,25 @@ h6 {font-size: 0.875rem;}
 .fastOrderForm ::-moz-placeholder {color: transparent;}
 .fastOrderForm :-moz-placeholder {color: transparent;}
 .fastOrderForm :-ms-input-placeholder {color: transparent;}
-
+@media (max-width: 991px) {
+	.fastOrderForm [order="2"], .fastOrderForm [order="3"] {width: 100%  ;}
+}
+@media (max-width: 639px) {
+	.address .form__field {width: 100%;}
+	.address .form__field:nth-child(2) {margin-top: 1rem;}
+	.fastOrderForm .form__field {width: 100%;}
+	.fastOrder__title.title {font-size: 1.75rem;}
+	.fastOrder__title i {display: none;}
+	.fastOrder__icon i {display: inline-block;}
+}
+@media (max-width: 479px) {
+	.fastOrder__title span {margin: 0 0 0 1rem;width: calc(100% - 40px);text-align: left;}
+	.coupon__button span {display: none;}
+	.coupon__button i {display: inline-block;}
+}
+@media (max-width: 374px) {
+	.fastOrderForm [order] {padding: 10px;}
+}
 
 
 /**************************************/

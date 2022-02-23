@@ -1155,6 +1155,9 @@ function quickViewMod() {
 				// );
 			});
 			block.find('.productView__image img').attr('src', block.find('.productView__image img').data('src'))
+			block.find('.thumblist__items img').each(function(){
+				$(this).attr('src', $(this).data('src'))
+			})
 			return block;
 		}
 		// Быстрый просмотр товара
