@@ -59,7 +59,7 @@
 	</div>
 	<!-- Верхний блок, изменяющий отображение данных выдачи товаров -->
 	<div class="toolbar {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
-		<form action="" class="form__toolbar flex justify-between">
+		<form action="" class="form__toolbar flex">
 			<!-- Список фильтров, которые сейчас действуют на результаты поиска -->
 			{% FOR goods_filters %}
 			<input type="hidden" name="{goods_filters.NAME}" value="{goods_filters.VALUE}"/>
@@ -73,21 +73,21 @@
 				<!-- Сортировка выпадающим списком	-->
 				<select class="select" name="goods_search_field_id" title="Название сортировки" onchange="this.form.submit();">
 					{% FOR goods_order_fields %}
-					{% IF goods_order_fields.ID = 1 || goods_order_fields.ID = 2 || goods_order_fields.ID = 5 || goods_order_fields.ID = 11 || goods_order_fields.ID = 13 %}
-					<option value="{goods_order_fields.ID}" title="{goods_order_fields.NAME}" {% IF goods_order_fields.SELECTED %}selected="selected" {% ENDIF %}>
-						{% IF goods_order_fields.ID = 1%}
-						Цена ↓
-						{% ELSEIF goods_order_fields.ID = 2 %}
-						Цена ↑
-						{% ELSEIF goods_order_fields.ID = 5 %}
-						Наличие
-						{% ELSEIF goods_order_fields.ID = 11 %}
-						Рейтинг
-						{% ELSEIF goods_order_fields.ID = 13 %}
-						Отзывы
+						{% IF goods_order_fields.ID = 1 || goods_order_fields.ID = 2 || goods_order_fields.ID = 5 || goods_order_fields.ID = 11 || goods_order_fields.ID = 13 %}
+						<option value="{goods_order_fields.ID}" title="{goods_order_fields.NAME}" {% IF goods_order_fields.SELECTED %}selected="selected" {% ENDIF %}>
+							{% IF goods_order_fields.ID = 1%}
+							Цена ↓
+							{% ELSEIF goods_order_fields.ID = 2 %}
+							Цена ↑
+							{% ELSEIF goods_order_fields.ID = 5 %}
+							Наличие
+							{% ELSEIF goods_order_fields.ID = 11 %}
+							Рейтинг
+							{% ELSEIF goods_order_fields.ID = 13 %}
+							Отзывы
+							{% ENDIF %}
+						</option>
 						{% ENDIF %}
-					</option>
-					{% ENDIF %}
 					{% ENDFOR %}
 				</select>
 			</div>

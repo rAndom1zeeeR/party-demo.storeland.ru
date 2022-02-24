@@ -70,7 +70,7 @@
 							</div>
 							<!-- Старый скрытый вариант способа доставки -->
 							<div class="delivery__selects">
-								<div class="delivery__select selectBox form__field">
+								<div class="delivery__select selectBox">
 									<select class="form__input">
 										{% FOR order_delivery %}
 											<option id="deliveryId{order_delivery.ID}" delId="{order_delivery.ID}" name="form[delivery][id]" value="{order_delivery.ID}">{order_delivery.NAME}</option>
@@ -79,7 +79,7 @@
 								</div>
 								{% FOR order_delivery %}
 									{% IFNOT order_delivery.zone_list_empty %}
-									<div class="delivery__zoneSelect selectBox form__field" del="{order_delivery.ID}">
+									<div class="delivery__zoneSelect selectBox" del="{order_delivery.ID}">
 										<select class="form__input">
 											{% FOR zone_list %}
 												<option deliveryid="{order_delivery.ID}" id="deliveryZoneId{order_delivery.zone_list.ID}" name="form[delivery][zone_id]" value="{order_delivery.zone_list.ID}">{order_delivery.zone_list.NAME}</option>
@@ -317,7 +317,7 @@
 								<i class="icon-check"></i>
 							</h4>
 						</div>
-						<div class="form__field coupon__order">
+						<div class="coupon__order">
 							<input type="hidden" name="oldPromoDiscount" value="0">
 							<input type="hidden" name="orderSumDefaul" value="{CART_SUM_NOW}">
 							<input class="coupon__code form__input" type="text" name="form[coupon_code]" value="{ORDER_FORM_COUPON_CODE}" placeholder="Введите код"/>

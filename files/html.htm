@@ -743,6 +743,7 @@
 								</div><!-- //END Изображение товара -->
 								<!-- Информация товара -->
 								<div class="product__shop">
+									<!-- Обратный отсчет акции -->
 									<div class="product__counter flex">
 										<div class="product__counter-icon">
 											<i class="icon-timer"></i>
@@ -1642,7 +1643,7 @@
 						<div class="title">
 							<span>
 								<div>Результат поиска по запросу: {% IFNOT search_query_empty %}&laquo;{SEARCH_QUERY}&raquo;{% ENDIF %}</div>
-								<div class="subtitle">({GOODS_PAGES_RESULTS} товар{GOODS_PAGES_RESULTS | gen_word_end("","а","ов")} найд{GOODS_PAGES_RESULTS | gen_word_end("ен","ено","ено")} по запросу)</div>
+								<div class="result">({GOODS_PAGES_RESULTS} товар{GOODS_PAGES_RESULTS | gen_word_end("","а","ов")} найд{GOODS_PAGES_RESULTS | gen_word_end("ен","ено","ено")} по запросу)</div>
 							</span>
 						</div>
 						{% ELSEIF MOD_LNAME=discount && ACT=index && ID %}
@@ -2624,6 +2625,15 @@
 	</script>
 	<link rel="stylesheet" type="text/css" href="{ASSETS_STYLES_PATH}flip.min.css?design=THEMENAME">
 	<script defer type="text/javascript" src="{ASSETS_JS_PATH}flip.min.js?design=THEMENAME"></script>
+	{% ENDIF %}
+
+	{% IF MOD_LNAME = discount %}
+	<script type="text/javascript">	
+		// Загрузка основных функций шаблона для Акций
+		$(document).ready(function(){
+			counterDate();
+		});
+		</script>
 	{% ENDIF %}
 
 	{% IF MOD_LNAME = catalog %}
