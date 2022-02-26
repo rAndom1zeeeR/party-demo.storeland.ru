@@ -2319,11 +2319,10 @@ function catalog() {
 	});
 
 	// Сборосить категорию фильтра
-	$('.filters__clear').on('click', function(event){
+	$('.filter__clear').on('click', function(event){
 		event.preventDefault();
 		var $parent = $(this).closest('.filter__list');
 		var $checkboxes = $parent.find('[type="checkbox"]')
-
 		$checkboxes.prop('checked', false).attr('checked', false);
 		$('.form__filters')[0].submit();
 	});
@@ -2332,21 +2331,12 @@ function catalog() {
 // Фильтр по ценам
 function priceFilter() {
 	var
-			priceFilterMinAvailable = parseInt($('.goodsFilterPriceRangePointers .min').text()),  // Минимальное значение цены для фильтра
-			priceFilterMaxAvailable = parseInt($('.goodsFilterPriceRangePointers .max').text()),  // Максимальное значение цены для фильтра
-			priceSliderBlock = $('#goods-filter-price-slider'), // Максимальное значение цены для фильтра
-			priceInputMin = $("#goods-filter-min-price"), // Поле ввода текущего значения цены "От"
-			priceInputMax = $("#goods-filter-max-price"), // Поле ввода текущего значения цены "До"
-			priceSubmitButtonBlock = $(".goodsFilterPriceSubmit");  // Блок с кнопкой, которую есть смысл нажимать только тогда, когда изменялся диапазон цен.
-
-	// Изменяет размер ячеек с ценой, т.к. у них нет рамок, есть смысл менять размеры полей ввода, чтобы они выглядили как текст
-	function priceInputsChangeWidthByChars() {
-		// Если есть блок указания минимальной цены
-		if(priceInputMin.length) {
-			priceInputMin.css('width', (priceInputMin.val().length*8 + 32) + 'px');
-			priceInputMax.css('width', (priceInputMax.val().length*8 + 32) + 'px');
-		}
-	}
+		priceFilterMinAvailable = parseInt($('.goodsFilterPriceRangePointers .min').text()),  // Минимальное значение цены для фильтра
+		priceFilterMaxAvailable = parseInt($('.goodsFilterPriceRangePointers .max').text()),  // Максимальное значение цены для фильтра
+		priceSliderBlock = $('#goods-filter-price-slider'), // Максимальное значение цены для фильтра
+		priceInputMin = $("#goods-filter-min-price"), // Поле ввода текущего значения цены "От"
+		priceInputMax = $("#goods-filter-max-price"), // Поле ввода текущего значения цены "До"
+		priceSubmitButtonBlock = $(".goodsFilterPriceSubmit");  // Блок с кнопкой, которую есть смысл нажимать только тогда, когда изменялся диапазон цен.
 
 	// Слайдер, который используется для удобства выбора цены
 	priceSliderBlock.slider({
@@ -2358,10 +2348,13 @@ function priceFilter() {
 			,parseInt($('#goods-filter-max-price').val())
 		],
 		slide: function( event, ui ) {
-			priceInputMin.val( ui.values[ 0 ] );
-			priceInputMax.val( ui.values[ 1 ] );
+			priceInputMin.val(ui.values[0]);
+			priceInputMax.val(ui.values[1]);
 			priceSubmitButtonBlock.css('display', 'flex');
-			priceInputsChangeWidthByChars();
+			$('.goods-filter-min-price').text(ui.values[0])
+			$('.goods-filter-max-price').text(ui.values[1])
+			$('.goods-filter-price').css('display', 'flex');
+			$('.filters-price .filter__empty').hide();
 		}
 	});
 	// При изменении минимального значения цены
@@ -2372,7 +2365,9 @@ function priceFilter() {
 		}
 		priceSliderBlock.slider("values", 0, newVal);
 		priceSubmitButtonBlock.css('display', 'flex');
-		priceInputsChangeWidthByChars();
+		$('.goods-filter-price').css('display', 'flex');
+		$('.goods-filter-min-price').text(newVal);
+		$('.filters-price .filter__empty').hide();
 	});
 	// При изменении максимального значения цены
 	priceInputMax.keyup(function(){
@@ -2382,20 +2377,26 @@ function priceFilter() {
 		}
 		priceSliderBlock.slider("values", 1, newVal);
 		priceSubmitButtonBlock.css('display', 'flex');
-		priceInputsChangeWidthByChars();
+		$('.goods-filter-price').css('display', 'flex');
+		$('.goods-filter-max-price').text(newVal);
+		$('.filters-price .filter__empty').hide();
 	});
-	// Обновить размеры полей ввода диапазона цен
-	priceInputsChangeWidthByChars();
 
 	// Активный фильтр цены
 	if (priceInputMin.val() > priceFilterMinAvailable || priceInputMax.val() < priceFilterMaxAvailable) {
 		$('.filters-price').addClass('has-filters');
 		$('.toolbar').addClass('has-filters');
 		$('#filters').addClass('has-filters');
+		$('.goods-filter-min-price').text(priceInputMin.val())
+		$('.goods-filter-max-price').text(priceInputMax.val())
+		$('.goods-filter-price').css('display', 'flex');
+		$('.filters-price .filter__empty').hide();
 	}else{
 		$('.filters-price').removeClass('has-filters');
 		$('.toolbar').removeClass('has-filters');
 		$('#filters').removeClass('has-filters');
+		$('.goods-filter-price').css('display', 'none');
+		$('.filters-price .filter__empty').show();
 	}
 	
 	// Фильтры открыть

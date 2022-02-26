@@ -69,24 +69,34 @@
 				<form action="" method="get" class="form__filters flex">
 					<!-- Если есть возможность фильтрации товаров по ценам -->
 					{% IF SHOW_GOODS_PRICE_FILTERS %}
-					<div class="filter__list filters-price collapsible" style="display: none;">
-						<a class="filter__name collapsible__click" href="javascript:;">
-							<span>Цена</span>
-						</a>
-						<div class="filter__items collapsible__content">
+					<div class="filter__list filters-price collapsible">
+						<div class="filter__content">
+							<a class="filter__name collapsible__click" href="javascript:;">
+								<span>Стоимость</span>
+							</a>
+							<div class="filter__values collapsible__click">
+								<span class="filter__empty">не выбрано</span>
+								<div class="goods-filter-price flex">
+									<div class="goods-filter-min-price"></div>
+									<div class="separator">-</div>
+									<div class="goods-filter-max-price"></div>
+									<div class="num"></div>
+								</div>
+							</div>
+						</div>
+						<div class="collapsible__content">
+							<div class="filter__name">Стоимость</div>
 							<div class="priceSlider">
 								<input type="hidden" name="form[filter][available_price][min]" value="{GOODS_FILTER_MIN_AVAILABLE_PRICE}" />
 								<input type="hidden" name="form[filter][available_price][max]" value="{GOODS_FILTER_MAX_AVAILABLE_PRICE}" />
 								<!-- Ползунок фильтров по цене -->
 								<div id="goods-filter-price-slider"></div>
 								<!-- Фильтры по цене -->
-								<div class="goodsFilterPriceRangePointers flex justify-between">
+								<div class="goodsFilterPriceRangePointers flex">
 									<span class="min" style="display:none;">{GOODS_FILTER_MIN_AVAILABLE_PRICE}</span>
 									<span class="max" style="display:none;">{GOODS_FILTER_MAX_AVAILABLE_PRICE}</span>
-									<span>от</span>
-									<input id="goods-filter-min-price" class="inputText" type="text" name="form[filter][price][min]" value="{% IF GOODS_FILTER_MIN_PRICE %}{GOODS_FILTER_MIN_PRICE}{% ELSE %}{GOODS_FILTER_MIN_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
-									<span>до</span>
-									<input id="goods-filter-max-price" class="inputText" type="text" name="form[filter][price][max]" value="{% IF GOODS_FILTER_MAX_PRICE %}{GOODS_FILTER_MAX_PRICE}{% ELSE %}{GOODS_FILTER_MAX_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
+									<input id="goods-filter-min-price" type="text" name="form[filter][price][min]" value="{% IF GOODS_FILTER_MIN_PRICE %}{GOODS_FILTER_MIN_PRICE}{% ELSE %}{GOODS_FILTER_MIN_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
+									<input id="goods-filter-max-price" type="text" name="form[filter][price][max]" value="{% IF GOODS_FILTER_MAX_PRICE %}{GOODS_FILTER_MAX_PRICE}{% ELSE %}{GOODS_FILTER_MAX_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
 								</div>
 								<!-- Кнопки Фильтров -->
 								<div class="goodsFilterPriceSubmit flex-center">
@@ -108,7 +118,7 @@
 								{% FOR values %}{% IF filter_attr_list.values.CHECKED %}<span>{filter_attr_list.values.VALUE}</span>{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}{continue}{% ENDIF %}{% ENDFOR %}
 								<span class="filter__empty">не выбрано</span>
 							</div>
-							<div class="filters__clear" title="Очистить фильтры">
+							<div class="filter__clear" title="Очистить фильтры">
 								<i class="icon-close"></i>
 							</div>
 						</div>
@@ -139,7 +149,7 @@
 								{% FOR values %}{% IF filter_prop_list.values.CHECKED %}<span>{filter_prop_list.values.VALUE}</span>{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}{continue}{% ENDIF %}{% ENDFOR %}
 								<span class="filter__empty">не выбрано</span>
 							</div>
-							<div class="filters__clear" title="Очистить фильтры">
+							<div class="filter__clear" title="Очистить фильтры">
 								<i class="icon-close"></i>
 							</div>
 						</div>
