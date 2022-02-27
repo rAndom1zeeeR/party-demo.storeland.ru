@@ -17,7 +17,7 @@
 
 /*** Навигация точками ***/
 .owl-dots.disabled {display: none;}
-.owl-dots .owl-dot {margin: 10px;padding: 0;width: 10px;height: 10px;background: #CBC3DB;border-radius: 100%;line-height: 1;display: inline-block;vertical-align: middle;position: relative;}
+.owl-dots .owl-dot {margin: 5px;padding: 0;width: 10px;height: 10px;background: #CBC3DB;border-radius: 100%;line-height: 1;display: inline-block;vertical-align: middle;position: relative;}
 .owl-dots .owl-dot.active {background: #9579D1;outline: 5px solid rgba(149, 121, 209, 0.3);}
 .owl-dots .owl-dot:hover {background: #9579D1;}
 
