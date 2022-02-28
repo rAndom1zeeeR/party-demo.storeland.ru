@@ -60,7 +60,7 @@
 					</div>
 					<!-- Среднее значение по результатам всех отзывов об этом товаре -->
 					{% IFNOT SETTINGS_OPINION_DISABLE %}
-					<div class="productView__ratings productView__icon {% IF index_page_sale_goods.OPINION_RATING_VALUE %}has-rating{% ENDIF %}">
+					<div class="productView__ratings productView__icon {% IF GOODS_OPINION_RATING_VALUE_ROUND %}has-rating{% ENDIF %}">
 						<div class="flex-center">
 							<div class="productView__ratings-icon">
 								<i class="icon-star2"></i>
@@ -86,15 +86,19 @@
 				</div>
 
 				<!-- Имя товара -->
-				<h1 class="productView__name productView__margin" itemprop="name">{GOODS_NAME}</h1>
-				
-				<!-- Артикул -->
-				{% IF GOODS_MOD_ART_NUMBER %}
-				<div class="productView__articles productView__margin">
-					<label>Артикул:</label>
-					<span class="goodsModArtNumber">{GOODS_MOD_ART_NUMBER}</span>
+				<div class="productView__inline">
+					<h1 class="productView__name productView__margin" itemprop="name">{GOODS_NAME}</h1>
+					<!-- Быстрый просмотр. Имя товара -->
+					<a class="productView__name productView__margin hide" href="{GOODS_URL}" title="{GOODS_NAME}">{GOODS_NAME}</a>
+					
+					<!-- Артикул -->
+					{% IF GOODS_MOD_ART_NUMBER %}
+					<div class="productView__articles productView__margin">
+						<label>Артикул:</label>
+						<span class="goodsModArtNumber">{GOODS_MOD_ART_NUMBER}</span>
+					</div>
+					{% ENDIF %}
 				</div>
-				{% ENDIF %}
 
 				<div class="productView__inner flex">
 					<!-- Цена товара -->
@@ -666,7 +670,7 @@
 							{% ENDIF %}
 							<!-- Кнопка отправки формы -->
 							<div class="opinion__block opinion__buttons">
-								<button class="button-primary" type="button" title="Добавить отзыв о &laquo;{GOODS_NAME}&raquo;">Оставить отзыв</button>
+								<button class="button" type="button" title="Добавить отзыв о &laquo;{GOODS_NAME}&raquo;">Оставить отзыв</button>
 								<div class="form__pp">
 									<span>Нажимая на кнопку &laquo;Отправить&raquo;, Вы соглашаетесь</span>
 									<a data-fancybox data-src="#fancybox__pp" href="javascript:;">с правилами обработки данных</a>
@@ -798,11 +802,11 @@
 								<span>Уведомить</span>
 							</a>
 							{% ELSE %}
-							<a class="{% IF related_goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
+							<a class="add-cart"
 								title="Добавить в корзину &laquo;{related_goods.NAME}&raquo;"
 								data-tooltipOFF="В корзину"
 								rel="nofollow"
-								href="{% IF related_goods.COUNT_MODIFICATION > 1 %}{related_goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
+								href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_goods.MIN_PRICE_NOW_ID}"
 							>
 								<i class="icon-cart"></i>
 								<span>Купить</span>
@@ -1017,11 +1021,11 @@
 								<span>Уведомить</span>
 							</a>
 							{% ELSE %}
-							<a class="{% IF related_views_goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
+							<a class="add-cart"
 								title="Добавить в корзину &laquo;{related_views_goods.NAME}&raquo;"
 								data-tooltipOFF="В корзину"
 								rel="nofollow"
-								href="{% IF related_views_goods.COUNT_MODIFICATION > 1 %}{related_views_goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_views_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_views_goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
+								href="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={related_views_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={related_views_goods.MIN_PRICE_NOW_ID}"
 							>
 								<i class="icon-cart"></i>
 								<span>Купить</span>

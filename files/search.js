@@ -28,9 +28,11 @@ function SearchFieldInit(obj) {
 		if(obj.s_search.val().length) {
 			obj.f_search.addClass('search__filled');
 			obj.f_search.parent().addClass('search__filled');
+			$('.overlay-top').css('overflow', 'visible');
 		} else {
 			obj.f_search.removeClass('search__filled');
 			obj.f_search.parent().removeClass('search__filled');
+			$('.overlay-top').css('overflow', 'hidden');
 		}
 		// При нажатии клавиши данных внутри поля ещё нет, так что проверки вернут информацию что менять поле не нужно, хотя как только операция будет завершена данные в поле появятся. Поэтому произведём вторую проверку спустя 2 сотых секунды.
 		if(typeof( isAfter ) == "undefined" || !isAfter) {
@@ -48,10 +50,12 @@ function SearchFieldInit(obj) {
 		obj.f_search.addClass('search__focused');
 		obj.f_search.parent().addClass('search__focused');
 		obj.__SearchFieldCheck();
+		$('.overlay-top').css('overflow', 'visible');
 	}).blur(function(){
 		obj.f_search.removeClass('search__focused');
 		obj.f_search.parent().removeClass('search__focused');
 		obj.__SearchFieldCheck();
+		$('.overlay-top').css('overflow', 'hidden');
 	}).keyup(function(I){
 		switch(I.keyCode) {
 				// игнорируем нажатия на эти клавишы
@@ -63,6 +67,7 @@ function SearchFieldInit(obj) {
 			default:
 				obj.f_search.removeClass('search__focused');
 				obj.__SearchFieldCheck();
+				$('.overlay-top').css('overflow', 'hidden');
 				break;
 		}
 	}).bind('paste', function(e){

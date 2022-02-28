@@ -92,7 +92,7 @@
 						<!-- Телефон 1 -->
 						{% IF SETTINGS_STORE_PHONE_NUMBER1 %}
 						<div class="header__block phone flex-center">
-							<div class="header__block-icon"><i class="icon-phone"></i></div>
+							<div class="header__block-icon" data-fancybox data-src="#fancybox__contacts"><i class="icon-phone"></i></div>
 							<div class="header__block-content">
 								<a class="header__block-link"
 									href="tel:{SETTINGS_STORE_PHONE_COUNTRY_CODE1}({SETTINGS_STORE_PHONE_CITY_CODE1}){SETTINGS_STORE_PHONE_NUMBER1}"
@@ -1068,7 +1068,7 @@
 										<div class="product__addCart {% IF index_page_sale_goods.IS_HAS_IN_COMPARE_LIST || index_page_sale_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
 											<!-- Добавление в корзину -->
 											{% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && index_page_sale_goods.MAX_REST_VALUE=0 %}
-											<a class="add-notify button-empty"
+											<a class="button empty add-notify"
 												title="Уведомить"
 												data-tooltipOFF="Уведомить"
 												rel="nofollow"
@@ -1832,9 +1832,11 @@
 								</noscript>
 								<img class="lozad script__on" data-src="{% IF news_list_shop.IMG %}{news_list_shop.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}{news_list_shop.index | is_divided('2','news_2','news_1')}.jpg?design=THEMENAME{% ENDIF %}" alt="{news_list_shop.TITLE}" />
 								{% IF news_list_shop.SHOW_TIME %}
-								<div class="news__date pulse2 flex-center">
-									<div class="day">{news_list_shop.TIME | date("d")}</div>
-									<div class="month">{news_list_shop.TIME | date("M")}</div>
+								<div class="news__date pulse2">
+									<div class="news__date-icon flex-center">
+										<div class="day">{news_list_shop.TIME | date("d")}</div>
+										<div class="month">{news_list_shop.TIME | date("M")}</div>
+									</div>
 								</div>
 								{% ENDIF %}
 							</a>
@@ -2188,6 +2190,25 @@
 
 					<!-- Подвал. Меню -->
 					<div class="footer__menu">
+						<div class="footer__menu-icon flex justify-between">
+							<span>Меню</span>
+							<i class="icon-arrow_down"></i>
+						</div>
+						<div class="footer__menu-content">
+							<ul class="unstyled">
+								{% FOR menu %}
+									{% FOR footer %}
+										{% FOR links %}
+										<li {% IF menu.footer.links.SELECTED %}class="active"{% ENDIF %}>
+											<a class="mainnav__list-link {% IF menu.footer.links.SELECTED %}active{%ENDIF%}" href="{menu.footer.links.URL}" title="{% IF menu.footer.links.TITLE %}{menu.footer.links.TITLE}{% ELSE%}{menu.footer.links.NAME}{% ENDIF %}">
+												<span>{menu.footer.links.NAME}</span>
+											</a>
+										</li>
+										{% ENDFOR %}
+									{% ENDFOR %}
+								{% ENDFOR %}
+							</ul>
+						</div>
 						<ul class="mainnav__list unstyled flex-center" itemscope itemtype="https://schema.org/SiteNavigationElement">
 							{% FOR menu %}
 								{% FOR footer %}
@@ -2330,17 +2351,22 @@
 				<!-- Меню -->
 				<div class="sidenav__item menu flex-center" data-open="menu">
 					<a class="menu__icon flex-center" href="javascript:;" title="Меню">
-						<i class="icon-catalog_2"></i>
+						<i class="icon-list"></i>
 					</a>
 				</div>
 
 				<!-- Наверх -->
-				<div class="sidenav__item flex-center toTop" id="toTop">
+				<div class="sidenav__item flex-center toTop">
 					<a class="flex-center" href="javascript:;" title="Перейти наверх">
 						<i class="icon-arrow_up"></i>
 					</a>
 				</div>
 			</div>
+		</div>
+
+		<!-- Наверх -->
+		<div id="toTop" class="toTop" title="Наверх">
+			<i class="icon-arrow_up"></i>
 		</div>
 	
 		<noindex>
@@ -2489,7 +2515,7 @@
 						</div>
 
 						<div class="form__fields form__fields-icons form__fields-hidden">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Имя не указано" placeholder="Ваше имя" autocomplete="off" />
+							<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="Имя не указано" placeholder="Ваше имя" autocomplete="off" />
 							<i class="icon-user"></i>
 						</div>
 
@@ -2529,15 +2555,15 @@
 						{ANTISPAM_CODE}
 
 						<div class="form__fields">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="off" required />
+							<input class="form__input form__person" type="text" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PERSON}]" value="{FORM_CALLBACK_PERSON}" placeholder="Ваше имя" autocomplete="off" required />
 						</div>
 
 						<div class="form__fields">
-							<input id="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
+							<input class="form__input form__phone" type="tel" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_PHONE}]" value="{FORM_CALLBACK_PHONE}" placeholder="Номер телефона" autocomplete="off" required />
 						</div>
 
 						<div class="form__fields">
-							<textarea id="callback_comment" class="textarea" rows="1" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_COMMENT}]" placeholder="Комментарий" >{FORM_CALLBACK_COMMENT}</textarea>
+							<textarea class="textarea" rows="1" name="form[{ANTISPAM_FORM_FIELD_NAME_CALLBACK_COMMENT}]" placeholder="Комментарий" >{FORM_CALLBACK_COMMENT}</textarea>
 						</div>
 
 						<div class="form__buttons">

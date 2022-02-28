@@ -95,7 +95,7 @@
               <div class="actions">
                 <!-- Добавление товара в корзину -->
                 {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && goods_mod_info.REST_VALUE=0 %}
-                  <a class="add-notify button button2" title="Уведомить" data-tooltipOFF="Уведомить" rel="nofollow" data-fancybox data-src="#fancybox__notify" href="javascript:;" data-name="{goods_mod_info.NAME}" data-art="{goods_mod_info.ART_NUMBER}"><i class="icon-notify"></i><span>Уведомить</span></a>
+                  <a class="add-notify button button-empty" title="Уведомить" data-tooltipOFF="Уведомить" rel="nofollow" data-fancybox data-src="#fancybox__notify" href="javascript:;" data-name="{goods_mod_info.NAME}" data-art="{goods_mod_info.ART_NUMBER}"><i class="icon-notify"></i><span>Уведомить</span></a>
                 {% ELSE %}
                   {% IF goods_mod_info.COUNT_MODIFICATION > 1 %}
                   <a class="add-mod button" title="Добавить в корзину &laquo;{goods_mod_info.GOODS_NAME}&raquo;" data-tooltipOFF="В корзину" rel="nofollow" href="{goods_mod_info.URL_PRICE_NOW}" data-prodname="{goods_mod_info.GOODS_NAME}"><i class="icon-cart"></i><span>Купить</span></a>

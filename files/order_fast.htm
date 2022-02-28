@@ -43,6 +43,7 @@
 									<label for="form__registration"><span>Я хочу зарегистрироваться</span></label>
 								</div>
 								<div class="form__fields form__pass" {% IFNOT ORDER_FORM_CONTACT_WANT_REGISTER %}style="display: none;"{% ENDIF %}>
+									<label for="sites_client_pass" class="required"><span>Ваш пароль</span><em>*</em></label>
 									<input id="sites_client_pass" type="password" name="form[contact][pass]" value="{ORDER_FORM_CONTACT_PASS}" maxlength="50" minlength="6" class="form__input {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}required{% ENDIF %}" onkeyup="checkCapsWarning(event)" onfocus="checkCapsWarning(event)" onblur="removeCapsWarning()" placeholder="Придумайте пароль *"/>
 									<div class="showPassBlock"><a href="#" rel="Скрыть пароль" class="showPass">Показать пароль</a></div>
 									<div id="capslock">
@@ -220,7 +221,7 @@
 										<label for="quickDeliveryCountry" {% IF SETTINGS_ORDER_FIELDS_COUNTRY=1 %}class="required"{% ENDIF %}><span>Страна</span>{% IF SETTINGS_ORDER_FIELDS_COUNTRY=1 %}<em>*</em>{% ENDIF %}</label>
 										<select id="quickDeliveryCountry" name="form[delivery][country_id]" class="form__input select {% IF SETTINGS_ORDER_FIELDS_COUNTRY=1 %}required{% ENDIF %}">
 											{% FOR country_list %}
-											<option value="{country_list.ID}" {% IF country_list.ID=ORDER_FORM_DELIVERY_COUNTRY_ID %}selected="selected"{% ENDIF %}>
+											<option value="{country_list.ID}" {% IF country_list.ID = ORDER_FORM_DELIVERY_COUNTRY_ID %}selected="selected"{% ENDIF %}>
 												{country_list.NAME}
 											</option>
 											{% ENDFOR %}
@@ -263,7 +264,7 @@
 									<input id="deliveryConvenientDate" type="text" name="form[delivery][convenient_date]" value="{ORDER_FORM_DELIVERY_CONVENIENT_DATE}" class="form__input" maxlength="10" minlength="10" autocomplete="off" placeholder="17.11.2020 {% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}*{% ENDIF %}" {% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}required{% ENDIF %} />
 								</div>
 								<div class="form__field deliveryConvenientDate selectBox {% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}required{% ENDIF %}">
-									<label for="deliveryConvenientDate"><span>Время доставки</span>{% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}<em>*</em>{% ENDIF %}</label>
+									<label><span>Время доставки</span>{% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}<em>*</em>{% ENDIF %}</label>
 									<select class="form__input select" name="form[delivery][convenient_time_from]">
 										{% FOR convenient_time_from_list %}
 										<option value="{convenient_time_from_list.HOUR_INT}" {% IF convenient_time_from_list.SELECTED %}selected="selected"{% ENDIF %}>{convenient_time_from_list.HOUR}</option>
@@ -271,12 +272,21 @@
 									</select>
 								</div>
 								<div class="form__field deliveryConvenientDate selectBox {% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}required{% ENDIF %}" style="display: none;">
-									<label for="deliveryConvenientDate"><span>Время доставки</span>{% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}<em>*</em>{% ENDIF %}</label>
+									<label><span>Время доставки</span>{% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}<em>*</em>{% ENDIF %}</label>
 									<select class="form__input select" name="form[delivery][convenient_time_to]">
 										{% FOR convenient_time_to_list %}
 										<option value="{convenient_time_to_list.HOUR_INT}" {% IF convenient_time_to_list.SELECTED %}selected="selected"{% ENDIF %}>{convenient_time_to_list.HOUR}</option>
 										{% ENDFOR %}
 									</select>
+								</div>
+								{% ENDIF %}
+								<!-- Скрытый комент если запрашивается -->
+								{% IF SETTINGS_ORDER_FIELDS_COMMENT < 3 %}
+								<div class="form__fields" style="display: none;">
+									<div class="form__field fields__comment {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}">
+										<label for="quickDeliveryComment" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}class="required"{% ENDIF %}><span>Комментарий</span><em>*</em></label>
+										<textarea cols="100" rows="5" name="form[delivery][comment]" class="quickDeliveryComment textarea" placeholder="Комментарий {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}*{% ENDIF %}" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}>{ORDER_FORM_DELIVERY_COMMENT}</textarea>
+									</div>
 								</div>
 								{% ENDIF %}
 							</div>
@@ -299,7 +309,7 @@
 						<div class="form__fields">
 							<div class="form__field fields__comment {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}">
 								<label for="quickDeliveryComment" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}class="required"{% ENDIF %}><span>Комментарий</span><em>*</em></label>
-								<textarea cols="100" rows="5" id="quickDeliveryComment" name="form[delivery][comment]" class="textarea" placeholder="Комментарий {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}*{% ENDIF %}" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}>{ORDER_FORM_DELIVERY_COMMENT}</textarea>
+								<textarea cols="100" rows="5" id="quickDeliveryComment" name="form[delivery][comment]" class="quickDeliveryComment textarea" placeholder="Комментарий {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}*{% ENDIF %}" {% IF SETTINGS_ORDER_FIELDS_COMMENT=1 %}required{% ENDIF %}>{ORDER_FORM_DELIVERY_COMMENT}</textarea>
 							</div>
 						</div>
 					</div>
@@ -332,7 +342,7 @@
 				</div>
 				<!-- Корзина: Оформление -->
 				<div class="total__buttons">
-					<a id="makeOrder" class="button-primary disabled" title="Перейти к быстрому оформлению заказа"><span>Оформить </span><span>заказ</span></a>
+					<a id="makeOrder" class="button disabled" title="Перейти к быстрому оформлению заказа"><span>Оформить </span><span>заказ</span></a>
 					<div class="total__pp">
 						<span>Нажимая на кнопку &laquo;Оформить заказ&raquo;, Вы соглашаетесь</span>
 						<a data-fancybox data-src="#fancybox__pp" href="javascript:;">с правилами обработки данных</a>
@@ -397,7 +407,7 @@
 	</div>
 	<div class="addto__empty">В корзине пока ничего нет</div>
 	<div class="addto__buttons">
-		<a href="{CART_URL}" class="button-primary" title="Перейти в Корзину"><span>Перейти в корзину</span></a>
+		<a href="{CART_URL}" class="button" title="Перейти в Корзину"><span>Перейти в корзину</span></a>
 	</div>
 </div>
 <!-- Обновление данных корзины -->

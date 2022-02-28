@@ -29,42 +29,20 @@
 	<!-- /Если нет товаров, выводим сообщение пользователю -->
 
 	<!-- Если нет товаров, либо у пользователя не сработало javascript ограничение на фильтре по товарам и так получилось что их не нашлось, отобразим блок изменяющий отображение данных выдачи товаров -->
-	{% IFNOT IS_FULL_CATALOG && goods_empty=0 || goods_filters_empty=0 %}	
-	<!-- Активные Фильтры -->
-	{% IF SHOW_GOODS_PRICE_FILTERS || SHOW_GOODS_FILTERS %}
-	<div style="display: none;" class="filtersActive {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
-		<!-- Фильтры по характеристикам товаров (Например: Производитель, разрешение экрана, заряд аккомулятора) -->
-		<div class="filtersActive__title flex">
-			<span class="filtersActive__span">Подберите товар:</span>
-			<a href="{PAGE_CANONICAL}" class="filtersActive__clear" title="Очистить фильры"><span>Сбросить фильтры</span></a>
-		</div>
-		<div class="filtersActive__items flex">
-			{% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}
-			<label class="filtersActive__item" for="filterAttrVal{filter_attr_list.values.ID}" title="Удалить фильтр: {filter_attr_list.NAME}">
-				<span class="filtersActive__name">{filter_attr_list.NAME}:</span>
-				<span class="filtersActive__value">{filter_attr_list.values.VALUE}</span>
-				<span class="filtersActive__nb">{filter_attr_list.values.NB_GOODS_FILTERED}</span>
-				<span class="filtersActive__remove"><i class="icon-close"></i></span>
-			</label>
-			{% ENDIF %}{% ENDFOR %}{% ENDFOR %}
-			{% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}
-			<label class="filtersActive__item" for="filterPropVal{filter_prop_list.values.ID}" title="Удалить фильтр: {filter_prop_list.NAME}">
-				<span class="filtersActive__name">{filter_prop_list.NAME}:</span>
-				<span class="filtersActive__value">{filter_prop_list.values.VALUE}</span>
-				<span class="filtersActive__nb">{filter_prop_list.values.NB_GOODS_FILTERED}</span>
-				<span class="filtersActive__remove"><i class="icon-close"></i></span> 
-			</label>
-			{% ENDIF %}{% ENDFOR %}{% ENDFOR %}
-		</div>
-		<!-- Фильтры по свойствам товарных модификаций (Например: Цвет, размер, модификация) -->
-	</div>
+	{% IFNOT IS_FULL_CATALOG && goods_empty=0 || goods_filters_empty=0 %}
 	<!-- Если в тарифном плане подключен модуль фильтров по товарам -->
+	{% IF SHOW_GOODS_PRICE_FILTERS || SHOW_GOODS_FILTERS %}
 	<div id="filters" class="filters">
-		<div class="filters__title flex justify-between">
-			<span class="filters__title-span">Подберите товар:</span>
-			<a class="filters__title-clear" href="{PAGE_CANONICAL}" title="Очистить фильры"><span>Сбросить фильтры</span></a>
+		<div class="filters__icon flex-center">
+			<span class="filters__count"></span>
+			<span class="filters__label">Добавить фильтры</span>
+			<i class="icon-plus"></i>
 		</div>
 		<div class="filters__content {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
+			<div class="filters__title flex justify-between {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
+				<span class="filters__title-span">Подберите товар:</span>
+				<a class="filters__title-clear" href="{PAGE_CANONICAL}" title="Очистить фильры"><span>Сбросить фильтры</span></a>
+			</div>
 			<div class="row">
 				<form action="" method="get" class="form__filters flex">
 					<!-- Если есть возможность фильтрации товаров по ценам -->
@@ -115,7 +93,7 @@
 								<span>{filter_attr_list.NAME}</span>
 							</a>
 							<div class="filter__values collapsible__click">
-								{% FOR values %}{% IF filter_attr_list.values.CHECKED %}<span>{filter_attr_list.values.VALUE}</span>{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}{continue}{% ENDIF %}{% ENDFOR %}
+								{% FOR values %}{% IF filter_attr_list.values.CHECKED %}<span class="filter__value">{filter_attr_list.values.VALUE}</span>{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}{continue}{% ENDIF %}{% ENDFOR %}
 								<span class="filter__empty">не выбрано</span>
 							</div>
 							<div class="filter__clear" title="Очистить фильтры">
@@ -146,7 +124,7 @@
 								<span>{filter_prop_list.NAME}</span>
 							</a>
 							<div class="filter__values collapsible__click">
-								{% FOR values %}{% IF filter_prop_list.values.CHECKED %}<span>{filter_prop_list.values.VALUE}</span>{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}{continue}{% ENDIF %}{% ENDFOR %}
+								{% FOR values %}{% IF filter_prop_list.values.CHECKED %}<span class="filter__value">{filter_prop_list.values.VALUE}</span>{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}{continue}{% ENDIF %}{% ENDFOR %}
 								<span class="filter__empty">не выбрано</span>
 							</div>
 							<div class="filter__clear" title="Очистить фильтры">
@@ -937,7 +915,7 @@
 	{% ENDIF %}
 	<!-- //END Страницы -->
 	
-	{% ENDIF %}
+	{% ENDIF IS_FULL_CATALOG %}
 	<!-- //END Если нет товаров -->
 </div>
 
