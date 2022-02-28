@@ -289,7 +289,7 @@ h6 {font-size: 0.875rem;}
 /*** Показать пароль ***/
 /**************************************/
 .form__pass {position: relative;}
-.showPassBlock {position: absolute;right: .25rem;cursor: pointer;}
+.showPassBlock {position: absolute;right: .25rem;bottom: .5rem;cursor: pointer;}
 .showPassBlock:before {content: '\e921';margin-right: 0.5rem;color: #CBC3DB;font-size: 1.5rem;font-family: 'icomoon';vertical-align: middle;}
 .showPassBlock.active:before {content: '\e928';}
 .showPassBlock .showPass {vertical-align: middle;display: none;}
@@ -463,7 +463,6 @@ h6 {font-size: 0.875rem;}
 .CompareGoodsTableTbody > div .cell {width: 100%;padding: 1rem 0 0.625rem;}
 .CompareGoodsTableTbody > div .cell label {font-weight: bold;}
 .CompareGoodsTableTbody > div .cell input {display: none;}
-.CompareGoodsTableTbody .image a:not(.remove) {display: block;line-height: 130px;}
 .CompareGoodsTableTbody .owl-item .image img {display: inline-block;width: auto;max-width: 100%;}
 .CompareGoodsTableTbody .remove {color: #CBC3DB;background: #ffffff;border: 1px solid #CBC3DB;position: absolute;top: 0;right: 0;z-index: 2;width: 2rem;height: 2rem;}
 .CompareGoodsTableTbody .remove:hover {color: #ffffff;background: #FFA5D8;border-color: #FFA5D8;}
@@ -477,13 +476,21 @@ h6 {font-size: 0.875rem;}
 .CompareGoodsTableTbody .actions [class^="add-"] span {display: none;}
 .CompareGoodsTableTbody .product__price {border: 0;}
 .CompareGoodsTableTbody .owl-stage-outer {margin-right: -1px;}
+.compare-image {height: 262px;}
+.compare-image img {max-height: 262px;}
 .page-compare .owl-next {margin-left: 1rem;}
+@media all and (max-width: 1199px) {
+	.compare-image {height: 210px;}
+	.compare-image img {max-height: 210px;}
+}
 @media all and (max-width: 479px) {
 .CompareGoods__filter .label {display: none;}
 .CompareGoods .price__old {margin-right: 0.5rem;}
 .CompareGoodsTableTbody .actions .price-box {width: 100%;margin-bottom: 1rem;}
 .CompareGoodsTableTbody .actions .price-box .price__old {display: block;margin-top: 5px;}
 .CompareGoodsTableTbody .actions .add-notify:before {display: none;}
+.compare-image {height: 130px;}
+.compare-image img {max-height: 130px;}
 }
 
 
@@ -1505,7 +1512,7 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 /*** Фильтры ***/
 /**************************************/
 #filters {margin-bottom: 1rem;}
-.filters__icon {margin-bottom: 1rem;background-color: #ffffff;border-radius: 10px;font-size: 1rem;padding: 1.25rem;}
+.filters__icon {display: none;margin-bottom: 1rem;background-color: #ffffff;border-radius: 10px;font-size: 1rem;padding: 1.25rem;}
 .filters__icon i {color: #CBC3DB;margin-left: 1rem;}
 .filters__icon:hover {color: #ffffff;background-color: #FFA5D8;cursor: pointer;}
 .filters__icon:hover i {color: #ffffff;}
@@ -1544,6 +1551,7 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 .filter__content {position: relative;display: flex;flex-wrap: wrap;}
 .filter__items {display: grid;gap: 1rem;grid-template-columns: repeat(4, 1fr);}
 @media (max-width: 991px) {
+	.filters__icon {display: flex;}
 	.filters__content {display: none;}
 }
 

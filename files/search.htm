@@ -505,13 +505,13 @@
 						<div class="product__addCart {% IF goods.IS_HAS_IN_COMPARE_LIST || goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
 							<!-- Рейтинг -->
 							{% IFNOT SETTINGS_OPINION_DISABLE %}
-							<div class="product__ratings flex {% IF index_page_sale_goods.OPINION_RATING_VALUE %}has-rating{% ENDIF %}">
+							<div class="product__ratings flex {% IF goods.OPINION_RATING_VALUE %}has-rating{% ENDIF %}">
 								<div class="product__ratings-icon">
 									<i class="icon-star2"></i>
 								</div>
 								<div class="product__ratings-value">
-									{% IF index_page_sale_goods.OPINION_RATING_VALUE %}
-										{index_page_sale_goods.OPINION_RATING_VALUE | divide("2")}
+									{% IF goods.OPINION_RATING_VALUE %}
+										{goods.OPINION_RATING_VALUE | divide("2")}
 									{% ELSE %}
 										0
 									{% ENDIF %}

@@ -53,9 +53,9 @@
 				<div class="productView__inner flex justify-between">
 					<!-- Доступность товара -->
 					<div class="productView__available productView__icon">
-						<i class="icon-{% IF 10 > GOODS_MOD_REST_VALUE %}few{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}alot{% ELSE %}close{% ENDIF %}"></i>
+						<i class="icon-{% IF GOODS_MOD_REST_VALUE = 0 %}close{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}alot{% ELSE %}few{% ENDIF %}"></i>
 						<span class="goodsModRestValue" data-value="{GOODS_MOD_REST_VALUE}">
-							{% IF 10 > GOODS_MOD_REST_VALUE %}В наличии Мало{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}В наличии Много{% ELSE %}нет в наличии{% ENDIF %}
+							{% IF GOODS_MOD_REST_VALUE = 0 %}нет в наличии{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}В наличии Много{% ELSE %}В наличии Мало{% ENDIF %}
 						</span>
 					</div>
 					<!-- Среднее значение по результатам всех отзывов об этом товаре -->

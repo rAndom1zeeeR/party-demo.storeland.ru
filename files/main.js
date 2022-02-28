@@ -1314,7 +1314,7 @@ function priceDiff() {
 function goodsModRest() {
 	$('.goodsModRestValue').each(function(){
 		var value = $(this).data('value');
-		if (value < 10) {
+		if (value > 0 && value < 10) {
 			$(this).text('В наличии мало');
 			$(this).css('opacity', '1');
 			$(this).parent().addClass('few');
@@ -1322,7 +1322,7 @@ function goodsModRest() {
 			$(this).text('В наличии много');
 			$(this).css('opacity', '1');
 			$(this).parent().addClass('alot');
-		}else{
+		}else if (value == 0) {
 			$(this).text('нет в наличии');
 			$(this).css('opacity', '1');
 			$(this).parent().addClass('empty');
@@ -3045,9 +3045,15 @@ function goodsModification() {
 				if(modificationRestValue>10) {
 					goodsModRestValue.html('В наличии Много');
 					goodsAvailable.find('i').attr('class', 'icon-alot');
+					goodsAvailable.attr('class', 'productView__available productView__icon alot')
+				} else if(modificationRestValue == 0) {
+					goodsModRestValue.html('Нет в наличии');
+					goodsAvailable.find('i').attr('class', 'icon-close');
+					goodsAvailable.attr('class', 'productView__available productView__icon empty')
 				} else {
 					goodsModRestValue.html('В наличии Мало');
 					goodsAvailable.find('i').attr('class', 'icon-few');
+					goodsAvailable.attr('class', 'productView__available productView__icon few')
 				}
 
 				// Покажем артикул модификации товара, если он указан
@@ -3128,7 +3134,7 @@ function compare() {
 	var owlCompare = $('.CompareGoodsTableTbody .owl-carousel');
 	owlCompare.owlCarousel({
 		items: 4,
-		margin: 16,
+		margin: 30,
 		loop: false,
 		rewind: false,
 		lazyLoad: true,
