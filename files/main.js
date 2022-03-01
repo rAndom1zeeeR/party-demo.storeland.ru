@@ -2419,7 +2419,7 @@ function priceFilter() {
 			$(this).find('.filters__label').text('Скрыть фильтры')
 			$(this).find('i').attr('class', 'icon-minus')
 		}else{
-			$(this).find('.filters__label').text('Добавить фильтры')
+			$(this).find('.filters__label').text('Выбрать фильтры')
 			$(this).find('i').attr('class', 'icon-plus')
 		}
 	});

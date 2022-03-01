@@ -50,7 +50,7 @@
 		<div class="productView__shop">
 			<!-- Основная информация о товаре -->
 			<div class="productView__shop-inner">
-				<div class="productView__inner flex justify-between">
+				<div class="productView__inner flex {% IF GOODS_MOD_MAX_DISCOUNT_ID %}justify-between has-campaign{% ENDIF %}">
 					<!-- Доступность товара -->
 					<div class="productView__available productView__icon">
 						<i class="icon-{% IF GOODS_MOD_REST_VALUE = 0 %}close{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}alot{% ELSE %}few{% ENDIF %}"></i>
@@ -684,13 +684,21 @@
 			</div>
 		</div>
 
+		<!-- Подробнее для быстрого просмотра -->
+		<div class="productView__more">
+			<a class="" href="{GOODS_URL}" title="{GOODS_NAME}">
+				<span>Больше информации о данном товаре</span>
+				<i class="icon-arrow_right"></i>
+			</a>
+		</div>
+
 	</div>
 </div>
 <!-- /END Форма карточки товара -->
 
 <!-- Сопутствующие товары -->
 {% IFNOT related_goods_empty %}
-<section class="related__goods">
+<section class="related related__goods">
 	<div class="block__title">
 		<div class="title"><span>Сопутствующие</span></div>
 	</div>		
@@ -909,7 +917,7 @@
 				
 <!-- С этим товаром смотрят -->
 {% IFNOT related_views_goods_empty %}
-<section class="related__views">		
+<section class="related related__views">		
 	<div class="block__title">
 		<div class="title"><span>Рекомендуем</span></div>
 	</div>		

@@ -147,7 +147,7 @@
                 {order_lines.LINE_PRICE | money}
               <!-- Скидка -->
               {% ELSEIF order_lines.TYPE_ID = 3%}
-                <span class="num">{order_lines.LINE_PRICE_NUMBER_FORMAT}</span> {order_lines.MEASURE_NAME}
+                <span>{order_lines.LINE_PRICE_NUMBER_FORMAT}</span> {order_lines.MEASURE_NAME}
               {%ENDIF%}
               </span></span></span>
             </td> 
