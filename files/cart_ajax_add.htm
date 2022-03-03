@@ -6,7 +6,7 @@
 				{% IF cart_items.GOODS_MOD_ID = FORM_GOODS_MOD_ID %}
 					<div class="noty__addto flex" data-id="{cart_items.GOODS_ID}">
 						<div class="noty__image flex-center">
-							<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_MEDIUM}{% ENDIF %}" />
+							<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=HOLIDAY{% ELSE %}{cart_items.GOODS_IMAGE_MEDIUM}{% ENDIF %}" />
 						</div>
 						<div class="noty__message">{FORM_NOTICE}</div>
 						<div class="noty__cart-icons">
@@ -44,7 +44,7 @@
 		{% FOR cart_items %}
 		<div class="addto__item flex" data-id="{cart_items.GOODS_ID}">
 			<a class="addto__image flex-center" href="{cart_items.GOODS_URL}" title="{cart_items.GOODS_NAME}">
-				<img class="goods-image-icon" src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=THEMENAME{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" />
+				<img class="goods-image-icon" src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo-icon.png?design=HOLIDAY{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}" alt="{cart_items.GOODS_NAME}" />
 			</a>
 			<div class="addto__content flex-stretch">
 				<div class="addto__info">

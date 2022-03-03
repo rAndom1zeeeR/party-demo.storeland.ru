@@ -814,7 +814,7 @@ h6 {font-size: 0.875rem;}
 	#slideshow .owl-dots {bottom: -2rem;width: 100%;text-align: center;}
 	.slider__image {display: none;}
 	.slider__item {height: 400px;background-position: 0% 10%;background-repeat: no-repeat;background-size: cover;align-items: flex-end;justify-content: center;}
-	.slider__content {padding: 4rem 2rem 2rem 2rem;width: 100%;text-align: center;background-image: url('{ASSETS_IMAGES_PATH}slide_bg.png?design=THEMENAME');background-position: top;background-repeat: no-repeat;background-size: cover;}
+	.slider__content {padding: 4rem 2rem 2rem 2rem;width: 100%;text-align: center;background-image: url('{ASSETS_IMAGES_PATH}slide_bg.png?design=HOLIDAY');background-position: top;background-repeat: no-repeat;background-size: cover;}
 	.slider__title {font-size: 2rem;}
 	.slider__subtitle {font-size: 1rem;margin-top: 0;}
 	.slider__buttons {margin-top: 1rem;}
@@ -950,7 +950,7 @@ h6 {font-size: 0.875rem;}
 .callback__content {padding: 4rem 1.25rem 1.25rem 1.25rem;border-radius: 0 0 1.5rem 1.5rem;background-repeat: no-repeat;background-size: cover;width: 100%;position: relative;}
 .callback__item:last-child {justify-content: flex-start;}
 .callback__item:last-child .callback__content {border-top: 0;padding: 1.25rem 1.25rem 4rem 1.25rem;border-radius: 1.5rem 1.5rem 0 0;}
-.callback__item:last-child .callback__content:before {content: '';background-image: url('{ASSETS_IMAGES_PATH}callback_bg.png?design=THEMENAME');width: 100%;height: 100%;display: block;position: absolute;left: 0;top: 0;transform: rotate(180deg);z-index: 1;background-size: cover;border-radius: 1.5rem;}
+.callback__item:last-child .callback__content:before {content: '';background-image: url('{ASSETS_IMAGES_PATH}callback_bg.png?design=HOLIDAY');width: 100%;height: 100%;display: block;position: absolute;left: 0;top: 0;transform: rotate(180deg);z-index: 1;background-size: cover;border-radius: 1.5rem;}
 .callback__item:last-child .callback__icon {bottom: auto;top: 5.5rem}
 .callback__item-callback {padding: 1.25rem;height: 460px;background-position: 10% 20%;}
 .callback__item-callback .pretitle {margin: .5rem auto 0;}
@@ -2081,7 +2081,7 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 
 
 /**************************************/
-/*** Выпадающее меню ***/
+/*** Выпадающее меню-каталог ***/
 /**************************************/
 .menu__dropdown {width: 100%;position: fixed;top: 0;left: 0;transform: translateX(-100%);transition: all 0.3s ease;z-index: 12;background: #ffffff;height: 100vh;padding-bottom: 4rem;}
 .menu__dropdown.opened {transform: translateX(0);}
@@ -2099,7 +2099,8 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 .menu__dropdown .catalog__content {height: calc(100vh - 188px - 82px - 64px);overflow-y: auto;}
 .menu__content {max-height: 188px;overflow-y: auto;margin-top: 20px;}
 .menu__content li {width: 50%;}
-.menu__content li a {margin: 10px 20px;display: block;}
+.menu__content li a {margin: 10px 20px;font-size: 1rem;font-weight: bold;display: block;}
+
 
 /**************************************/
 /*** Наверх ***/
@@ -2111,28 +2112,21 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 }
 
 
-
-
-
-
-
-
-
 /**************************************/
 /*** Фоновые изображения ***/
 /**************************************/
 #main {margin: 0;}
 .overlay-top {overflow: hidden;position: relative;}
 .overlay-bottom {overflow: hidden;position: relative;}
-.overlay-preheader {background-image: url('{ASSETS_IMAGES_PATH}bg_2.png?design=THEMENAME'), url('{ASSETS_IMAGES_PATH}bg.jpg?design=THEMENAME');}
+.overlay-preheader {background-image: url('{ASSETS_IMAGES_PATH}bg_2.png?design=HOLIDAY'), url('{ASSETS_IMAGES_PATH}bg.jpg?design=HOLIDAY');}
 .overlay-preheader {top: 0;left: 0;width: 100%;height: 316px;background-position: top;background-size: cover;z-index: 0;position: absolute;}
 .index .overlay-header {bottom: -130%;left: -6%;width: 112%;height: 178%;border-radius: 100% 100% 0 0;background: #F8F1F5;position: absolute;}
 .index .overlay-preheader {height: 1000px;background-position: center;z-index: -1;}
 .page-goods .overlay-preheader {height: 260px;}
-.overlay-prefooter {background-image: url('{ASSETS_IMAGES_PATH}bg.jpg?design=THEMENAME');}
+.overlay-prefooter {background-image: url('{ASSETS_IMAGES_PATH}bg.jpg?design=HOLIDAY');}
 .overlay-prefooter {bottom: 0;left: 0;width: 100%;height: 950px;background-position: center;background-size: cover;z-index: -1;position: absolute;}
 .overlay-footer {top: -112%;left: -8%;width: 115%;height: 175%;border-radius: 0 0 100% 100%;background: #F8F1F5;position: absolute;}
-.overlay-center {background-image: url('{ASSETS_IMAGES_PATH}bg_3.png?design=THEMENAME');}
+.overlay-center {background-image: url('{ASSETS_IMAGES_PATH}bg_3.png?design=HOLIDAY');}
 .overlay-center {bottom: -70%;left: 0;width: 100%;height: 936px;background-position: center;background-size: cover;z-index: -1;position: absolute;}
 @media (max-width: 1600px) {
 	.overlay-footer {left: -20%;width: 140%;}
