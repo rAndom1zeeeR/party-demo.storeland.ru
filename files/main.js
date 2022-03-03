@@ -494,7 +494,7 @@ function removeFromCartAll(e){
 // Функция удаления классов всех активных элементов
 // Функция удаления классов всех активных элементов
 function closeAll() {
-	$('div, a, form, span, nav').removeClass('opened');
+	$('div, a, form, span, nav, ul').removeClass('opened');
 	$('.overflowMenu').removeClass('active');
 	$('#overlay').click();
 	setTimeout(function () {
@@ -581,6 +581,7 @@ function openMenu() {
 	$('.footer__menu-icon').on('click', function(){
 		$(this).toggleClass('active')
 		$('.footer__menu-content').slideToggle();
+		$('html, body').animate({scrollTop : jQuery('.footer__menu').offset().top}, 500);
 	});
 
   // Имитация клика по каталогу в меню
@@ -592,6 +593,8 @@ function openMenu() {
 
 // Дополнительные пункты меню в шапке Перенос пунктов меню
 function mainnav(id,rows,media){
+	console.log('getClientWidth()', getClientWidth())
+	console.log('media', media)
 	if(getClientWidth() > media){
 		var mainnav = $(id);
 		var overMenuExist = mainnav.find('.overflowMenu li').length;
@@ -607,7 +610,7 @@ function mainnav(id,rows,media){
 		var menuCount = mainnav.find('.mainnav__list li').length + 1;
 		var nextCheck = 0;
 		for(var i=1; i < menuCount;  i++){
-			var currentWidth = parseInt(Math.ceil(mainnav.find('.mainnav__list li:nth-child('+i+')').width())) + 20;
+			var currentWidth = parseInt(Math.ceil(mainnav.find('.mainnav__list li:nth-child('+i+')').width()));
 			nextCheck += currentWidth;
 			if(nextCheck > menuWidth){
 				var a = i;
@@ -619,21 +622,33 @@ function mainnav(id,rows,media){
 				});
 				mainnav.find('.mainnav__list').append('<li class="mainnav__item mainnav__more"><a class="mainnav__list-link"><span>Ещё</span><i class="icon-arrow_down"></i></a></li>');
 				mainnav.find('.mainnav__more').on('click',function(){
-					mainnav.find('.overflowMenu').hasClass('opened') ? mainnav.find('.overflowMenu').removeClass('opened') : mainnav.find('.overflowMenu').addClass('opened');
-					mainnav.hasClass('opened') ? mainnav.removeClass('opened') : mainnav.addClass('opened');
-					mainnav.hasClass('opened') ? $('.overlay-top').css('overflow', 'visible') : $('.overlay-top').css('overflow', 'hidden');
+					if (mainnav.hasClass('opened')){
+						mainnav.removeClass('opened')
+						mainnav.find('.overflowMenu').removeClass('opened')
+						$('.overlay-top').css('overflow', 'hidden')
+						$('#overlay').removeClass('opened')
+					}else{
+						mainnav.addClass('opened');
+						mainnav.find('.overflowMenu').addClass('opened');
+						$('.overlay-top').css('overflow', 'visible')
+						$('#overlay').addClass('opened')
+					}
+					// Определение положения кнопки еще
+					var morePos = mainnav.find('.mainnav__more').position().left;
+					var contentPos = parseInt(morePos) - 100;
+					mainnav.find('.overflowMenu').css({'left' : contentPos})
 				});
-				$(function($){
-					$(document).mouseup(function (e){
-						var div =  mainnav.find('.overflowMenu.opened');
-						var btn =  mainnav.find('.mainnav__more');
-						if (!div.is(e.target) && div.has(e.target).length === 0 && !btn.is(e.target)) {
-							div.removeClass('opened');
-							mainnav.removeClass('opened');
-							$('.overlay-top').css('overflow', 'hidden');
-						}
-					});
-				});
+				// $(function($){
+				// 	$(document).mouseup(function (e){
+				// 		var div =  mainnav.find('.overflowMenu.opened');
+				// 		var btn =  mainnav.find('.mainnav__more');
+				// 		if (!div.is(e.target) && div.has(e.target).length === 0 && !btn.is(e.target)) {
+				// 			div.removeClass('opened');
+				// 			mainnav.removeClass('opened');
+				// 			$('.overlay-top').css('overflow', 'hidden');
+				// 		}
+				// 	});
+				// });
 				return false;
 			}
 		}
@@ -1083,7 +1098,7 @@ function pdtCart(){
 	var dots = id.find('.owl-dots');
 	carousel.owlCarousel({
 		items: 5,
-		margin: 32,
+		margin: 20,
 		loop: false,
 		rewind: true,
 		lazyLoad: true,
@@ -1368,6 +1383,7 @@ function addCart() {
 				//$.fancybox.open(data);
 				// Анализ системного сообщения в коризне
 				var str = $(data).html();
+				console.log('$(data)', $(data))
 				console.log('str', str)
 				// Проверяем текст сообщения на наличие ошибки
 				if (str.indexOf("Не удалось") != -1) {
@@ -1433,7 +1449,7 @@ function addCart() {
 					// Закрытие модального окна
 					setTimeout(function () {
 						$.fancybox.close();
-					},3000)
+					},2000)
 				}
 				// Скрытое обновление корзины
 				$('.hiddenUpdate').html(data);
@@ -1908,12 +1924,85 @@ function orderScripts() {
 	// маска телефона
 	$("#sites_client_phone").mask("+7 (999) 999-9999");
 	// Выбор даты доставки. Документация к плагину //t1m0n.name/air-datepicker/docs/index-ru.html
+	// $("#deliveryConvenientDate").datepicker({
+	// 	// Если true, то при активации даты, календарь закроется.
+	// 	autoClose: true,
+	// 	// Можно выбрать только даты, идущие за сегодняшним днем, включая сегодня
+	// 	minDate: new Date()
+	// });
+
+	// Выбор времени
+	$('select.quickform-select-convenient').on('change', function(){
+		var convenientArr = $(this).val().split('-')
+		if(convenientArr.length){
+			$('input[name="form[delivery][convenient_time_from]"]').val(convenientArr[0])
+			$('input[name="form[delivery][convenient_time_to]"]').val(convenientArr[1])
+		}
+	})
+	// Выбор даты доставки
+	// Документация к плагину //t1m0n.name/air-datepicker/docs/index-ru.html
+	var TIME_ZONE = 0; // Учёт временной зоны магазина: 0 - выключен, 1 - включен
 	$("#deliveryConvenientDate").datepicker({
 		// Если true, то при активации даты, календарь закроется.
 		autoClose: true,
 		// Можно выбрать только даты, идущие за сегодняшним днем, включая сегодня
-		minDate: new Date()
-	});
+		minDate: new Date(),
+		onSelect: function (date) {
+			var d = new Date();
+			var nowDate = d.toLocaleDateString();
+			var utcOffset = 3; // Москва
+			var offsetTime = 0; // Дополнительный отступ по времени
+			var hours = d.getUTCHours() + utcOffset + offsetTime;
+			if (hours > 23) {
+				hours = (d.getUTCHours() - 24) + utcOffset + offsetTime;
+			}
+
+			var $selectTime = $("#selectTime");
+			var template = $('<div>').html(
+				'<option value="9-10">09:00 - 10:00</option>' +
+				'<option value="11-12">11:00 - 12:00</option>' +
+				'<option value="12-13">12:00 - 13:00</option>' +
+				'<option value="13-14">13:00 - 14:00</option>' +
+				'<option value="14-15">14:00 - 15:00</option>' +
+				'<option value="15-16">15:00 - 16:00</option>' +
+				'<option value="16-17">16:00 - 17:00</option>' +
+				'<option value="17-18">17:00 - 18:00</option>' +
+				'<option value="18-19">18:00 - 19:00</option>' +
+				'<option value="19-20">19:00 - 20:00</option>' +
+				'<option value="20-21">20:00 - 21:00</option>' +
+				'<option value="21-22">21:00 - 22:00</option>'
+			)
+			var $options = template.children();
+
+			$selectTime.removeAttr("disabled");
+
+			if (date == nowDate && TIME_ZONE) {
+				var $filterdOptions = $options.filter(function () {
+					var value = $(this).val();
+					var timeOption = parseInt(value.split('-'));
+
+					return (hours < timeOption)
+				})
+
+				if ($filterdOptions.length) {
+					$selectTime
+						.html('')
+						.append($options.first())
+						.append($filterdOptions)
+				} else {
+					$selectTime.html('<option value="0-0">На сегодня доставок нет</option>');
+					$selectTime.attr('disabled', 'disabled');
+					$selectTime.trigger('change')
+				}
+			} else {
+				$selectTime.html(template.html())
+			}
+			$('input[name="form[delivery][convenient_time_from]"]').val(0)
+			$('input[name="form[delivery][convenient_time_to]"]').val(0)
+			$('#quickform .quickform-select-convenient').trigger('refresh')
+		}
+	})
+
 	// При оформлении заказа дадим возможность зарегистрироваться пользователю
 	$('#form__registration').click(function(){
 		if($(this).prop("checked")) {
@@ -2319,7 +2408,7 @@ function catalog() {
 		}
 	});
 
-	// Активные фильтры.
+	// Активные фильтры число.
 	$('.filter__values').each(function(){
 		var len = $(this).find('span').length - 1;
 		var newLen = len - 1;
@@ -2336,6 +2425,25 @@ function catalog() {
 		$checkboxes.prop('checked', false).attr('checked', false);
 		$('.form__filters')[0].submit();
 	});
+
+	// Показать Еще для фильтров
+	$('.form__filters').each(function(){
+		// Добавляем кнопку Еще если много фильтров
+		var len = $(this).find('.filter__list').length
+		var vis = $(this).find('.filter__list:visible').length
+		if(len > vis){
+			$(this).append('<div class="filter__list filter__list-more"><span class="filter__name">Еще</span></div>')
+		}
+
+		// Открытие доп фильтров
+		$('.filter__list-more').on('click', function(){
+			$(this).toggleClass('active')
+			$(this).parent().find('.filter__list').toggleClass('show')
+			$(this).hasClass('active') ? $(this).find('span').text('Скрыть') : $(this).find('span').text('Еще');
+		})
+
+	})
+
 }
 
 // Фильтр по ценам
@@ -2361,6 +2469,7 @@ function priceFilter() {
 			priceInputMin.val(ui.values[0]);
 			priceInputMax.val(ui.values[1]);
 			priceSubmitButtonBlock.css('display', 'flex');
+			priceSubmitButtonBlock.parent().addClass('active')
 			$('.goods-filter-min-price').text(ui.values[0])
 			$('.goods-filter-max-price').text(ui.values[1])
 			$('.goods-filter-price').css('display', 'flex');
@@ -2375,6 +2484,7 @@ function priceFilter() {
 		}
 		priceSliderBlock.slider("values", 0, newVal);
 		priceSubmitButtonBlock.css('display', 'flex');
+		priceSubmitButtonBlock.parent().addClass('active')
 		$('.goods-filter-price').css('display', 'flex');
 		$('.goods-filter-min-price').text(newVal);
 		$('.filters-price .filter__empty').hide();
@@ -2387,6 +2497,7 @@ function priceFilter() {
 		}
 		priceSliderBlock.slider("values", 1, newVal);
 		priceSubmitButtonBlock.css('display', 'flex');
+		priceSubmitButtonBlock.parent().addClass('active')
 		$('.goods-filter-price').css('display', 'flex');
 		$('.goods-filter-max-price').text(newVal);
 		$('.filters-price .filter__empty').hide();
@@ -2746,7 +2857,11 @@ function pageGoods() {
 	});
 
 	// Первая буква имени в аватаре
-	$('.opinion__avatar span').text($('.opinion__name').text()[0])
+	$('.opinion__item').each(function(){
+		var avatar = $(this).find('.opinion__avatar span');
+		var name = $(this).find('.opinion__name').text()[0];
+		avatar.text(name)
+	})
 }
 
 // Инициализация табов на странице товара
@@ -2918,7 +3033,7 @@ function newModification() {
 		$(this).find('.goodsModificationsValue[data-value="'+ dis +'"]').removeClass('active');
 		$(this).find('.goodsModificationsValue[data-value="'+ dis +'"]').addClass('disabled');
 	});
-	$('.goodsModificationsValue').click(function(){
+	$('.goodsModificationsValue').on('click', function(){
 		$(this).parent().find('.goodsModificationsValue').removeClass('active');
 		$(this).addClass('active');
 		a = $(this).data('value');
@@ -2926,6 +3041,9 @@ function newModification() {
 		$(this).parent().parent().find('select').trigger('change');
 	});
 	$('.goodsModificationsValue.disabled').off('click');
+	$('.goodsModificationsProperty').off('click').on('click', function(){
+		console.log('select click')
+	})
 }
 
 // Модификации select
@@ -3279,6 +3397,10 @@ function startOrder(){
 	closeOrder.addClass('show');
 	$('.cart__clear').hide();
 	startOrder.hide();
+	$('.cartForm').hide();
+	$('.cartTotal__change').show();
+	$('.page-cartTable').addClass('start-order')
+	$('#pdt__cart').hide();
 	$.ajax({
 		type: "POST",
 		cache: false,
@@ -3303,6 +3425,10 @@ function startOrder(){
 				globalOrder.hide();
 				closeOrder.removeClass('show');
 				startOrder.show();
+				$('.cartForm').show();
+				$('.cartTotal__change').hide();
+				$('.page-cartTable').removeClass('start-order')
+				$('#pdt__cart').show();
 				$('.second-stage .cartNav__icon').removeClass('active');
 				$('.second-stage').next().removeClass('active');
 				$('.cart__clear').show();
@@ -3397,8 +3523,8 @@ $(document).ready(function(){
   userAgent();
   openMenu();
   showPass();
-  mainnav('#menu .mainnav', '1', 768);
-	mainnav('#footer .footer__menu', '1', 640);
+  mainnav('#menu .mainnav', '1', 767);
+	mainnav('#footer .footer__menu', '1', 639);
   toTop();
 	viewed();
 	footerLinksMore();
@@ -3443,7 +3569,7 @@ $(window).resize(function(){
   }else{
     $('body').removeClass('landscape');
   }
-  mainnav('#menu .mainnav', '1', 768);
+  mainnav('#menu .mainnav', '1', 767);
 	mainnav('#footer .footer__menu', '1', 640);
 });
 
@@ -3459,9 +3585,9 @@ function addActive(obj){obj.hasClass('active') ? obj.removeClass('active') : obj
 
 
 $(document).ready(function(){
-
 });
 
+// Указать имя для обратной связи
 function modalNameOpen(){
 	$('.form__fields-open').on('click', function(event){
 		event.preventDefault();
@@ -3480,6 +3606,7 @@ function modalNameOpen(){
 	})
 }
 
+// Функция Открытия категорий при наведении
 function hoverCatalog(){
 	// Добавление класса hover для отображения подкатегорий
   $('#menu .catalog__item[data-level="0"]').hover(function() {

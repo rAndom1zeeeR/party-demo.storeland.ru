@@ -16,17 +16,6 @@
 		{% ENDFOR %}
 	</div>
 	{% ENDIF %}
-	<!-- Если нет товаров, выводим сообщение пользователю -->
-	{% IF nested_categories_list_empty && goods_empty %}
-		{% IF goods_filters_empty %}
-		<p class="attention">Нет товаров в выбранной категории</p>
-		<p><a href="{CATALOG_URL}" class="button button2" title="Вернуться в каталог">Вернуться в каталог</a></p>
-		{% ELSE %}
-		<p class="attention">Нет товаров для выбранных условий</p>
-		<p><a href="{PAGE_CANONICAL}" class="button button2" title="Очистить фильры">Очистить фильры</a></p>
-		{% ENDIF %}
-	{% ENDIF %}
-	<!-- /Если нет товаров, выводим сообщение пользователю -->
 
 	<!-- Если нет товаров, либо у пользователя не сработало javascript ограничение на фильтре по товарам и так получилось что их не нашлось, отобразим блок изменяющий отображение данных выдачи товаров -->
 	{% IFNOT IS_FULL_CATALOG && goods_empty=0 || goods_filters_empty=0 %}
@@ -77,9 +66,15 @@
 									<input id="goods-filter-max-price" type="text" name="form[filter][price][max]" value="{% IF GOODS_FILTER_MAX_PRICE %}{GOODS_FILTER_MAX_PRICE}{% ELSE %}{GOODS_FILTER_MAX_AVAILABLE_PRICE}{% ENDIF %}" min="1" onkeypress="return keyPress(this, event);" onpaste="return false;" />
 								</div>
 								<!-- Кнопки Фильтров -->
-								<div class="goodsFilterPriceSubmit flex-center">
-									<a class="button-secondary submit" onclick="$('.form__filters').submit();" title="Показать"><span>Применить</span></a>
-									<a class="clear" href="{PAGE_CANONICAL}" title="Очистить фильры"><span>Очистить</span></a>
+								<div class="goodsFilterPriceSubmit flex justify-between">
+									<a class="clear" href="{PAGE_CANONICAL}" title="Очистить фильры">
+										<i class="icon-close"></i>
+										<span>Сбросить</span>
+									</a>
+									<a class="submit" onclick="$('.form__filters').submit();" title="Показать">
+										<span>Применить</span>
+										<i class="icon-check"></i>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -152,6 +147,19 @@
 		</div>
 	</div>
 	{% ENDIF %}
+	
+	<!-- Если нет товаров, выводим сообщение пользователю -->
+	{% IF nested_categories_list_empty && goods_empty %}
+		{% IF goods_filters_empty %}
+		<p class="attention">Нет товаров в выбранной категории</p>
+		<p><a href="{CATALOG_URL}" class="button button2" title="Вернуться в каталог">Вернуться в каталог</a></p>
+		{% ELSE %}
+		<p class="attention">Нет товаров для выбранных условий</p>
+		<p><a href="{PAGE_CANONICAL}" class="button button2" title="Очистить фильры">Очистить фильры</a></p>
+		{% ENDIF %}
+	{% ENDIF %}
+	<!-- /Если нет товаров, выводим сообщение пользователю -->
+
 	<!-- Верхний блок, изменяющий отображение данных выдачи товаров -->
 	<div class="toolbar {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
 		<form action="" class="form__toolbar flex">
@@ -594,10 +602,22 @@
 								<span itemprop="name">{goods.NAME}</span>
 							</a>
 
-							<!-- Артикул товара -->
-							<div class="product__art" itemprop="sku" content="{goods.ART_NUMBER}">
-								<label>Арт.</label>
-								<span>{goods.ART_NUMBER}</span>
+							<div class="product__list-attr flex">
+								<!-- Артикул товара -->
+								<div class="product__art" itemprop="sku" content="{goods.ART_NUMBER}">
+									<label>Арт.</label>
+									<span>{goods.ART_NUMBER}</span>
+								</div>
+								
+								<!-- Выводим 2 характеристики -->
+								{% IFNOT goods.goods_attr_list_empty %}
+									{% FOR goods_attr_list %}
+									<div class="product__attr">
+										<label>{goods.goods_attr_list.NAME}</label>
+										<span>{goods.goods_attr_list.VALUE}</span>
+									</div>
+									{% ENDFOR goods_attr_list %}
+								{% ENDIF %}
 							</div>
 
 							<!-- Доступность товара -->

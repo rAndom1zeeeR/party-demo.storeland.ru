@@ -52,7 +52,7 @@
 			<div class="productView__shop-inner">
 				<div class="productView__inner flex {% IF GOODS_MOD_MAX_DISCOUNT_ID %}justify-between has-campaign{% ENDIF %}">
 					<!-- Доступность товара -->
-					<div class="productView__available productView__icon">
+					<div class="productView__available productView__icon {% IF GOODS_MOD_REST_VALUE = 0 %}empty{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}alot{% ELSE %}few{% ENDIF %}">
 						<i class="icon-{% IF GOODS_MOD_REST_VALUE = 0 %}close{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}alot{% ELSE %}few{% ENDIF %}"></i>
 						<span class="goodsModRestValue" data-value="{GOODS_MOD_REST_VALUE}">
 							{% IF GOODS_MOD_REST_VALUE = 0 %}нет в наличии{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}В наличии Много{% ELSE %}В наличии Мало{% ENDIF %}
@@ -94,15 +94,15 @@
 					<!-- Артикул -->
 					{% IF GOODS_MOD_ART_NUMBER %}
 					<div class="productView__articles productView__margin">
-						<label>Артикул:</label>
+						<label>Арт.:</label>
 						<span class="goodsModArtNumber">{GOODS_MOD_ART_NUMBER}</span>
 					</div>
 					{% ENDIF %}
 				</div>
 
-				<div class="productView__inner flex">
+				<div class="productView__inner flex {% IF GOODS_MOD_MAX_DISCOUNT_ID %}has-campaign{% ENDIF %}">
 					<!-- Цена товара -->
-					<div class="productView__price productView__margin {CURRENCY_CHAR_CODE} {% IF GOODS_MOD_PRICE_NOW_WITHOUT_DISCOUNT>GOODS_MOD_PRICE_NOW || GOODS_MOD_PRICE_OLD>GOODS_MOD_PRICE_NOW %}has-oldPrice {% ENDIF %} {% IF GOODS_MOD_MAX_DISCOUNT_ID %}has-campaign{% ENDIF %}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+					<div class="productView__price productView__margin {CURRENCY_CHAR_CODE} {% IF GOODS_MOD_PRICE_NOW_WITHOUT_DISCOUNT>GOODS_MOD_PRICE_NOW || GOODS_MOD_PRICE_OLD>GOODS_MOD_PRICE_NOW %}has-oldPrice {% ENDIF %}" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
 						<!-- информация для поисковика о наличии товара -->
 						<meta itemprop="availability" content="{% IF GOODS_MOD_REST_VALUE>0 %}http://schema.org/InStock{% ELSE %}http://schema.org/OutOfStock{% ENDIF %}">
 						<!-- информация для поисковика о валюте товара -->
@@ -465,7 +465,6 @@
 				<div class="productView__opinion" data-tab-content="4">
 					<div class="productView__title"><span>Отзывы</span></div>
 					<div class="opinion__content">
-						{% IFNOT opinion_list_empty %}
 						<div class="opinion__ratings-round flex {% IF GOODS_OPINION_RATING_VALUE_ROUND %}has-rating{% ENDIF %}">
 							<!-- Средний рейтинг -->
 							<div class="productView__ratings flex-center">
@@ -495,13 +494,20 @@
 									<div class="rating" style="width:0%" alt="Рейтинг не определён" title="Рейтинг не определён"></div>
 									{% ENDIF %}
 								</div>
-								<div class="opinion__round-title">Оцените данный товар</div>
+								<div class="opinion__round-title">Средний рейтинг товара</div>
 							</div>
 							<!-- Оставить отзыв -->
 							<div class="opinion__round-buttons">
-								<a class="opinion__add button" href="javascript:;"><span>Оставить отзыв</span></a>
+								<a class="opinion__add button button4" href="javascript:;"><span>Оставить отзыв</span></a>
 							</div>
 						</div>
+						{% IF opinion_list_empty %}
+						<!-- Нет отзывов о товарах -->
+						<div class="opinion__empty-text">
+							<div class="opinion__empty-text-title">У этого товара еще нет отзывов.</div>
+							<div class="opinion__empty-text-subtitle">Вы приобрели товар? Поделитесь своим мнением с другими и возможно вы поможете кому-то сделать правильный выбор!</div>
+						</div>
+						{% ELSE %}
 						<!-- Список отзывов о товарах -->
 						<div class="opinion__items" itemprop="review" itemscope itemtype="https://schema.org/Review">
 							{% FOR opinion_list %}
@@ -558,7 +564,26 @@
 								</div>
 								
 								{% IF opinion_list.ANSWER %}
-								<div class="opinion__answer"><span>{opinion_list.ANSWER | nl2br}</span></div>
+								<div class="opinion__answer">
+									<div class="opinion__inner flex">
+										<div class="opinion__avatar">
+											<span></span>
+										</div>
+										<div class="opinion__nameBlock">
+											{% IF opinion_list.NAME %}
+											<div class="opinion__name" itemprop="author">Администратор</div>
+											{% ENDIF %}
+
+											{% IF opinion_list.DATE %}
+											<div class="opinion__date">
+												<span>{opinion_list.DATE | date('d.m.Y')}</span>
+											</div>
+											<meta itemprop="datePublished" content="{opinion_list.DATE | date('d.m.Y')}">
+											{% ENDIF %}
+										</div>
+									</div>
+									<div class="opinion__answer-text">{opinion_list.ANSWER | nl2br}</div>
+								</div>
 								{% ENDIF %}
 								
 								{% IF opinion_list.DELETE_URL %}
@@ -574,8 +599,12 @@
 							{% ENDFOR %}
 						</div>
 						<div class="opinion__buttons">
-							<a class="showAll" href="javascript:;"><span>Показать все</span></a>
+							<a class="showAll button5" href="javascript:;">
+								<i class="icon-arrow_circle"></i>
+								<span>Показать все</span>
+							</a>
 						</div>
+						{% ENDIF not opinion_list_empty %}
 						
 						<!-- Нижняя навигация (страницы) -->
 						{% IF opinion_show_pages %}
@@ -592,19 +621,7 @@
 						</div>
 						{% ENDIF opinion_show_pages %}
 						<!-- END Нижняя навигация (страницы) -->
-						
-						{% ELSE %}
-						<!-- Если нет отзывов -->
-						<div class="opinion__empty flex">
-							<div class="opinion__empty-text">
-								<div class="opinion__empty-text-title">У этого товара еще нет отзывов.</div>
-								<div class="opinion__empty-text-subtitle">Вы приобрели товар? Поделитесь своим мнением с другими и возможно вы поможете кому-то сделать правильный выбор!</div>
-							</div>
-							<div class="opinion__empty-buttons">
-								<a class="opinion__add button" href="javascript:;"><span>Оставить отзыв</span></a>
-							</div>
-						</div>
-						{% ENDIF not opinion_list_empty %}
+
 					</div>
 					<!-- Форма добавления отзыва -->
 					<div class="opinion__addForm">
@@ -670,7 +687,7 @@
 							{% ENDIF %}
 							<!-- Кнопка отправки формы -->
 							<div class="opinion__block opinion__buttons">
-								<button class="button" type="button" title="Добавить отзыв о &laquo;{GOODS_NAME}&raquo;">Оставить отзыв</button>
+								<button class="button button4" type="submit" title="Добавить отзыв о &laquo;{GOODS_NAME}&raquo;">Оставить отзыв</button>
 								<div class="form__pp">
 									<span>Нажимая на кнопку &laquo;Отправить&raquo;, Вы соглашаетесь</span>
 									<a data-fancybox data-src="#fancybox__pp" href="javascript:;">с правилами обработки данных</a>

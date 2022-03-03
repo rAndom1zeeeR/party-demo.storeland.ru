@@ -45,7 +45,7 @@
 								<div class="form__fields form__pass" {% IFNOT ORDER_FORM_CONTACT_WANT_REGISTER %}style="display: none;"{% ENDIF %}>
 									<label for="sites_client_pass" class="required"><span>Ваш пароль</span><em>*</em></label>
 									<input id="sites_client_pass" type="password" name="form[contact][pass]" value="{ORDER_FORM_CONTACT_PASS}" maxlength="50" minlength="6" class="form__input {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}required{% ENDIF %}" onkeyup="checkCapsWarning(event)" onfocus="checkCapsWarning(event)" onblur="removeCapsWarning()" placeholder="Придумайте пароль *"/>
-									<a class="showPassBlock" href="#" rel="Скрыть пароль">Показать пароль</a>
+									<a class="showPassBlock" href="#" rel="Скрыть пароль"></a>
 									<div id="capslock">
 										<div><i class="icon-warning"></i></div>
 										<div><strong>Caps Lock включен.</strong></div>
@@ -265,19 +265,19 @@
 								</div>
 								<div class="form__field deliveryConvenientDate selectBox {% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}required{% ENDIF %}">
 									<label><span>Время доставки</span>{% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}<em>*</em>{% ENDIF %}</label>
-									<select class="form__input select" name="form[delivery][convenient_time_from]">
+									<input type="hidden" name="form[delivery][convenient_time_from]" value="0">
+									<input type="hidden" name="form[delivery][convenient_time_to]" value="0">
+									
+									<div class="quickform-select-box">
+										<select class="quickform-select-convenient"{% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}required{% ENDIF %} id="selectTime" disabled>
+											<option value="">Сначала выберите дату</option>
+										</select>
+									</div>
+									<!-- <select class="form__input select" name="form[delivery][convenient_time_from]">
 										{% FOR convenient_time_from_list %}
 										<option value="{convenient_time_from_list.HOUR_INT}" {% IF convenient_time_from_list.SELECTED %}selected="selected"{% ENDIF %}>{convenient_time_from_list.HOUR}</option>
 										{% ENDFOR %}
-									</select>
-								</div>
-								<div class="form__field deliveryConvenientDate selectBox {% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}required{% ENDIF %}" style="display: none;">
-									<label><span>Время доставки</span>{% IF SETTINGS_ORDER_FIELDS_CONVENIENT_TIME=1 %}<em>*</em>{% ENDIF %}</label>
-									<select class="form__input select" name="form[delivery][convenient_time_to]">
-										{% FOR convenient_time_to_list %}
-										<option value="{convenient_time_to_list.HOUR_INT}" {% IF convenient_time_to_list.SELECTED %}selected="selected"{% ENDIF %}>{convenient_time_to_list.HOUR}</option>
-										{% ENDFOR %}
-									</select>
+									</select> -->
 								</div>
 								{% ENDIF %}
 								<!-- Скрытый комент если запрашивается -->
@@ -331,7 +331,7 @@
 							<input type="hidden" name="oldPromoDiscount" value="0">
 							<input type="hidden" name="orderSumDefaul" value="{CART_SUM_NOW}">
 							<input class="coupon__code form__input" type="text" name="form[coupon_code]" value="{ORDER_FORM_COUPON_CODE}" placeholder="Введите код"/>
-							<a href="javascript:void(0)" class="coupon__button button" title="Применить">
+							<a href="javascript:void(0)" class="coupon__button button button2" title="Применить">
 								<i class="icon-check"></i>
 								<span>Применить</span>
 							</a>
@@ -343,7 +343,7 @@
 				<!-- Корзина: Оформление -->
 				<div class="total__buttons">
 			    <input type="hidden" name="hash" value="{HASH}" />
-					<a id="makeOrder" class="button disabled" title="Перейти к быстрому оформлению заказа"><span>Оформить </span><span>заказ</span></a>
+					<button class="button disabled" type="submit" title="Перейти к быстрому оформлению заказа"><span>Оформить </span><span>заказ</span></button>
 					<div class="total__pp">
 						<span>Нажимая на кнопку &laquo;Оформить заказ&raquo;, Вы соглашаетесь</span>
 						<a data-fancybox data-src="#fancybox__pp" href="javascript:;">с правилами обработки данных</a>
