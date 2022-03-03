@@ -2014,11 +2014,11 @@
 												<span>Уведомить</span>
 											</a>
 											{% ELSE %}
-											<a class="{% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
+											<a class="{% IFNOT MOD_LNAME = goods %}{% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}{% ENDIF %}"
 												title="Добавить в корзину &laquo;{recently_viewed_goods.NAME}&raquo;"
 												data-tooltipOFF="В корзину"
 												rel="nofollow"
-												href="{% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}{recently_viewed_goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={recently_viewed_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={recently_viewed_goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
+												href="{% IFNOT MOD_LNAME = goods && recently_viewed_goods.COUNT_MODIFICATION > 1 %}{recently_viewed_goods.URL_MIN_PRICE_NOW}{% ELSE %}{CART_ADD_GOODS_MODIFICATION_URL | url_amp}?hash={HASH | url_amp}&amp;form%5Bgoods_from%5D={recently_viewed_goods.GOODS_FROM}&amp;form%5Bgoods_mod_id%5D={recently_viewed_goods.MIN_PRICE_NOW_ID}{% ENDIF %}"
 											>
 												<i class="icon-cart"></i>
 												<span>Купить</span>
@@ -2574,7 +2574,7 @@
 				<!-- Меню -->
 				<div class="sidenav__item menu flex-center" data-open="menu">
 					<a class="menu__icon flex-center" href="javascript:;" title="Меню">
-						<i class="icon-catalog_2"></i>
+						<i class="icon-menu"></i>
 					</a>
 				</div>
 

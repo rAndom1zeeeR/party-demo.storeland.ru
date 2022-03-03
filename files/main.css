@@ -1588,7 +1588,8 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 	.filter__list-more .filter__name {padding-right: 2rem;}
 	.filter__list-more .filter__name:after {content: '\e91a';font-size: 10px;top: .25rem;}
 	.filter__list-more.active .filter__name:after {content: '\e917';}
-	.filter__list-more.active, .filter__list-more:hover {background-color: #9579d1;}
+	.filter__list-more.active {background-color: #9579d1;}
+	.filter__list-more:hover {background-color: #FFA5D8;}
 	.filters__content {display: block !important;}
 }
 @media (max-width: 1199px) {
@@ -1812,7 +1813,7 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 	.opinion__round {padding-left: 1rem;}
 }
 
-.related .quickview {display: none;}
+.page-goods .quickview {display: none;}
 .products__container + .DescriptionBlock {text-align: center;}
 
 /**************************************/
