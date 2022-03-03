@@ -553,9 +553,13 @@ function openMenu() {
   // Открытие Каталог
   $('.catalog__icon').on('click', function (event){
     event.preventDefault();
-		$(this).toggleClass('opened');
-		$(this).next().toggleClass('opened');
-		$('#overlay').addClass('opened transparent')
+		if(getClientWidth() > 639){
+			$(this).toggleClass('opened');
+			$(this).next().toggleClass('opened');
+			$('#overlay').addClass('opened transparent')			
+		}else{
+			$('.menu__icon').click();
+		}
   });
 
 	// Открытие Меню
@@ -3630,9 +3634,9 @@ function hoverCatalog(){
 // Функция Открытия каталога
 function openCatalog(){
 	var subs = 3;
-	var length = $('.catalog__content .catalog__items .catalog__item').length;
+	var length = $('#menu .catalog__content .catalog__items .catalog__item').length;
 	// Сортируем подкатегории по уровням
-	$('.catalog__content .catalog__items .catalog__item').each(function(){
+	$('#menu .catalog__content .catalog__items .catalog__item').each(function(){
 		var level = $(this).data('level')
 		for (var i = 0; i < subs; i++){
 			if (level == i) {
@@ -3673,11 +3677,11 @@ function openCatalog(){
 	});
 
 	// Проверяем категории
-	$('.catalog__item[data-level="1"]').each(function (event){
+	$('#menu .catalog__item[data-level="1"]').each(function (event){
 		// Добавляем порядок главных категорий
 		var count = event + 1;
 		var t = $(this);
-		var tLen = $('.catalog__item[data-level="1"]').length;
+		var tLen = $('#menu .catalog__item[data-level="1"]').length;
 		var itemLen = t.find('.catalog__item[data-level="2"]').length;
 		t.css('order', count)
 		// Если в категории нет подкатегорий, переносим ее в конец

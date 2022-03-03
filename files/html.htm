@@ -2574,7 +2574,7 @@
 				<!-- Меню -->
 				<div class="sidenav__item menu flex-center" data-open="menu">
 					<a class="menu__icon flex-center" href="javascript:;" title="Меню">
-						<i class="icon-list"></i>
+						<i class="icon-catalog_2"></i>
 					</a>
 				</div>
 
@@ -2599,24 +2599,47 @@
 			<!-- Выпадающее меню -->
 			<div class="menu__dropdown">
 				<div class="menu__label">
-					<span>Меню</span>
+					<span>Каталог</span>
 					<div class="menu__label-close" onclick="closeAll()">
 						<i class="icon-close"></i>
 					</div>
 				</div>
-				<ul class="unstyled">
-					{% FOR menu %}
-						{% FOR header %}
-							{% FOR links %}
-							<li {% IF menu.header.links.SELECTED %}class="active"{% ENDIF %}>
-								<a class="mainnav__list-link {% IF menu.header.links.SELECTED %}active{%ENDIF%} {% IF menu.header.links.NAME = Каталог %}mainnav__catalog{%ENDIF%}" href="{menu.header.links.URL}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url">
-									<span itemprop="name">{menu.header.links.NAME}</span>
+				<div class="catalog__content">
+					<div class="catalog__items">
+						{% FOR catalog_full %}
+						{% IF catalog_full.FIRST %}{% IFNOT catalog_full.LEVEL = 0 %}
+						<div data-level="{catalog_full.LEVEL}" class="sub">
+						{% ENDIF %}{% ENDIF %}
+							<div {% IF catalog_full.HIDE %}style="display:none;" {% ENDIF %} data-level="{catalog_full.LEVEL}" class="catalog__item {% IF catalog_full.ISSET_VISIBLE_SUB %}parent{% ENDIF %} {% IF catalog_full.CURRENT_PARENT %}opened{% ENDIF %}">
+								<a href="{catalog_full.URL}" data-level="{catalog_full.LEVEL}" class="catalog__link flex {% IF catalog_full.CURRENT %}opened{% ENDIF %}">
+									<span class="catalog__name">{catalog_full.NAME}</span>
+									{% IF catalog_full.ISSET_VISIBLE_SUB %}<span class="open {% IF catalog_full.CURRENT_PARENT %}opened{% ENDIF %}"></span>{% ENDIF %}
 								</a>
-							</li>
+							{% IF catalog_full.ISSET_SUB=0 %}
+							</div>
+							{% ENDIF %}
+						{% IF catalog_full.LAST %}{% FOR out %}
+						</div>
+					{% IFNOT catalog_full.out.LAST %}
+					</div>
+					{% ENDIF %}{% ENDFOR out %}{% ENDIF %}
+					{% ENDFOR %}
+				</div>
+				<div class="menu__content">
+					<ul class="unstyled flex">
+						{% FOR menu %}
+							{% FOR header %}
+								{% FOR links %}
+								<li {% IF menu.header.links.SELECTED %}class="active"{% ENDIF %}>
+									<a class="{% IF menu.header.links.SELECTED %}active{%ENDIF%} {% IF menu.header.links.NAME = Каталог %}mainnav__catalog{%ENDIF%}" href="{menu.header.links.URL}" title="{% IF menu.header.links.TITLE %}{menu.header.links.TITLE}{% ELSE%}{menu.header.links.NAME}{% ENDIF %}" itemprop="url">
+										<span itemprop="name">{menu.header.links.NAME}</span>
+									</a>
+								</li>
+								{% ENDFOR %}
 							{% ENDFOR %}
 						{% ENDFOR %}
-					{% ENDFOR %}
-				</ul>
+					</ul>
+				</div>
 			</div>
 
 			<!-- Обратный звонок в модальном окне -->
