@@ -159,7 +159,7 @@ to {opacity: 0;-webkit-transform: translate3d(0, 100%, 0);transform: translate3d
 
 
 /* Иконки форматов файлов */
-.file_extension_icon {width: 1rem;height: 1rem;display: block;float: left;margin-right: 0.625rem;background: #ffffff url('{ASSEST_IMAGES_PATH}icons-files-extensions.gif?design=HOLIDAY') no-repeat left top;}
+.file_extension_icon {width: 1rem;height: 1rem;display: block;float: left;margin-right: 0.625rem;background: #ffffff url('{ASSEST_IMAGES_PATH}icons-files-extensions.gif?design=PARTY') no-repeat left top;}
 .file_extension_icon.torrent {background-position: -1rem 0}
 .file_extension_icon.xls {background-position: -2rem 0}
 .file_extension_icon.ie7 {background-position: -48px 0}

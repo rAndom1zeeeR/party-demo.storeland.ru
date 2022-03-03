@@ -52,7 +52,7 @@
 					{% FOR cart_items %}
 					<div class="cart__item flex" data-id="{cart_items.GOODS_MOD_ID}">
 						<a class="cart__image flex-center" href="{cart_items.GOODS_URL}">
-							<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=HOLIDAY{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}">
+							<img src="{% IF cart_items.GOODS_IMAGE_EMPTY %}{ASSETS_IMAGES_PATH}no-photo.png?design=PARTY{% ELSE %}{cart_items.GOODS_IMAGE_ICON}{% ENDIF %}">
 						</a>
 						<div class="cart__content flex">
 							<div class="cart__info-top flex {% IF cart_items.GOODS_MOD_ART_NUMBER %}has-art{% ENDIF %}">
@@ -122,7 +122,7 @@
 		</div>
 		
 		<!-- Корзина: Итоговый блок -->
-		<div class="cartTotal lozad" data-background-image="{ASSETS_IMAGES_PATH}bg.jpg?design=HOLIDAY">
+		<div class="cartTotal lozad" data-background-image="{ASSETS_IMAGES_PATH}bg.jpg?design=PARTY">
 			<div class="total__inner">
 				<div class="cartTotal__top">
 					<h3 class="cartTotal__title">Ваш заказ</h3>
