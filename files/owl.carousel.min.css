@@ -13,6 +13,7 @@
 .owl-next:before {content: '\e903';}
 .owl-nav.disable, .owl-nav [class^="owl-"].disable:hover {cursor: default;color: #dae6ec;}
 .owl-nav.disabled {display: none;}
+.owl-prev.disabled, .owl-next.disabled {cursor: default;}
 
 
 /*** Навигация точками ***/

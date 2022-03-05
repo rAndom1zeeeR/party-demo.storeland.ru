@@ -597,8 +597,6 @@ function openMenu() {
 
 // Дополнительные пункты меню в шапке Перенос пунктов меню
 function mainnav(id,rows,media){
-	console.log('getClientWidth()', getClientWidth())
-	console.log('media', media)
 	if(getClientWidth() > media){
 		var mainnav = $(id);
 		var overMenuExist = mainnav.find('.overflowMenu li').length;
@@ -770,9 +768,6 @@ function counterDate() {
 			var endTime = new Date(end).getTime();//150
 			var nowTime = new Date().getTime();//40
 			var distance = (endTime - nowTime);//150-40=110  110/150*100
-			console.log('nowTime', nowTime)
-			console.log('countDownDate', endTime)
-			console.log('distance ms', distance)
 		})
 	}
 }
@@ -1220,7 +1215,6 @@ function quickViewMod() {
 		});
 		// Действие при нажатии на кнопку быстрого просмотра.
 		$('.add-mod').on('click', function() {
-			console.log('add-mod')
 			var href = $(this).attr('href');
 			href += (false !== href.indexOf('?') ? '&' : '?') + 'only_body=1';
 			quickViewShowMod(href);
@@ -1332,7 +1326,6 @@ function quickView() {
 		});
 		// Действие при нажатии на кнопку быстрого просмотра.
 		$('.quickview').on('click', function() {
-			console.log('quickview')
 			var href = $(this).attr('href');
 			href += (false !== href.indexOf('?') ? '&' : '?') + 'only_body=1';
 			quickViewShow(href);
@@ -1485,8 +1478,6 @@ function addCart() {
 				//$.fancybox.open(data);
 				// Анализ системного сообщения в коризне
 				var str = $(data).html();
-				console.log('$(data)', $(data))
-				console.log('str', str)
 				// Проверяем текст сообщения на наличие ошибки
 				if (str.indexOf("Не удалось") != -1) {
 					// Сообщение с ошибкой
@@ -1546,7 +1537,6 @@ function addCart() {
 					t.addClass("inCart");
 					$('.product__item[data-id="' + id + '"]').each(function(){
 						$(this).addClass("inCart");
-						console.log('inCart added class', $(this))
 					});
 					// Закрытие модального окна
 					setTimeout(function () {
@@ -2386,14 +2376,6 @@ function coupons() {
 					$('.total__discount').hide();
 					$('.total__coupons').show();
 				}
-				console.log('totalBlock', totalBlock)
-				console.log('totalSum', totalSum)
-				console.log('deliveryPrice', deliveryPrice)
-				console.log('newTotalSum', newTotalSum)
-				console.log('discountName', discountName)
-				console.log('discountPrice', discountPrice)
-				console.log('discountPercent', discountPercent)
-				console.log('', )
 				if (newTotalSum > cartSumTotal) {
 					couponInput.parent().addClass('error');
 					couponInput.parent().removeClass('active');
@@ -2969,7 +2951,6 @@ function pageGoods() {
 
 // Инициализация табов на странице товара
 function initTabs() {
-	console.log('init')
 	// Блок в котором находятся табы
 	var tabs = $('.productView__tabs');
 	if(!tabs.length) {
@@ -2988,7 +2969,6 @@ function initTabs() {
 
 // Переключение табов
 function tabSwitch(nb) {
-	console.log('tabSwitch id - ', nb)
 	var tabs = $('.productView__tabs');
 	var tab = tabs.find('[data-tab="'+ nb +'"]');
 	var content = tabs.find('[data-tab-content="'+ nb +'"]');
@@ -3144,9 +3124,6 @@ function newModification() {
 		$(this).parent().parent().find('select').trigger('change');
 	});
 	$('.goodsModificationsValue.disabled').off('click');
-	$('.goodsModificationsProperty').off('click').on('click', function(){
-		console.log('select click')
-	})
 }
 
 // Модификации select
@@ -3482,7 +3459,6 @@ function cartDelete(s){
 
 // Функция быстрого оформления заказа в корзине
 function startOrder(){
-	console.log('startOrder')
 	var globalOrder = $('#globalOrder');
 	var cartTable = $('.cartTable');
 	var closeOrder = $('#closeOrder');
@@ -3523,7 +3499,6 @@ function startOrder(){
 			$('.second-stage .cartNav__icon').addClass('active');
 			$('.second-stage').next().addClass('active');
 			$('#closeOrder, .closeOrder').on('click', function() {
-				console.log('closeOrder')
 				cartTable.removeClass('disable');
 				globalOrder.hide();
 				closeOrder.removeClass('show');
@@ -3587,7 +3562,6 @@ function validCart(){
 	//
 	$('#quickDeliveryComment').blur(function(){
 		var val = $(this).val();
-		console.log('val', val)
 		$('.quickDeliveryComment').val(val)
 	})
 }
