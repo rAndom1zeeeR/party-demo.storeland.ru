@@ -1299,10 +1299,7 @@ function quickView() {
 		// При наведении на блок товара загружаем контент этого товара, который будет использоваться для быстрого просмотра, чтобы загрузка происходила быстрее.
 		$('.product__item').mouseover(function() {
 			// Если в блоке нет ссылки на быстрый просмотр, то не подгружаем никаких данных
-			var link = $(this).find('.add-mod');
-			if(link.length < 1) {
-				var link = $(this).find('.quickview');
-			}
+			var link = $(this).find('.quickview');
 			// Если массив с подгруженными заранее карточками товара для быстрого просмотра ещё не создан - создадим его.
 			if(typeof(document.quickviewPreload) == 'undefined') {
 				document.quickviewPreload = [];
@@ -1336,9 +1333,6 @@ function quickView() {
 			preload();
 			$('.productViewBlock').removeClass('productViewMod');
 			$('.productViewBlock').addClass('productViewQuick');
-			// setTimeout(function () {
-			// 	$('.productViewBlock').addClass('productViewQuick');
-			// },1000)
 			return false;
 		});
 	});

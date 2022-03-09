@@ -1908,7 +1908,7 @@
 					</div>
 					<div class="products__grid owl-carousel">
 						{% FOR recently_viewed_goods %}
-						<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && recently_viewed_goods.MAX_REST_VALUE=0 %}empty{% ENDIF %} {% IF recently_viewed_goods.COUNT_MODIFICATION > 1 %}has-mod{% ENDIF %} {% IF recently_viewed_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{recently_viewed_goods.ID}" itemscope itemtype="https://schema.org/Product">
+						<div class="product__item {% IF SETTINGS_GOODS_DONT_PUT_TO_CART_MORE_THAN_AVAILABLE && recently_viewed_goods.MAX_REST_VALUE=0 %}empty{% ENDIF %} {% IF recently_viewed_goods.NB_GOODS_IN_CART %}inCart{% ENDIF %}" data-id="{recently_viewed_goods.ID}" itemscope itemtype="https://schema.org/Product">
 							<form action="{CART_ADD_GOODS_MODIFICATION_URL | url_amp}" method="post" class="product__form-{recently_viewed_goods.MIN_PRICE_NOW_ID} goodsListForm">
 								<input type="hidden" name="hash" value="{HASH}" />
 								<input type="hidden" name="form[goods_from]" value="{recently_viewed_goods.GOODS_FROM}" />
