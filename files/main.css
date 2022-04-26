@@ -1931,18 +1931,17 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 .total__item + .total__item {margin-top: .75rem;}
 .total__label {margin-right: 1rem;}
 .total__price {font-weight: bold;}
-.total__cart {margin: 1.5rem 0;text-align: center;}
+.total__cart {margin: 1.5rem 0 .5rem;text-align: center;}
 .total__cart .total__label {display: block;margin: 0 0 .5rem 0;font-size: 1rem;}
 .total__cart .total__price {font-size: 30px;}
 .total__economy {color: #DE4F8B;}
 .total__buttons {text-align: center;}
-.total__buttons .button {padding: 0;width: 100%;}
+.total__buttons .button {padding: 0;width: 100%;margin-top: 1rem;}
 .total__pp {font-size: .75rem;color: #CBC3DB;margin-top: 1rem;}
 .total__pp a {color: #CBC3DB;}
 .total__pp a:hover {color: #FFA5D8;}
 #makeOrder {display: none;}
 .start-order #makeOrder {display: inline-block;}
-#closeOrder {display: none !important;}
 /*** Корзина. Верхняя часть ***/
 .cartTable__top {justify-content: space-between;}
 .cartTable__top a {color: #CBC3DB;font-weight: bold;}

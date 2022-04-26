@@ -2282,14 +2282,22 @@ function orderScriptsSelect() {
 	});
 
 	// Выбор зоны доставки
+	// if ($('.delivery__zoneSelect:visible').length){
+	// 	console.log($('.delivery__zoneSelect:visible').length)
+	// 	$('.delivery__zoneSelect select').each(function(){
+	// 		var optValue = $(this).find('option:selected').attr('value');
+	// 		$('.delivery__zones input[value="'+optValue+'"]').click();
+	// 		var WithZone = $('.zone__radio:checked').attr('price');
+	// 		$('.changeprice').text(addSpaces(WithZone));
+	// 		$('.cartSumDelivery .num').text(addSpaces(startprice));
+	// 	});		
+	// }
+
+	// Выбор зоны доставки
 	$('.delivery__zoneSelect select').each(function(){
-		var optValue = $(this).find('option:selected').attr('value');
-		$('.delivery__zones input[value="'+optValue+'"]').click();
-		var WithZone = $('.zone__radio:checked').attr('price');
-		$('.changeprice').text(addSpaces(WithZone));
 		$('.cartSumDelivery .num').text(addSpaces(startprice));
 	});
-
+	
 	// Выбор зоны доставки
 	$('.delivery__zoneSelect select').on('change', function(){
 		var optValue = $(this).find('option:selected').attr('value');

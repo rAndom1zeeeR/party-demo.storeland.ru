@@ -1192,7 +1192,7 @@
 											{% ENDIF %}
 										</div>
 
-										<a style="display: none;" class="quickview" href="{index_page_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_goods.NAME}">
+										<a style="display: none;" class="quickview" href="{index_page_sale_goods.URL_MIN_PRICE_NOW | url_amp}" title="{index_page_sale_goods.NAME}">
 											<i class="icon-loupe"></i>
 										</a>
 
@@ -2168,9 +2168,9 @@
 									</div>
 
 									<!-- Быстрый просмотр -->
-									<!-- <a class="quickview" href="{cart_related_goods.URL_MIN_PRICE_NOW | url_amp}" title="{cart_related_goods.NAME}">
+									<a class="quickview" href="{cart_related_goods.URL_MIN_PRICE_NOW}" title="{cart_related_goods.NAME}">
 										<i class="icon-loupe"></i>
-									</a> -->
+									</a>
 
 									<!-- Добавление товара в избранное и сравнение и в корзину -->
 									<div class="product__links flex {% IF cart_related_goods.IS_HAS_IN_COMPARE_LIST || cart_related_goods.IS_HAS_IN_FAVORITES_LIST %}added{% ENDIF %}">
@@ -2240,7 +2240,7 @@
 												<span>Уведомить</span>
 											</a>
 											{% ELSE %}
-											<a class="{% IF cart_related_goods.COUNT_MODIFICATION > 1 %}add-mod2{% ELSE %}add-cart3{% ENDIF %}"
+											<a class="{% IF cart_related_goods.COUNT_MODIFICATION > 1 %}add-mod{% ELSE %}add-cart{% ENDIF %}"
 												title="Добавить в корзину &laquo;{cart_related_goods.NAME}&raquo;"
 												data-tooltipOFF="В корзину"
 												rel="nofollow"
