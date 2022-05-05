@@ -39,7 +39,7 @@
 								<!-- Если в тарифном плане подключен раздел личного кабинета -->
 								{% IFNOT CLIENT_IS_LOGIN %}
 								<div class="form__fields form__registration flex">
-									<input type="checkbox" class="square" id="form__registration" name="form[contact][want_register]" value="1" {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}checked="checked"{% ENDIF %}>
+									<input class="square" type="checkbox" id="form__registration" name="form[contact][want_register]" value="1" {% IF ORDER_FORM_CONTACT_WANT_REGISTER %}checked="checked"{% ENDIF %}>
 									<label for="form__registration"><span>Я хочу зарегистрироваться</span></label>
 								</div>
 								<div class="form__fields form__pass" {% IFNOT ORDER_FORM_CONTACT_WANT_REGISTER %}style="display: none;"{% ENDIF %}>

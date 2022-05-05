@@ -1590,7 +1590,7 @@ footer {overflow: hidden;position: relative;margin-top: 2rem;}
 .filter__items {display: grid;gap: 1rem;grid-template-columns: repeat(4, 1fr);}
 .filter__list-more {display: none;}
 @media (min-width: 992px){
-	.filter__list:nth-child(n+5) {display: none;}
+	/* .filter__list:nth-child(n+5) {display: none;} */
 	.filter__list.show {display: block;}
 	.filter__list-more {padding: 20px 12px;display: block !important;}
 	.filter__list-more .filter__name {padding-right: 2rem;}

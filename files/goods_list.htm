@@ -28,7 +28,7 @@
 			<i class="icon-plus"></i>
 		</div>
 		<div class="filters__content {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
-			<div class="filters__title flex justify-between {% FOR filter_attr_list %}{% FOR values %}{% IF filter_attr_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %} {% FOR filter_prop_list %}{% FOR values %}{% IF filter_prop_list.values.CHECKED %}has-filters {% ENDIF %}{% ENDFOR %}{% ENDFOR %}">
+			<div class="filters__title flex justify-between">
 				<span class="filters__title-span">Подберите товар:</span>
 				<a class="filters__title-clear" href="{PAGE_CANONICAL}" title="Очистить фильры"><span>Сбросить фильтры</span></a>
 			</div>
@@ -100,7 +100,7 @@
 							<div class="filter__items">
 								{% FOR values %}
 								<div class="filter__item flex {% IF filter_attr_list.values.CHECKED %}checked{% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled{% ENDIF %}">
-									<input type="checkbox" name="form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]" value="1" id="filterAttrVal{filter_attr_list.values.ID}" class="square" {% IF filter_attr_list.values.CHECKED %}checked="checked" {% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled" {% ENDIF %} />
+									<input class="square" type="checkbox" name="form[filter][attr][{filter_attr_list.ID}][{filter_attr_list.values.ID}]" value="1" id="filterAttrVal{filter_attr_list.values.ID}" {% IF filter_attr_list.values.CHECKED %}checked="checked" {% ELSEIF filter_attr_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled" {% ENDIF %} />
 									<label for="filterAttrVal{filter_attr_list.values.ID}" data-name="{filter_attr_list.values.VALUE}">
 										<span>{filter_attr_list.values.VALUE}</span>
 										<!-- <span>({filter_attr_list.values.NB_GOODS_FILTERED})</span> -->
@@ -131,10 +131,10 @@
 							<div class="filter__items">
 								{% FOR values %}
 								<div class="filter__item flex {% IF filter_prop_list.values.CHECKED %}checked{% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled{% ENDIF %}">
-									<input type="checkbox" name="form[filter][attr][{filter_prop_list.ID}][{filter_prop_list.values.ID}]" value="1" id="filterAttrVal{filter_prop_list.values.ID}" class="square" {% IF filter_prop_list.values.CHECKED %}checked="checked" {% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled" {% ENDIF %} />
-									<label for="filterAttrVal{filter_prop_list.values.ID}" data-name="{filter_prop_list.values.VALUE}">
+									<input class="square" type="checkbox" name="form[filter][attr][{filter_prop_list.ID}][{filter_prop_list.values.ID}]" value="1" id="filterPropVal{filter_prop_list.values.ID}" {% IF filter_prop_list.values.CHECKED %}checked="checked" {% ELSEIF filter_prop_list.values.NB_GOODS_FILTERED=0 %}disabled="disabled" {% ENDIF %} />
+									<label for="filterPropVal{filter_prop_list.values.ID}" data-name="{filter_prop_list.values.VALUE}">
 										<span>{filter_prop_list.values.VALUE}</span>
-										<!-- <span>({filter_prop_list.values.NB_GOODS_FILTERED})</span> -->
+										<span>({filter_prop_list.values.NB_GOODS_FILTERED})</span>
 									</label>
 								</div>
 								{% ENDFOR %}
