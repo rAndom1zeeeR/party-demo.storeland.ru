@@ -55,7 +55,7 @@
 					<div class="productView__available productView__icon {% IF GOODS_MOD_REST_VALUE = 0 %}empty{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}alot{% ELSE %}few{% ENDIF %}">
 						<i class="icon-{% IF GOODS_MOD_REST_VALUE = 0 %}close{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}alot{% ELSE %}few{% ENDIF %}"></i>
 						<span class="goodsModRestValue" data-value="{GOODS_MOD_REST_VALUE}">
-							{% IF GOODS_MOD_REST_VALUE = 0 %}нет в наличии{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}В наличии Много{% ELSE %}В наличии Мало{% ENDIF %}
+							{% IF GOODS_MOD_REST_VALUE = 0 %}нет в наличии{% ELSEIF GOODS_MOD_REST_VALUE > 10 %}В наличии много{% ELSE %}В наличии мало{% ENDIF %}
 						</span>
 					</div>
 					<!-- Среднее значение по результатам всех отзывов об этом товаре -->
@@ -893,7 +893,7 @@
 					<div class="product__available">
 						<span class="goodsModRestValue" data-value="{related_goods.MAX_REST_VALUE}">
 							{% IF related_goods.MAX_REST_VALUE > 0 %}
-								В наличии {% IF related_goods.MAX_REST_VALUE > 10 %}Много{% ELSE %}Мало{% ENDIF %}
+								В наличии {% IF related_goods.MAX_REST_VALUE > 10 %}много{% ELSE %}мало{% ENDIF %}
 							{% ELSE %}
 								нет в наличии
 							{% ENDIF %}
@@ -1112,7 +1112,7 @@
 					<div class="product__available">
 						<span class="goodsModRestValue" data-value="{related_views_goods.MAX_REST_VALUE}">
 							{% IF related_views_goods.MAX_REST_VALUE > 0 %}
-								В наличии {% IF related_views_goods.MAX_REST_VALUE > 10 %}Много{% ELSE %}Мало{% ENDIF %}
+								В наличии {% IF related_views_goods.MAX_REST_VALUE > 10 %}много{% ELSE %}мало{% ENDIF %}
 							{% ELSE %}
 								нет в наличии
 							{% ENDIF %}

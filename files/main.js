@@ -1414,7 +1414,7 @@ function priceDiff() {
 	});
 }
 
-// Много и Мало вместо точного количества
+// много и мало вместо точного количества
 function goodsModRest() {
 	$('.goodsModRestValue').each(function(){
 		var value = $(this).data('value');
@@ -3241,9 +3241,9 @@ function goodsModification() {
 					goodsAvailableQty.find('.quantity').attr('max', modificationRestValue);
 					goodsAvailableQty.find('.quantity').val("1");
 				}
-				// Много Мало
+				// много мало
 				if(modificationRestValue>10) {
-					goodsModRestValue.html('В наличии Много');
+					goodsModRestValue.html('В наличии много');
 					goodsAvailable.find('i').attr('class', 'icon-alot');
 					goodsAvailable.attr('class', 'productView__available productView__icon alot')
 				} else if(modificationRestValue == 0) {
@@ -3251,7 +3251,7 @@ function goodsModification() {
 					goodsAvailable.find('i').attr('class', 'icon-close');
 					goodsAvailable.attr('class', 'productView__available productView__icon empty')
 				} else {
-					goodsModRestValue.html('В наличии Мало');
+					goodsModRestValue.html('В наличии мало');
 					goodsAvailable.find('i').attr('class', 'icon-few');
 					goodsAvailable.attr('class', 'productView__available productView__icon few')
 				}
