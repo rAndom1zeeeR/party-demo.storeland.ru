@@ -722,53 +722,50 @@ function notyStart(text, type) {
 ///////////////////////////////////////
 // Отсчет даты до окончания акции
 function counterDate() {
-	// Устанавливаем дату обратного отсчета ММ-ДД-ГГ
-	var end = $('.counter').attr('end');
-	var countDownDate = new Date(end).getTime();
-	// Обновление счетчика каждую секунду
-	var x = setInterval(function() {
-		var now = new Date().getTime();
-		var distance = countDownDate - now;
-		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-		var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-		var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-		// Вывод
-		$('.counter .days span').text(days);
-		$('.counter .hours span').text(hours);
-		$('.counter .minutes span').text(minutes);
-		$('.counter .seconds span').text(seconds);
-		// Счетчик завершен
-		if (distance < 0) {
-			clearInterval(x);
-			$('.counter').hide();
-		}
-		// Запуск Функции анимации
-		counterAnimate('.product__counter > div')
-	}, 1000);
-
-	// Добавляем контент анимации
-	function counterAnimate(obj){
-		$(obj).each(function(){
-			var end = $('.counter').attr('end');
-			var countDownDate = new Date(end).getTime();
+	var id = $('.counter');
+	// Если не найдет счетчик прекращаем работу функции
+	if(!id.length){
+		return false;
+	}
+	// Перебираем каждый счетчик
+	id.each(function(){
+		var t = $(this);
+		// Устанавливаем дату обратного отсчета ММ-ДД-ГГ
+		var end = t.attr('end');
+		var countDownDate = new Date(end).getTime();
+		// Обновление счетчика каждую секунду
+		var x = setInterval(function() {
 			var now = new Date().getTime();
 			var distance = countDownDate - now;
 			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-			var current = parseFloat(days/30 * 100)
-			var cur = parseInt(100 - current);
-			$('.counter__animate-line-progress').css({width: cur + '%'})
-		})
-	}
-	
-	// Функция анимации счетчика
-	function counterAnimate22(obj){		
-		$(obj).each(function(){
-			var end = $('.counter').attr('end');
-			var endTime = new Date(end).getTime();//150
-			var nowTime = new Date().getTime();//40
-			var distance = (endTime - nowTime);//150-40=110  110/150*100
-		})
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			// Вывод
+			t.find('.days span').text(days);
+			t.find('.hours span').text(hours);
+			t.find('.minutes span').text(minutes);
+			t.find('.seconds span').text(seconds);
+			// Счетчик завершен
+			if (distance < 0) {
+				clearInterval(x);
+				t.hide();
+			}
+			// Запуск Функции анимации
+			counterAnimate(t)
+		}, 1000);
+	});
+
+	// Добавляем контент анимации ~30 дней
+	function counterAnimate(obj){
+		var end = $(obj).attr('end');
+		var countDownDate = new Date(end).getTime();
+		var now = new Date().getTime();
+		var distance = countDownDate - now;
+		var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		var current = parseFloat(days/30 * 100)
+		var cur = parseInt(100 - current);
+		obj.next().find('.counter__animate-line-progress').css({width: cur + '%'})
 	}
 }
 
@@ -1298,6 +1295,9 @@ function quickView() {
 		// Быстрый просмотр товара
 		// При наведении на блок товара загружаем контент этого товара, который будет использоваться для быстрого просмотра, чтобы загрузка происходила быстрее.
 		$('.product__item').mouseover(function() {
+			if($(this).hasClass('promotion__item')){
+		    return false;
+		  }
 			// Если в блоке нет ссылки на быстрый просмотр, то не подгружаем никаких данных
 			var link = $(this).find('.quickview');
 			// Если массив с подгруженными заранее карточками товара для быстрого просмотра ещё не создан - создадим его.
