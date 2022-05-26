@@ -305,7 +305,7 @@ h6 {font-size: 0.875rem;}
 .fancybox-bg {background: rgba(59, 40, 101, 0.7);}
 .fancybox-slide--html .fancybox-close-small {color: #CBC3DB;line-height: 1;}
 .fancybox-close-small:hover {color: #FFA5D8;background: transparent;}
-.fancybox-content {max-width: 52rem;padding: 2rem;background-color: #F8F1F5;border-radius: 1rem;transition: all 0.3s ease;}
+.fancybox-content {max-width: 52rem;padding: 2rem;background-color: #F8F1F5;border-radius: 1rem;}
 .fancybox-content.modal {padding-top: 4rem;max-width: 28rem;transform: translateY(200%);overflow: visible;}
 .fancybox-slide--complete .fancybox-content.modal {transform: translateY(0);}
 .fancybox-content .block__title {margin-bottom: 1.5rem;}
