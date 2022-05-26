@@ -18,7 +18,7 @@ let paths = {
 	},
 
 	styles: {
-		src:  (preprocessorOn) ? baseDir + '/' + preprocessor + '/main.scss' : baseDir + '/*.css',
+		src:  (preprocessorOn) ? baseDir + '/' + preprocessor + '/main.scss' : baseDir + '/main.css',
 		dest: baseDir + '/',
 	},
 
@@ -26,8 +26,8 @@ let paths = {
 		src:  baseDir + '/images/src/**/*',
 		dest: baseDir + '/images/dest',
 	},
-	cssOutputName: '*.css',
-	jsOutputName:  '*.js',
+	cssOutputName: 'main.css',
+	jsOutputName:  'main.js',
 
 }
 
