@@ -1255,8 +1255,8 @@ function quickViewShowMod(href, atempt) {
 			$.fancybox.open(document.quickviewPreload[href]);
 			addCart();
 			addTo();
-			goodsModification();
-			newModification();
+			goodsModification($('.fancybox-content.productViewBlock'));
+			newModification($('.fancybox-content.productViewBlock'));
 			quantity();
 			prodQty();
 		}
@@ -1266,8 +1266,8 @@ function quickViewShowMod(href, atempt) {
 			$.fancybox.open($(content).getColumnContent());
 			addCart();
 			addTo();
-			goodsModification();
-			newModification();
+			goodsModification($('.fancybox-content.productViewBlock'));
+			newModification($('.fancybox-content.productViewBlock'));
 			quantity();
 			prodQty();
 		});
@@ -3110,26 +3110,27 @@ function monthNames() {
 
 
 // Радио кнопки для модификаций
-function newModification() {
-	$('.goodsModificationsProperty').each(function(){
+function newModification($container) {
+	var $parentBlock = $container || $('#main .productViewBlock')
+	$parentBlock.find('.goodsModificationsProperty').each(function(){
 		a = $(this).find('select option:selected').attr('value');
 		$(this).find('.goodsModificationsValue[data-value="'+ a +'"]').addClass('active');
 		dis = $(this).find('select option:disabled').attr('value');
 		$(this).find('.goodsModificationsValue[data-value="'+ dis +'"]').removeClass('active');
 		$(this).find('.goodsModificationsValue[data-value="'+ dis +'"]').addClass('disabled');
 	});
-	$('.goodsModificationsValue').on('click', function(){
+	$parentBlock.find('.goodsModificationsValue').click(function(){
 		$(this).parent().find('.goodsModificationsValue').removeClass('active');
 		$(this).addClass('active');
 		a = $(this).data('value');
 		$(this).parent().parent().find('select option[value="' + a + '"]').prop('selected',true);
 		$(this).parent().parent().find('select').trigger('change');
 	});
-	$('.goodsModificationsValue.disabled').off('click');
+	$parentBlock.find('.goodsModificationsValue.disabled').off('click');
 }
 
 // Модификации select
-function goodsModification() {
+function goodsModification($container) {
 	// Функция собирает свойства в строку, для определения модификации товара
 	function getSlugFromGoodsDataFormModificationsProperties(obj) {
 		var properties = new Array();
@@ -3139,9 +3140,11 @@ function goodsModification() {
 		return properties.sort(function(a,b){return a - b}).join('_');
 	}
 
+	var $parentBlock = $container || $('#main .productViewBlock')
+
 	var
-			goodsDataProperties = $('.goodsModificationsProperty select[name="form[properties][]"]'),  // Запоминаем поля выбора свойств, для ускорения работы со значениями свойств
-			goodsDataModifications = $('.goodsModificationsList'); // Запоминаем блоки с информацией по модификациям, для ускорения работы
+			goodsDataProperties = $parentBlock.find('.goodsModificationsProperty select[name="form[properties][]"]'),  // Запоминаем поля выбора свойств, для ускорения работы со значениями свойств
+			goodsDataModifications = $parentBlock.find('.goodsModificationsList'); // Запоминаем блоки с информацией по модификациям, для ускорения работы
 
 	// Обновляет возможность выбора свойств модификации, для отключения возможности выбора по характеристикам модификации которой не существует.
 	function updateVisibility (y) {
@@ -3273,8 +3276,8 @@ function goodsModification() {
 				}
 				// Идентификатор товарной модификации
 				goodsModificationId.val(modificationId);
-				$('.goodsDataMainModificationId').attr('name','form[goods_mod_id][' + modificationId + ']');
-				var goodsDataMainImage = $('.goodsDataMainImage').attr('data-src');
+				goodsModView.find('.goodsDataMainModificationId').attr('name','form[goods_mod_id][' + modificationId + ']');
+				var goodsDataMainImage = goodsModView.find('.productView__images');
 				// Меняет главное изображение товара на изображение с идентификатором goods_mod_image_id
 				function changePrimaryGoodsImage(goods_mod_image_id) {
 					// Если не указан идентификатор модификации товара, значит ничего менять не нужно.
@@ -3283,9 +3286,9 @@ function goodsModification() {
 					}
 					var
 							// Блок с изображением выбранной модификации товара
-							goodsModImageBlock = $('.productView__imageBox [data-id="' + parseInt(goods_mod_image_id) + '"'),
+							goodsModImageBlock = goodsDataMainImage.find('[data-id="' + parseInt(goods_mod_image_id) + '"'),
 							// Блок, в котором находится главное изображение товара
-							MainImageBlock = $('.productView__image'),
+							MainImageBlock = goodsDataMainImage.find('.productView__image'),
 							// Изображение модификации товара, на которое нужно будет изменить главное изображение товара.
 							MediumImageUrl = goodsModImageBlock.attr('data-href'),
 							// Главное изображение, в которое будем вставлять новое изображение
