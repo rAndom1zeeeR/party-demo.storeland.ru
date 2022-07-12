@@ -1876,9 +1876,11 @@
 								</noscript>
 								<img class="lozad script__on" data-src="{% IF news_list_all.IMG %}{news_list_all.IMG}{% ELSE %}{ASSETS_IMAGES_PATH}{news_list_all.index | is_divided('2','news_2','news_1')}.jpg?design=PARTY{% ENDIF %}" alt="{news_list_all.TITLE}" />
 								{% IF news_list_all.SHOW_TIME %}
-								<div class="news__date pulse2 flex-center">
-									<div class="day">{news_list_all.TIME | date("d")}</div>
-									<div class="month">{news_list_all.TIME | date("M")}</div>
+								<div class="news__date pulse2">
+									<div class="news__date-icon flex-center">
+										<div class="day">{news_list_all.TIME | date("d")}</div>
+										<div class="month">{news_list_all.TIME | date("M")}</div>
+									</div>
 								</div>
 								{% ENDIF %}
 							</a>
